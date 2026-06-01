@@ -1,0 +1,22 @@
+{
+  "name": "sc-tcg-card-view",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest --run",
+    "test:unit": "vitest run",
+    "test:e2e": "vitest play",
+    "sonar:scan": "sonar-scanner",
+    "sonar:start": "docker compose -f docker-compose.sonar.yml up -d",
+    "sonar:stop": "docker compose -f docker-compose.sonar.yml down"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "playwright": "^1.45.0",
+    "playwright-bdd": "^8.5.1",
+    "sonarqube-scanner": "^4.3.6",
+    "typescript": "^5.4.0",
+    "vitest": "^0.28.1"
+  }
+}

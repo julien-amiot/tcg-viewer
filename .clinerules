@@ -1,0 +1,28 @@
+# SC-TCG Project - Permanent Context
+
+## What is this project
+SC-TCG is a web-based Magic: The Gathering card viewer / tabletop companion.
+It loads card data from JSON files and renders them in a browser.
+Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
+
+## Tech stack
+- Frontend: full vanilla TypeScript + HTML + CSS (no framework, no or minimal third-party library imports)
+- Build: `tsc` (tsconfig.json), served as plain JS
+- Quality: SonarQube (local Docker), pre-push hook enforces quality gate + max 300 lines per push
+- Data: MTGJSON-derived JSON (`CARDS/SOS_prepared.json`)
+
+## Working rules
+1. Every feature must be documented in `specs.md` before implementation.
+2. Each spec node (header) represents a feature of **less than 300 lines** of code.
+3. After implementing a feature, update `README.md` with a short description, requirement summary, or Mermaid diagram.
+4. The pre-push hook blocks pushes that exceed 300 lines of diff or fail the SonarQube quality gate.
+5. Always read `specs.md` and `README.md` at the start of any session to understand current state.
+6. When adding a feature, create a new header in `specs.md`, implement it, then update `README.md`.
+7. Before any merge or push to origin, always run the SonarQube quality gate first. Only merge/push if the gate passes. If the gate fails, fix the issues before proceeding.
+8. **Never skip SonarQube.** If the quality gate fails, stop and ask the user how to proceed.
+9. **Before merging a PR, always ask for the user's explicit validation.** Do not merge without approval.
+10. **E2E tests (Playwright) must pass before any PR merge.** Run Playwright BDD tests as part of pre-merge validation. If E2E tests fail, stop and ask the user how to proceed.
+
+## Test strategy
+- **Unit tests:** Vitest - live in `test/unit/`, run with `npm test`
+- **E2E / BDD tests:** Playwright - live in `test/e2e/`, scenarios written in Given/When/Then style, run with `npm run test:e2e`
