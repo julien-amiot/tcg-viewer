@@ -7,11 +7,11 @@
 
 ## 1. Development & Quality
 
-### 1.1 SonarQube quality gate 🔲
-- Local Docker-based SonarQube instance
+### 1.1 SonarQube quality gate ✅
+- Local Docker-based SonarQube instance (SQ 26.5.0, Community Edition)
 - Quality gate check before push
 - TypeScript, CSS, HTML, JSON analysis
-- _Status: Docker not running, no sonar-project.properties in repo_
+- _Status: Running on localhost:9000, first analysis PASSED, Quality Gate "SC-TCG Quality Gate" configured_
 
 ### 1.2 Pre-push lines-of-change gate 🔲
 - Blocks push if >300 lines changed
@@ -73,11 +73,12 @@
 
 ## 3. Quality Infrastructure
 
-### 3.1 SonarQube Setup 🔲
+### 3.1 SonarQube Setup ✅
 - Create `sonar-project.properties`
 - Docker compose for local SonarQube
-- Webhook / CLI quality gate check
-- Status: **Config ready** (`sonar-project.properties` + `docker-compose.sonar.yml` + npm scripts). Docker Desktop not running so runtime not verified yet.
+- CLI quality gate check via `sonarqube-scanner`
+- Token stored in `.env` (gitignored)
+- _Status: Fully operational — SQ 26.5.0 running, project `sc-tcg-card-view` created, first analysis PASSED_
 
 ### 3.2 Pre-push Hook 🔲
 - Active `pre-push` hook (not .sample)
@@ -94,3 +95,10 @@
 - First Playwright BDD `.feature` file
 - Confirm headless Chromium runs against built app
 - Status: **Planned**
+
+### 3.5 Git & GitHub Setup ✅
+- Repository initialized on `trunk` branch
+- Remote origin: `https://github.com/julien-amiot/tcg-viewer.git` (private)
+- `.env` with `GITHUB_PAT` (gitignored)
+- `.gitignore` covers `node_modules/`, `dist/`, `coverage/`, `.env`, `.scannerwork/`, `.sonar/`
+- _Status: Initial commit `fd74721` pushed to GitHub_
