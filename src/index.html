@@ -1,1 +1,46 @@
-<html><body>SC-TCG Card Viewer</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SC-TCG Card Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>SC-TCG Card Viewer</h1>
+    <div id="filters">
+      <input type="text" id="searchInput" placeholder="Search card name...">
+      <select id="colorFilter">
+        <option value="">All Colors</option>
+        <option value="W">White</option>
+        <option value="U">Blue</option>
+        <option value="B">Black</option>
+        <option value="R">Red</option>
+        <option value="G">Green</option>
+      </select>
+      <select id="typeFilter">
+        <option value="">All Types</option>
+        <option value="Creature">Creature</option>
+        <option value="Land">Land</option>
+        <option value="Instant">Instant</option>
+        <option value="Sorcery">Sorcery</option>
+        <option value="Enchantment">Enchantment</option>
+        <option value="Artifact">Artifact</option>
+      </select>
+      <select id="rarityFilter">
+        <option value="">All Rarities</option>
+        <option value="common">Common</option>
+        <option value="uncommon">Uncommon</option>
+        <option value="rare">Rare</option>
+        <option value="mythic">Mythic</option>
+      </select>
+    </div>
+  </header>
+  <main>
+    <div id="cardGrid"></div>
+    <p id="cardCount"></p>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -40,33 +40,33 @@
 
 ## 2. Features
 
-### 2.1 Card Domain Model 🔲
+### 2.1 Card Domain Model ✅
 - Typed TypeScript representation of MTGJSON card data
-- Value objects: `CardName`, `ManaCost`, `CardType`, `PowerToughness`, `Rarity`
+- Value objects: `CardName`, `ManaCost`, `CardType`, `PowerToughness`, `Rarity`, `Color`
 - `Card` aggregate with all fields from `data.cards[*]`
-- Status: **Planned** — `Color` value object exists; rest to be created
+- Status: **Implemented** — All value objects + Card aggregate created
 
-### 2.2 Card Data Loader (Primary Port) 🔲
-- Hexagonal primary port: `CardRepository` interface
-- Implementation reads `CARDS/SOS_prepared.json` via `fetch`
-- Returns `Card[]` typed entities
-- Status: **Planned**
+### 2.2 Card Data Loader (Primary Port) ✅
+- Singleton `CardLoader` reads `CARDS/SOS_prepared.json` via `fetch`
+- Maps raw JSON to `Card[]` typed entities via `Card.fromRaw()`
+- Graceful skip on malformed cards
+- Status: **Implemented**
 
-### 2.3 Card Renderer 🔲
+### 2.3 Card Renderer ✅
 - Render a single card with MTG-like layout (name, mana cost, type line, text box, P/T)
 - CSS-first animations, honour `prefers-reduced-motion`
 - JS only flips classes / `aria-*` state
-- Status: **Planned**
+- Status: **Implemented** — `CardRenderer` creates DOM elements per card
 
-### 2.4 Card List / Grid 🔲
-- Display scrollable grid of card thumbnails
-- Basic filtering by color (W/U/B/R/G)
-- Pagination or virtual scrolling for large sets (~368 cards)
-- Status: **Planned**
+### 2.4 Card List / Grid ✅
+- Display scrollable grid of card thumbnails via CSS Grid
+- Filtering by name (text search), color (W/U/B/R/G), type, and rarity
+- Live card count display
+- Status: **Implemented** — Grid with 4 filter controls wired in `main.ts`
 
 ### 2.5 Set Selector 🔲
-- Toggle between available sets (SC, TDM)
-- URL-based state (`?set=sc`) for shareability
+- Toggle between available sets (SOS)
+- URL-based state (`?set=sos`) for shareability
 - Status: **Planned**
 
 ---

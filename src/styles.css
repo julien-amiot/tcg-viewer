@@ -1,0 +1,173 @@
+/* SC-TCG Card Viewer Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+header {
+  background: #16213e;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #e94560;
+}
+
+#filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#filters input,
+#filters select {
+  padding: 0.5rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #0f3460;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+#filters input {
+  flex: 1;
+  min-width: 200px;
+}
+
+#filters select {
+  min-width: 120px;
+}
+
+main {
+  padding: 2rem;
+}
+
+#cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+#cardCount {
+  margin-top: 1rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Card Styles */
+.card {
+  background: #16213e;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.2);
+}
+
+.card-header {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.card-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-mana {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #e94560;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.card-colors {
+  display: flex;
+  gap: 4px;
+  padding: 0.5rem 0.75rem;
+}
+
+.color-pip {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.color-pip.W { background: #e8e8e8; }
+.color-pip.U { background: #4a90e2; }
+.color-pip.B { background: #2d2d2d; }
+.color-pip.R { background: #e74c3c; }
+.color-pip.G { background: #27ae60; }
+
+.card-body {
+  padding: 0.75rem;
+}
+
+.card-type {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+  min-height: 3em;
+}
+
+.card-footer {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #333;
+}
+
+.card-power-toughness {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #e94560;
+}
+
+.card-rarity {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.card-rarity.common { background: #888; color: #222; }
+.card-rarity.uncommon { background: #c0c0c0; color: #222; }
+.card-rarity.rare { background: #ffd700; color: #222; }
+.card-rarity.mythic { background: #e94560; color: #fff; }

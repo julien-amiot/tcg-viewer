@@ -27,7 +27,7 @@ A web-based Magic: The Gathering card viewer / tabletop companion. Loads card da
 │  └──────────┬───────────────┘               │
 │             │                               │
 │  ┌──────────v───────────────┐               │
-│  │  CardRepository (port)   │               │
+│  │  CardLoader (adapter)    │               │
 │  └──────────────────────────┘               │
 └─────────────────────────────────────────────┘
                     ▲
@@ -39,7 +39,7 @@ A web-based Magic: The Gathering card viewer / tabletop companion. Loads card da
 
 ```bash
 npm install
-npm run build        # tsc → dist/
+npm run build        # tsc --noEmit + esbuild bundle → dist/
 npm test             # vitest (unit)
 npm run test:e2e     # playwright BDD
 ```
@@ -64,7 +64,8 @@ npm run sonar:stop    # Stop containers
 | Layer | Technology |
 |-------|-----------|
 | Language | Full TypeScript (strict) |
-| Build | `tsc` (tsconfig.json) |
+| Build | `tsc --noEmit` (type check) |
+| Bundler | esbuild (single bundled output) |
 | Unit Tests | Vitest (`test/unit/`) |
 | E2E / BDD Tests | Playwright + playwright-bdd (`test/e2e/`) |
 | Quality Gate | SonarQube (local Docker) |
@@ -77,15 +78,14 @@ npm run sonar:stop    # Stop containers
 | Area | Status |
 |------|--------|
 | TypeScript strict mode | ✅ Build passes |
-| Domain skeleton (`Color`) | ✅ Value object exists |
+| Domain model (Card, Value Objects) | ✅ Fully implemented |
+| Card data loader | ✅ Fetch + type mapping |
+| Card renderer | ✅ DOM-based MTG layout |
+| Card list / grid | ✅ Grid + 4 filters (name, color, type, rarity) |
 | SonarQube setup | ✅ Running (SQ 26.5.0, first analysis PASSED) |
 | Pre-push hook | 🔲 Planned (3.2) |
 | Unit test bootstrap | 🔲 Planned (3.3) |
 | E2E test bootstrap | 🔲 Planned (3.4) |
-| Card domain model | 🔲 Planned (2.1) |
-| Card data loader | 🔲 Planned (2.2) |
-| Card renderer | 🔲 Planned (2.3) |
-| Card list / grid | 🔲 Planned (2.4) |
 | Set selector | 🔲 Planned (2.5) |
 
 ## Dependency Fixes (2026-06-01)
@@ -93,6 +93,7 @@ npm run sonar:stop    # Stop containers
 - Added `typescript@^5.4.0` to `devDependencies` (was missing, `tsc` not found)
 - Updated `playwright-bdd` from `^0.5.0` (non-existent) to `^8.5.1`
 - Updated `@types/node` from `18.15.x` to `^22.0.0` (TS 5.4 compatibility)
+- Added `esbuild@^0.28.0` for bundling (replaces raw `tsc` emit)
 
 ## Working Rules
 
