@@ -7,7 +7,7 @@ export class ManaCost {
 
   constructor(value: string) {
     if (typeof value !== 'string') {
-      throw new Error('Mana cost must be a string');
+      throw new TypeError('Mana cost must be a string');
     }
     this.value = value.trim();
   }

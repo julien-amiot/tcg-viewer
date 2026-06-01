@@ -14,11 +14,12 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^4.1.8",
     "esbuild": "^0.28.0",
     "playwright": "^1.45.0",
-    "playwright-bdd": "^8.5.1",
-    "sonarqube-scanner": "^4.3.6",
+    "playwright-bdd": "^6.6.0",
+    "sonarqube-scanner": "^3.5.0",
     "typescript": "^5.4.0",
-    "vitest": "^0.28.1"
+    "vitest": "^4.1.8"
   }
 }

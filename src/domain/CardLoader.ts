@@ -15,9 +15,7 @@ export class CardLoader {
   private constructor() {}
 
   static getInstance(): CardLoader {
-    if (!CardLoader.instance) {
-      CardLoader.instance = new CardLoader();
-    }
+    CardLoader.instance ??= new CardLoader();
     return CardLoader.instance;
   }
 

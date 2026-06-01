@@ -167,7 +167,7 @@ main {
   border-radius: 4px;
 }
 
-.card-rarity.common { background: #888; color: #222; }
+.card-rarity.common { background: #999; color: #111; }
 .card-rarity.uncommon { background: #c0c0c0; color: #222; }
-.card-rarity.rare { background: #ffd700; color: #222; }
-.card-rarity.mythic { background: #e94560; color: #fff; }
+.card-rarity.rare { background: #ffd700; color: #111; }
+.card-rarity.mythic { background: #c73e54; color: #fff; }

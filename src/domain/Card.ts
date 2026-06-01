@@ -24,6 +24,19 @@ export interface RawCardData {
   [key: string]: any;
 }
 
+export interface CardOptions {
+  id: string;
+  name: CardName;
+  manaCost: ManaCost;
+  cardType: CardType;
+  powerToughness: PowerToughness;
+  rarity: Rarity;
+  colors: Color[];
+  text: string;
+  setCode: string;
+  number: string;
+}
+
 export class Card {
   public readonly id: string;
   public readonly name: CardName;
@@ -36,18 +49,7 @@ export class Card {
   public readonly setCode: string;
   public readonly number: string;
 
-  constructor(
-    id: string,
-    name: CardName,
-    manaCost: ManaCost,
-    cardType: CardType,
-    powerToughness: PowerToughness,
-    rarity: Rarity,
-    colors: Color[],
-    text: string,
-    setCode: string,
-    number: string
-  ) {
+  constructor({ id, name, manaCost, cardType, powerToughness, rarity, colors, text, setCode, number }: CardOptions) {
     this.id = id;
     this.name = name;
     this.manaCost = manaCost;
@@ -66,18 +68,18 @@ export class Card {
       ? PowerToughness.from(`${raw.power}/${raw.toughness}`)
       : PowerToughness.empty();
 
-    return new Card(
-      raw.uuid,
-      CardName.from(raw.name),
-      ManaCost.from(raw.manaCost),
-      CardType.from(raw.type, raw.subtypes),
-      pt,
-      Rarity.from(raw.rarity),
+    return new Card({
+      id: raw.uuid,
+      name: CardName.from(raw.name),
+      manaCost: ManaCost.from(raw.manaCost),
+      cardType: CardType.from(raw.type, raw.subtypes),
+      powerToughness: pt,
+      rarity: Rarity.from(raw.rarity),
       colors,
-      raw.text || '',
-      raw.setCode,
-      raw.number
-    );
+      text: raw.text || '',
+      setCode: raw.setCode,
+      number: raw.number
+    });
   }
 
   get hasPowerToughness(): boolean {
