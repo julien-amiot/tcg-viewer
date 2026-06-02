@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "UMD",
+    "module": "ESNext",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -12,7 +12,7 @@
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "rootDir": "./src",
     "outDir": "./dist"
