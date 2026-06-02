@@ -13,11 +13,11 @@
 - TypeScript, CSS, HTML, JSON analysis
 - _Status: Running on localhost:9000, first analysis PASSED, Quality Gate "SC-TCG Quality Gate" configured_
 
-### 1.2 Pre-push lines-of-change gate 🔲
+### 1.2 Pre-push lines-of-change gate ✅
 - Blocks push if >300 lines changed
 - Compares against remote tracking branch
 - Runs before SonarQube analysis
-- _Status: Only .sample hooks exist, no active pre-push hook_
+- _Status: Implemented — scripts/pre-push.sh installed in .git/hooks, supports Windows and Unix_
 
 ### 1.3 TypeScript strict mode ✅
 - Enable `strict: true` in tsconfig.json
@@ -80,11 +80,12 @@
 - Token stored in `.env` (gitignored)
 - _Status: Fully operational — SQ 26.5.0 running, project `sc-tcg-card-view` created, first analysis PASSED_
 
-### 3.2 Pre-push Hook 🔲
+### 3.2 Pre-push Hook ✅
 - Active `pre-push` hook (not .sample)
 - Lines-of-change gate (>300 blocks)
-- SonarQube quality gate integration
-- Status: **Planned**
+- SonarQube quality gate integration with token from `.env`
+- Graceful fallback when SonarQube is unreachable
+- _Status: Implemented — scripts/pre-push.sh version-controlled, quality gate passed_
 
 ### 3.3 Unit Test Bootstrap 🔲
 - First Vitest test for `Color` domain class
