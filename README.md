@@ -83,7 +83,7 @@ npm run sonar:stop    # Stop containers
 | Card renderer | ✅ DOM-based MTG layout |
 | Card list / grid | ✅ Grid + 4 filters (name, color, type, rarity) |
 | SonarQube setup | ✅ Running (SQ 26.5.0, first analysis PASSED) |
-| Pre-push hook | 🔲 Planned (3.2) |
+| Pre-push hook | ✅ Implemented (3.2) — scripts/pre-push.sh with SonarQube integration |
 | Unit test bootstrap | 🔲 Planned (3.3) |
 | E2E test bootstrap | 🔲 Planned (3.4) |
 | Set selector | 🔲 Planned (2.5) |
