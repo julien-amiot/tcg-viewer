@@ -42,6 +42,27 @@ export class CardLoader {
     this.loaded = true;
   }
 
+  async loadFromJson(jsonData: string): Promise<void> {
+    if (this.loaded) {
+      console.warn('CardLoader already loaded; clearing existing cards before loading new data.');
+      this.cards.length = 0;
+    }
+
+    try {
+      const parsed = JSON.parse(jsonData);
+      for (const key of Object.keys(parsed)) {
+        const raw = parsed[key];
+        try {
+          this.cards.push(Card.fromRaw(raw));
+        } catch (e) {
+          console.warn(`Skipping card ${key}: ${e}`);
+        }
+      }
+    } catch (err) {
+      throw new Error(`Failed to parse JSON: ${(err as Error).message}`);
+    }
+  }
+
   getAll(): Card[] {
     return [...this.cards];
   }

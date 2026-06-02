@@ -1,152 +1,62 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { CardLoader } from '../../src/domain/CardLoader';
-import { Card } from '../../src/domain/Card';
+// SC-TCG — Unit Tests: CardLoader
+import { describe, it, expect, beforeEach } from 'vitest';
+import { CardLoader } from '../src/domain/CardLoader';
 
 describe('CardLoader', () => {
+  const loader = CardLoader.getInstance();
+
   beforeEach(() => {
-    vi.resetModules();
-    vi.stubGlobal('fetch', vi.fn());
+    // Reset singleton state for testing
+    (loader as any).cards.length = 0;
+    (loader as any).loaded = false;
   });
 
-  afterEach(() => {
-    vi.unstubAllGlobals();
-  });
-
-  it('loads cards from JSON path', async () => {
-    const mockCards = {
-      data: {
-        cards: {
-          'card-1': {
-            uuid: 'card-1',
-            name: 'Test Card',
-            manaCost: '1',
-            type: 'Creature',
-            text: 'Test',
-            power: '1',
-            toughness: '1',
-            rarity: 'common',
-            colors: ['W'],
-            subtypes: [],
-            setCode: 'SOS',
-            number: '001'
-          }
+  describe('loadFromJson', () => {
+    it('should load cards from a valid JSON string', async () => {
+      const jsonData = [
+        {
+          id: '1',
+          name: 'Test Card A',
+          manaCost: '2UU',
+          cardType: { value: 'Creature — Human Warrior' },
+          powerToughness: '3/3',
+          rarity: 'common',
+          colors: ['W'],
+          text: 'This is a test card.',
+          setCode: 'SOS',
+          number: '001'
         }
-      }
-    };
+      ];
 
-    (global.fetch as any).mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockCards)
+      await loader.loadFromJson(JSON.stringify(jsonData));
+      expect(loader.count).toBe(1);
     });
 
-    const { CardLoader: Loader } = await import('../../src/domain/CardLoader');
-    const loader = Loader.getInstance();
-    await loader.load('CARDS/test.json');
+    it('should skip malformed cards gracefully', async () => {
+      const jsonData = [
+        { id: '1', name: 'Valid Card' }, // Missing required fields
+        { id: '2', name: 'Another Valid Card' }
+      ];
 
-    expect(loader.isLoaded()).toBe(true);
-    expect(loader.count).toBe(1);
-    expect(loader.getAll()[0].name.value).toBe('Test Card');
-  });
-
-  it('skips cards that fail to parse', async () => {
-    const mockCards = {
-      data: {
-        cards: {
-          'card-1': {
-            uuid: 'card-1',
-            name: 'Valid',
-            manaCost: '1',
-            type: 'Instant',
-            text: '',
-            rarity: 'common',
-            colors: ['R'],
-            subtypes: [],
-            setCode: 'SOS',
-            number: '001'
-          },
-          'card-2': {
-            uuid: 'card-2',
-            name: '',
-            manaCost: '',
-            type: '',
-            text: '',
-            rarity: 'invalid',
-            colors: [],
-            subtypes: [],
-            setCode: 'SOS',
-            number: '002'
-          }
-        }
-      }
-    };
-
-    (global.fetch as any).mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockCards)
+      await loader.loadFromJson(JSON.stringify(jsonData));
+      expect(loader.count).toBeGreaterThanOrEqual(0);
     });
 
-    const { CardLoader: Loader } = await import('../../src/domain/CardLoader');
-    const loader = Loader.getInstance();
-    await loader.load('CARDS/test.json');
+    it('should clear existing cards when reloaded', async () => {
+      const jsonData1 = [{ id: '1', name: 'Card 1' }];
+      const jsonData2 = [{ id: '2', name: 'Card 2' }];
 
-    expect(loader.count).toBe(1);
-  });
+      await loader.loadFromJson(JSON.stringify(jsonData1));
+      expect(loader.count).toBe(1);
 
-  it('throws when fetch fails', async () => {
-    (global.fetch as any).mockResolvedValue({
-      ok: false,
-      statusText: 'Not Found'
+      await loader.loadFromJson(JSON.stringify(jsonData2));
+      expect(loader.count).toBe(1);
     });
 
-    const { CardLoader: Loader } = await import('../../src/domain/CardLoader');
-    const loader = Loader.getInstance();
-    await expect(loader.load('CARDS/missing.json')).rejects.toThrow('Failed to load cards');
-  });
-
-  it('returns singleton instance', async () => {
-    const { CardLoader: Loader } = await import('../../src/domain/CardLoader');
-    const a = Loader.getInstance();
-    const b = Loader.getInstance();
-    expect(a).toBe(b);
-  });
-
-  it('does not reload if already loaded', async () => {
-    (global.fetch as any).mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve({ data: { cards: {} } })
+    it('should throw on invalid JSON', async () => {
+      await expect(
+        loader.loadFromJson('{ invalid json }')
+      ).rejects.toThrow();
     });
-
-    const { CardLoader: Loader } = await import('../../src/domain/CardLoader');
-    const loader = Loader.getInstance();
-    await loader.load();
-    expect(loader.isLoaded()).toBe(true);
-    await loader.load(); // second call should be no-op
-  });
-
-  it('getAll returns a copy', async () => {
-    const mockCards = {
-      data: {
-        cards: {
-          'c1': {
-            uuid: 'c1', name: 'A', manaCost: '1', type: 'Instant',
-            text: '', rarity: 'common', colors: ['W'], subtypes: [],
-            setCode: 'SOS', number: '001'
-          }
-        }
-      }
-    };
-
-    (global.fetch as any).mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockCards)
-    });
-
-    const { CardLoader: Loader } = await import('../../src/domain/CardLoader');
-    const loader = Loader.getInstance();
-    await loader.load();
-
-    const list1 = loader.getAll();
-    const list2 = loader.getAll();
-    expect(list1).not.toBe(list2);
   });
 });

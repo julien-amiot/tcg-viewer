@@ -9,6 +9,15 @@
 <body>
   <header>
     <h1>SC-TCG Card Viewer</h1>
+    <button id="clearFiltersButton">Clear All Filters</button>
+    <div id="set-controls">
+      <label for="jsonUploadInput">Upload JSON:</label>
+      <input type="file" id="jsonUploadInput" accept=".json">
+      <button id="saveSetButton">Save Current Set</button>
+      <select id="setSelector">
+        <option value="">-- Select a Set --</option>
+      </select>
+    </div>
     <div id="filters">
       <input type="text" id="searchInput" placeholder="Search card name...">
       <select id="colorFilter">

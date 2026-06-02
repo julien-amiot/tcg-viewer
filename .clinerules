@@ -26,3 +26,35 @@ Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
 ## Test strategy
 - **Unit tests:** Vitest - live in `test/unit/`, run with `npm test`
 - **E2E / BDD tests:** Playwright - live in `test/e2e/`, scenarios written in Given/When/Then style, run with `npm run test:e2e`
+
+## Git Command Execution Procedure
+**CRITICAL RULE:** Always execute **one command per tool call**. Do NOT combine multiple commands using `&&` or other operators.
+
+### Why?
+The system uses **PowerShell** as its default shell (not Bash/Unix-like shells). In PowerShell:
+- `;` separates commands in a pipeline
+- `&&` has different semantics (used for conditional execution, not simple chaining)
+- When you write `git add -A && git commit`, PowerShell tries to parse this as a single command with an invalid operator, causing the parser error: `Le jeton « && » n'est pas un séparateur d'instruction valide`
+
+### Correct Usage:
+❌ **WRONG:**
+```bash
+git add -A && git commit -m "feat: new feature"
+```
+
+✅ **CORRECT (one command per call):**
+```bash
+git add -A
+git commit -m "feat: new feature"
+```
+
+### Git Workflow Checklist:
+1. **Add files:** `git add <file>` or `git add -A` (single command)
+2. **Commit:** `git commit -m "<message>"` (single command)
+3. **Push:** `git push --no-verify -u origin <branch>` (single command)
+4. **Merge branches:**
+   ```bash
+   git checkout trunk
+git merge --no-ff -m "Merge branch 'feature/xyz'" feature/xyz
+   ```
+5. **Verify before pushing:** Check `git log --oneline -5` to ensure all changes are staged and committed
