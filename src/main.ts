@@ -154,10 +154,10 @@ async function init(): Promise<void> {
 
   // Wire clear filters button listener
   document.getElementById('clearFiltersButton')?.addEventListener('click', () => {
-    searchInput?.value = '';
-    colorFilter?.value = '';
-    typeFilter?.value = '';
-    rarityFilter?.value = '';
+    if (searchInput) searchInput.value = '';
+    if (colorFilter) colorFilter.value = '';
+    if (typeFilter) typeFilter.value = '';
+    if (rarityFilter) rarityFilter.value = '';
     const filtered = applyFilters(loader.getAll());
     renderer.render(filtered);
     updateCount(loader.getAll().length, filtered.length);

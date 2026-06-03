@@ -16,9 +16,7 @@ export class SetStorage {
   private constructor() {}
 
   public static getInstance(): SetStorage {
-    if (!SetStorage.instance) {
-      SetStorage.instance = new SetStorage();
-    }
+    SetStorage.instance ??= new SetStorage();
     return SetStorage.instance;
   }
 
