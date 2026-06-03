@@ -122,7 +122,7 @@ async function init(): Promise<void> {
       return;
     }
     const name = prompt('Enter a name for this set:', 'My Custom Set');
-    if (!name || !name.trim()) return;
+    if (!name?.trim()) return;
     const jsonData = JSON.stringify(cards, null, 2);
     setStorage.saveSet(name.trim(), jsonData);
     alert(`Set "${name}" saved!`);
@@ -131,7 +131,7 @@ async function init(): Promise<void> {
   // Wire file upload listener
   document.getElementById('jsonUploadInput')?.addEventListener('change', async (e) => {
     const input = e.target as HTMLInputElement;
-    if (!input.files || !input.files.length) return;
+    if (!input.files?.length) return;
     const file = input.files[0];
     if (!file.name.toLowerCase().endsWith('.json')) {
       alert('Please select a valid JSON file.');
