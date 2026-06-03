@@ -6,6 +6,9 @@ dist/
 
 # Test coverage
 coverage/
+vitest-coverage*.txt
+vitest-output*.txt
+test-results/
 
 # IDE
 .vscode/
