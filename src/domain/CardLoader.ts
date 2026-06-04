@@ -3,7 +3,7 @@ import { Card, RawCardData } from './Card';
 
 interface CardJsonResponse {
   data: {
-    cards: Record<string, RawCardData>;
+    cards: RawCardData[];
   };
 }
 
@@ -30,12 +30,11 @@ export class CardLoader {
     const json: CardJsonResponse = await response.json();
     this.cards.length = 0;
 
-    for (const key of Object.keys(json.data.cards)) {
-      const raw = json.data.cards[key];
+    for (const raw of json.data.cards) {
       try {
         this.cards.push(Card.fromRaw(raw));
       } catch (e) {
-        console.warn(`Skipping card ${key}: ${e}`);
+        console.warn(`Skipping card: ${e}`);
       }
     }
 
@@ -47,12 +46,25 @@ export class CardLoader {
 
     try {
       const parsed = JSON.parse(jsonData);
-      for (const key of Object.keys(parsed)) {
-        const raw = parsed[key];
+
+      // Support MTGJSON format: { data: { cards: [...] } }
+      let cardItems: RawCardData[];
+      if (parsed.data && Array.isArray(parsed.data.cards)) {
+        cardItems = parsed.data.cards;
+      } else if (Array.isArray(parsed)) {
+        cardItems = parsed;
+      } else if (typeof parsed === 'object') {
+        // Plain object keyed by id: iterate values
+        cardItems = Object.values(parsed) as RawCardData[];
+      } else {
+        throw new Error('Unrecognized JSON structure');
+      }
+
+      for (const raw of cardItems) {
         try {
           this.cards.push(Card.fromRaw(raw));
         } catch (e) {
-          console.warn(`Skipping card ${key}: ${e}`);
+          console.warn(`Skipping card: ${e}`);
         }
       }
     } catch (err) {
