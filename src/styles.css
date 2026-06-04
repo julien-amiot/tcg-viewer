@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: clamp(12px, 1.2vw, 18px);
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #1a1a2e;
@@ -14,23 +18,23 @@ body {
 
 header {
   background: #16213e;
-  padding: 1rem 2rem;
+  padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 2rem);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+  margin-bottom: clamp(0.5rem, 1vw, 1rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   color: #e94560;
 }
 
 #clearFiltersButton {
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   border: none;
   border-radius: 4px;
   background: #0d5c3e;
   color: white;
-  font-size: 0.9rem;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -41,47 +45,47 @@ header h1 {
 
 #filters {
   display: flex;
-  gap: 1rem;
+  gap: clamp(0.5rem, 1vw, 1rem);
   flex-wrap: wrap;
 }
 
 #filters input,
 #filters select {
-  padding: 0.5rem;
+  padding: 0.5em;
   border: 1px solid #333;
   border-radius: 4px;
   background: #0f3460;
   color: #e0e0e0;
-  font-size: 0.9rem;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
 }
 
 #filters input {
   flex: 1;
-  min-width: 200px;
+  min-width: clamp(120px, 30vw, 200px);
 }
 
 #filters select {
-  min-width: 120px;
+  min-width: clamp(80px, 15vw, 120px);
 }
 
 main {
-  padding: 2rem;
+  padding: clamp(1rem, 2vw, 2rem);
 }
 
 #cardGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 20vw, 250px), 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
 }
 
 #cardCount {
   margin-top: 1rem;
   text-align: center;
   color: #aaa;
-  font-size: 0.9rem;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
 }
 
-/* Card Styles */
+/* Card Styles — 2.5 : 3.5 aspect ratio */
 .card {
   background: #16213e;
   border-radius: 8px;
@@ -91,7 +95,7 @@ main {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 380px;
+  aspect-ratio: 2.5 / 3.5;
 }
 
 .card:hover {
@@ -100,7 +104,7 @@ main {
 }
 
 .card-header {
-  padding: 0.75rem;
+  padding: clamp(0.4em, 0.8vw, 0.75em);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,7 +113,7 @@ main {
 
 .card-name {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.6rem, 1.2vw, 0.95rem);
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -119,24 +123,24 @@ main {
 .card-mana-dots {
   display: flex;
   gap: 3px;
-  margin-left: 0.5rem;
+  margin-left: 0.5em;
   align-items: center;
 }
 
 .mana-dot {
-  width: 24px;
-  height: 24px;
+  width: clamp(16px, 2.5vw, 24px);
+  height: clamp(16px, 2.5vw, 24px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: clamp(0.6rem, 1.2vw, 1rem);
   font-weight: 700;
   color: #1a1a2e;
 }
 
 .card-body {
-  padding: 0.75rem;
+  padding: clamp(0.4em, 0.8vw, 0.75em);
   flex: 1;
   overflow-y: auto;
 }
@@ -145,11 +149,11 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5em;
 }
 
 .card-type {
-  font-size: 0.8rem;
+  font-size: clamp(0.55rem, 1vw, 0.8rem);
   color: #aaa;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -157,20 +161,20 @@ main {
 
 .card-setcode {
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: clamp(0.55rem, 1vw, 0.8rem);
   letter-spacing: 1px;
 }
 
 .card-text {
-  font-size: 0.85rem;
+  font-size: clamp(0.6rem, 1.1vw, 0.85rem);
   line-height: 1.4;
   color: #ccc;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5em;
   min-height: 3em;
 }
 
 .card-footer {
-  padding: 0.5rem 0.75rem;
+  padding: clamp(0.3em, 0.6vw, 0.5em) clamp(0.4em, 0.8vw, 0.75em);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -178,22 +182,22 @@ main {
 }
 
 .card-artist {
-  font-size: 0.75rem;
+  font-size: clamp(0.5rem, 0.9vw, 0.75rem);
   color: #888;
   font-style: italic;
 }
 
 .card-power-toughness {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: clamp(0.7rem, 1.4vw, 1.1rem);
   color: #ccc;
 }
 
 .card-rarity {
-  font-size: 0.75rem;
+  font-size: clamp(0.5rem, 0.9vw, 0.75rem);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25em 0.5em;
   border-radius: 4px;
 }
 
