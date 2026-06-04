@@ -57,7 +57,7 @@ export class CardLoader {
         // Plain object keyed by id: iterate values
         cardItems = Object.values(parsed) as RawCardData[];
       } else {
-        throw new Error('Unrecognized JSON structure');
+        throw new TypeError('Unrecognized JSON structure');
       }
 
       for (const raw of cardItems) {

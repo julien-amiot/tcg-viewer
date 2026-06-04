@@ -28,13 +28,13 @@ function parseManaCost(raw: string): Array<{ content: string; color?: string; gr
   while (i < raw.length) {
     if (raw[i] === '{') {
       const end = raw.indexOf('}', i);
-      if (end !== -1) {
-        const inner = raw.substring(i + 1, end);
-        // Check for split cost like B/G
-        if (inner.includes('/')) {
-          const parts = inner.split('/');
-          const key = parts.sort().join('');
-          tokens.push({ content: inner, gradient: manaGradientMap[key] });
+        if (end > -1) {
+          const inner = raw.substring(i + 1, end);
+          // Check for split cost like B/G
+          if (inner.includes('/')) {
+            const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
+            const key = sortedParts.join('');
+            tokens.push({ content: inner, gradient: manaGradientMap[key] });
         } else if (manaColorMap[inner]) {
           tokens.push({ content: inner, color: manaColorMap[inner] });
         } else {

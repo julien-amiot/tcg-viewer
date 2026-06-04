@@ -21,6 +21,7 @@ describe('CardRenderer', () => {
         className: '',
         dataset: {},
         textContent: '',
+        style: {},
         appendChild: vi.fn(),
       }),
     });
