@@ -89,6 +89,9 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 380px;
 }
 
 .card:hover {
@@ -113,43 +116,49 @@ main {
   white-space: nowrap;
 }
 
-.card-mana {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #e94560;
-  margin-left: 0.5rem;
-  white-space: nowrap;
-}
-
-.card-colors {
+.card-mana-dots {
   display: flex;
-  gap: 4px;
-  padding: 0.5rem 0.75rem;
+  gap: 3px;
+  margin-left: 0.5rem;
+  align-items: center;
 }
 
-.color-pip {
-  width: 16px;
-  height: 16px;
+.mana-dot {
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
 }
-
-.color-pip.W { background: #e8e8e8; }
-.color-pip.U { background: #4a90e2; }
-.color-pip.B { background: #2d2d2d; }
-.color-pip.R { background: #e74c3c; }
-.color-pip.G { background: #27ae60; }
 
 .card-body {
   padding: 0.75rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.card-type-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .card-type {
   font-size: 0.8rem;
   color: #aaa;
-  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.card-setcode {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
 .card-text {
@@ -168,10 +177,16 @@ main {
   border-top: 1px solid #333;
 }
 
+.card-artist {
+  font-size: 0.75rem;
+  color: #888;
+  font-style: italic;
+}
+
 .card-power-toughness {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #e94560;
+  color: #ccc;
 }
 
 .card-rarity {
@@ -185,4 +200,4 @@ main {
 .card-rarity.common { background: #999; color: #111; }
 .card-rarity.uncommon { background: #c0c0c0; color: #222; }
 .card-rarity.rare { background: #ffd700; color: #111; }
-.card-rarity.mythic { background: #c73e54; color: #fff; }
+.card-rarity.mythic { background: #9b59b6; color: #fff; }

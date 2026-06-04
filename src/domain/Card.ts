@@ -21,6 +21,8 @@ export interface RawCardData {
   subtypes: string[];
   setCode: string;
   number: string;
+  artist?: string;
+  flavorText?: string;
   [key: string]: any;
 }
 
@@ -35,6 +37,8 @@ export interface CardOptions {
   text: string;
   setCode: string;
   number: string;
+  artist?: string;
+  flavorText?: string;
 }
 
 export class Card {
@@ -48,8 +52,10 @@ export class Card {
   public readonly text: string;
   public readonly setCode: string;
   public readonly number: string;
+  public readonly artist?: string;
+  public readonly flavorText?: string;
 
-  constructor({ id, name, manaCost, cardType, powerToughness, rarity, colors, text, setCode, number }: CardOptions) {
+  constructor({ id, name, manaCost, cardType, powerToughness, rarity, colors, text, setCode, number, artist, flavorText }: CardOptions) {
     this.id = id;
     this.name = name;
     this.manaCost = manaCost;
@@ -60,6 +66,8 @@ export class Card {
     this.text = text;
     this.setCode = setCode;
     this.number = number;
+    this.artist = artist;
+    this.flavorText = flavorText;
   }
 
   static fromRaw(raw: RawCardData): Card {
@@ -78,7 +86,9 @@ export class Card {
       colors,
       text: raw.text || '',
       setCode: raw.setCode,
-      number: raw.number
+      number: raw.number,
+      artist: raw.artist,
+      flavorText: raw.flavorText
     });
   }
 

@@ -1,6 +1,59 @@
 // CardRenderer - renders Card domain objects to DOM elements
 import { Card } from './Card';
 
+const manaColorMap: Record<string, string> = {
+  W: '#fff9c4',
+  U: '#a8d4ff',
+  B: '#555555',
+  R: '#ffb3b3',
+  G: '#b3ffb3',
+};
+
+const manaGradientMap: Record<string, string> = {
+  UW: 'linear-gradient(135deg, #a8d4ff 50%, #fff9c4 50%)',
+  BW: 'linear-gradient(135deg, #555555 50%, #fff9c4 50%)',
+  RW: 'linear-gradient(135deg, #ffb3b3 50%, #fff9c4 50%)',
+  GW: 'linear-gradient(135deg, #b3ffb3 50%, #fff9c4 50%)',
+  UB: 'linear-gradient(135deg, #a8d4ff 50%, #555555 50%)',
+  UR: 'linear-gradient(135deg, #a8d4ff 50%, #ffb3b3 50%)',
+  UG: 'linear-gradient(135deg, #a8d4ff 50%, #b3ffb3 50%)',
+  BR: 'linear-gradient(135deg, #555555 50%, #ffb3b3 50%)',
+  BG: 'linear-gradient(135deg, #555555 50%, #b3ffb3 50%)',
+  RG: 'linear-gradient(135deg, #ffb3b3 50%, #b3ffb3 50%)',
+};
+
+function parseManaCost(raw: string): Array<{ content: string; color?: string; gradient?: string }> {
+  const tokens: Array<{ content: string; color?: string; gradient?: string }> = [];
+  let i = 0;
+  while (i < raw.length) {
+    if (raw[i] === '{') {
+      const end = raw.indexOf('}', i);
+      if (end !== -1) {
+        const inner = raw.substring(i + 1, end);
+        // Check for split cost like B/G
+        if (inner.includes('/')) {
+          const parts = inner.split('/');
+          const key = parts.sort().join('');
+          tokens.push({ content: inner, gradient: manaGradientMap[key] });
+        } else if (manaColorMap[inner]) {
+          tokens.push({ content: inner, color: manaColorMap[inner] });
+        } else {
+          // Number or generic - pale grey
+          tokens.push({ content: inner, color: '#cccccc' });
+        }
+        i = end + 1;
+      } else {
+        tokens.push({ content: raw[i] });
+        i++;
+      }
+    } else {
+      tokens.push({ content: raw[i] });
+      i++;
+    }
+  }
+  return tokens;
+}
+
 export class CardRenderer {
   private readonly grid: HTMLElement | null;
 
@@ -23,7 +76,7 @@ export class CardRenderer {
     wrapper.className = 'card';
     wrapper.dataset.cardId = card.id;
 
-    // Header: name + mana cost
+    // Header: name + mana cost dots
     const header = document.createElement('div');
     header.className = 'card-header';
 
@@ -31,40 +84,75 @@ export class CardRenderer {
     nameEl.className = 'card-name';
     nameEl.textContent = card.name.value;
 
-    const manaEl = document.createElement('span');
-    manaEl.className = 'card-mana';
-    manaEl.textContent = card.manaCost.value;
-
-    header.appendChild(nameEl);
-    header.appendChild(manaEl);
-
-    // Color pips
-    const colorRow = document.createElement('div');
-    colorRow.className = 'card-colors';
-    for (const color of card.colors) {
-      const pip = document.createElement('span');
-      pip.className = `color-pip ${color.value}`;
-      colorRow.appendChild(pip);
+    const manaContainer = document.createElement('span');
+    manaContainer.className = 'card-mana-dots';
+    const tokens = parseManaCost(card.manaCost.value);
+    for (const token of tokens) {
+      const dot = document.createElement('span');
+      dot.className = 'mana-dot';
+      // Show numbers and X (generic mana variable), hide color letters
+      if (/^\d+$/.test(token.content) || token.content === 'X') {
+        dot.textContent = token.content;
+      }
+      if (token.gradient) {
+        dot.style.background = token.gradient;
+      } else if (token.color) {
+        dot.style.background = token.color;
+      }
+      manaContainer.appendChild(dot);
     }
 
-    // Body: type + text
+    header.appendChild(nameEl);
+    header.appendChild(manaContainer);
+
+    // Body: type + setCode + text
     const body = document.createElement('div');
     body.className = 'card-body';
 
-    const typeEl = document.createElement('div');
+    const typeRow = document.createElement('div');
+    typeRow.className = 'card-type-row';
+
+    const typeEl = document.createElement('span');
     typeEl.className = 'card-type';
     typeEl.textContent = card.cardType.value;
+
+    const setCodeEl = document.createElement('span');
+    setCodeEl.className = 'card-setcode';
+    setCodeEl.style.color = card.rarity.colorCode;
+    setCodeEl.textContent = card.setCode;
+
+    typeRow.appendChild(typeEl);
+    typeRow.appendChild(setCodeEl);
 
     const textEl = document.createElement('div');
     textEl.className = 'card-text';
     textEl.textContent = card.text;
 
-    body.appendChild(typeEl);
-    body.appendChild(textEl);
+    let flavorEl: HTMLElement | null = null;
+    if (card.flavorText) {
+      flavorEl = document.createElement('div');
+      flavorEl.className = 'card-flavor-text';
+      flavorEl.style.fontStyle = 'italic';
+      flavorEl.style.color = '#999';
+      flavorEl.textContent = `"${card.flavorText}"`;
+    }
 
-    // Footer: power/toughness + rarity
+    body.appendChild(typeRow);
+    body.appendChild(textEl);
+    if (flavorEl) {
+      body.appendChild(flavorEl);
+    }
+
+    // Footer: artist + power/toughness
     const footer = document.createElement('div');
     footer.className = 'card-footer';
+
+    if (card.artist) {
+      const artistEl = document.createElement('span');
+      artistEl.className = 'card-artist';
+      artistEl.textContent = card.artist;
+      footer.appendChild(artistEl);
+    }
 
     if (card.hasPowerToughness) {
       const ptEl = document.createElement('span');
@@ -73,13 +161,7 @@ export class CardRenderer {
       footer.appendChild(ptEl);
     }
 
-    const rarityEl = document.createElement('span');
-    rarityEl.className = `card-rarity ${card.rarity.value}`;
-    rarityEl.textContent = card.rarity.value;
-    footer.appendChild(rarityEl);
-
     wrapper.appendChild(header);
-    wrapper.appendChild(colorRow);
     wrapper.appendChild(body);
     wrapper.appendChild(footer);
 

@@ -56,7 +56,7 @@ export class Rarity {
       case 'common': return '#808080';
       case 'uncommon': return '#C0C0C0';
       case 'rare': return '#FFD700';
-      case 'mythic': return '#FF4500';
+      case 'mythic': return '#9b59b6';
       default: return '#000000';
     }
   }
