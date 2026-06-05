@@ -53,7 +53,7 @@ export class Rarity {
 
   get colorCode(): string {
     switch (this.value) {
-      case 'common': return '#808080';
+      case 'common': return '#000000';
       case 'uncommon': return '#C0C0C0';
       case 'rare': return '#FFD700';
       case 'mythic': return '#9b59b6';

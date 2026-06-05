@@ -26,7 +26,7 @@ describe('Rarity', () => {
   });
 
   it('returns correct color codes', () => {
-    expect(Rarity.common().colorCode).toBe('#808080');
+    expect(Rarity.common().colorCode).toBe('#000000');
     expect(Rarity.uncommon().colorCode).toBe('#C0C0C0');
     expect(Rarity.rare().colorCode).toBe('#FFD700');
     expect(Rarity.mythic().colorCode).toBe('#9b59b6');

@@ -12,15 +12,19 @@ const manaColorMap: Record<string, string> = {
 const colorOrder = ['W', 'U', 'B', 'R', 'G'];
 
 function hexToRgba(hex: string): [number, number, number] {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+  const r = Number.parseInt(hex.slice(1, 3), 16);
+  const g = Number.parseInt(hex.slice(3, 5), 16);
+  const b = Number.parseInt(hex.slice(5, 7), 16);
   return [r, g, b];
 }
 
 function getTextAreaBackground(colors: string[]): string {
+  if (colors.length === 0) {
+    return 'rgba(128, 128, 128, 0.4)';
+  }
+
   if (colors.length > 3) {
-    return 'rgba(255, 193, 7, 0.5)';
+    return 'rgba(255, 193, 7, 0.4)';
   }
 
   const sorted = [...colors].sort((a, b) => colorOrder.indexOf(a) - colorOrder.indexOf(b));
@@ -28,12 +32,12 @@ function getTextAreaBackground(colors: string[]): string {
 
   if (sorted.length === 1) {
     const [r, g, b] = hexToRgba(hexColors[0]);
-    return `rgba(${r}, ${g}, ${b}, 0.5)`;
+    return `rgba(${r}, ${g}, ${b}, 0.4)`;
   }
 
   const rgbaColors = hexColors.map(c => {
     const [r, g, b] = hexToRgba(c);
-    return `rgba(${r}, ${g}, ${b}, 0.5)`;
+    return `rgba(${r}, ${g}, ${b}, 0.4)`;
   });
 
   const stops = sorted.map((_, i) => `${(i / (sorted.length - 1)) * 100}%`);
@@ -53,6 +57,57 @@ const manaGradientMap: Record<string, string> = {
   BG: 'linear-gradient(135deg, #555555 50%, #b3ffb3 50%)',
   RG: 'linear-gradient(135deg, #ffb3b3 50%, #b3ffb3 50%)',
 };
+
+function createManaDot(content: string, color?: string, gradient?: string): HTMLElement {
+  const dot = document.createElement('span');
+  dot.className = 'mana-dot';
+  if (/^\d+$/.test(content) || content === 'X' || content === 'T') {
+    dot.textContent = content;
+  }
+  if (gradient) {
+    dot.style.background = gradient;
+  } else if (color) {
+    dot.style.background = color;
+  }
+  return dot;
+}
+
+function renderTextWithManaDots(text: string): HTMLElement {
+  const container = document.createElement('span');
+  let i = 0;
+  while (i < text.length) {
+    if (text[i] === '{') {
+      const end = text.indexOf('}', i);
+      if (end > -1) {
+        const inner = text.substring(i + 1, end);
+        if (inner.includes('/')) {
+          const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
+          const key = sortedParts.join('');
+          const gradient = manaGradientMap[key];
+          container.appendChild(createManaDot(inner, undefined, gradient));
+        } else if (manaColorMap[inner]) {
+          container.appendChild(createManaDot(inner, manaColorMap[inner]));
+        } else {
+          // Numbers, X, T, or generic — pale grey
+          container.appendChild(createManaDot(inner, '#cccccc'));
+        }
+        i = end + 1;
+      } else {
+        container.appendChild(document.createTextNode(text[i]));
+        i++;
+      }
+    } else if (text[i] === '\n') {
+      container.appendChild(document.createElement('br'));
+      i++;
+    } else {
+      // Collect consecutive plain characters
+      let start = i;
+      while (i < text.length && text[i] !== '{' && text[i] !== '\n') i++;
+      container.appendChild(document.createTextNode(text.substring(start, i)));
+    }
+  }
+  return container;
+}
 
 function parseManaCost(raw: string): Array<{ content: string; color?: string; gradient?: string }> {
   const tokens: Array<{ content: string; color?: string; gradient?: string }> = [];
@@ -121,14 +176,15 @@ export class CardRenderer {
 
     const nameEl = document.createElement('span');
     nameEl.className = 'card-name';
-    nameEl.textContent = card.name.value;
+    const displayName = card.faceName ? card.faceName : card.name.value;
+    nameEl.textContent = displayName;
 
     const manaContainer = document.createElement('span');
     manaContainer.className = 'card-mana-dots';
     const tokens = parseManaCost(card.manaCost.value);
     for (const token of tokens) {
       const dot = document.createElement('span');
-      dot.className = 'mana-dot';
+      dot.className = 'mana-dot mana-dot-title';
       // Show numbers and X (generic mana variable), hide color letters
       if (/^\d+$/.test(token.content) || token.content === 'X') {
         dot.textContent = token.content;
@@ -143,6 +199,10 @@ export class CardRenderer {
 
     header.appendChild(nameEl);
     header.appendChild(manaContainer);
+
+    // Separator between header and body
+    const separator = document.createElement('div');
+    separator.className = 'card-separator';
 
     // Body: type + setCode + text
     const body = document.createElement('div');
@@ -159,6 +219,9 @@ export class CardRenderer {
     const setCodeEl = document.createElement('span');
     setCodeEl.className = 'card-setcode';
     setCodeEl.style.color = card.rarity.colorCode;
+    if (card.rarity.isCommon) {
+      setCodeEl.style.textShadow = '0 0 0.1em rgba(255, 255, 255, 1)';
+    }
     setCodeEl.textContent = card.setCode;
 
     typeRow.appendChild(typeEl);
@@ -166,15 +229,16 @@ export class CardRenderer {
 
     const textEl = document.createElement('div');
     textEl.className = 'card-text';
-    textEl.textContent = card.text;
+    // Remove parenthesized content from card text
+    const cleanedText = card.text.replace(/\([^)]*\)/g, '');
+    textEl.appendChild(renderTextWithManaDots(cleanedText));
 
     let flavorEl: HTMLElement | null = null;
     if (card.flavorText) {
       flavorEl = document.createElement('div');
       flavorEl.className = 'card-flavor-text';
       flavorEl.style.fontStyle = 'italic';
-      flavorEl.style.color = '#999';
-      flavorEl.textContent = `"${card.flavorText}"`;
+      flavorEl.innerHTML = card.flavorText.replaceAll('\n', '<br>');
     }
 
     body.appendChild(typeRow);
@@ -183,17 +247,16 @@ export class CardRenderer {
       body.appendChild(flavorEl);
     }
 
-    // Footer: artist + power/toughness
+    // Footer: number+artist (left) + power/toughness (right)
     const footer = document.createElement('div');
     footer.className = 'card-footer';
-    footer.style.background = getTextAreaBackground(colorValues);
-
+    const leftInfo = document.createElement('span');
+    leftInfo.className = 'card-left-info';
+    leftInfo.textContent = card.number;
     if (card.artist) {
-      const artistEl = document.createElement('span');
-      artistEl.className = 'card-artist';
-      artistEl.textContent = card.artist;
-      footer.appendChild(artistEl);
+      leftInfo.textContent += ` — ${card.artist}`;
     }
+    footer.appendChild(leftInfo);
 
     if (card.hasPowerToughness) {
       const ptEl = document.createElement('span');
@@ -203,6 +266,7 @@ export class CardRenderer {
     }
 
     wrapper.appendChild(header);
+    wrapper.appendChild(separator);
     wrapper.appendChild(body);
     wrapper.appendChild(footer);
 

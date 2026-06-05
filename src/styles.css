@@ -87,7 +87,7 @@ main {
 
 /* Card Styles — 2.5 : 3.5 aspect ratio */
 .card {
-  background: #16213e;
+  background: #2a2a2a;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -104,21 +104,23 @@ main {
 }
 
 .card-header {
-  padding: clamp(0.4em, 0.8vw, 0.75em);
+  padding: 0.5em 0.2em;
+  margin: 0.2em;
+  border-radius: 0.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #333;
 }
 
 .card-name {
-  font-weight: 600;
-  font-size: clamp(0.6rem, 1.2vw, 0.95rem);
+  font-weight: 700;
+  font-size: 1em;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
 
 .card-mana-dots {
@@ -129,20 +131,27 @@ main {
 }
 
 .mana-dot {
-  width: clamp(12px, 1.8vw, 18px);
-  height: clamp(12px, 1.8vw, 18px);
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(0.5rem, 1vw, 0.8rem);
+  font-size: 0.9em;
   font-weight: 700;
-  color: #1a1a2e;
+  text-align: center;
+  line-height: 1em;
+  box-sizing: border-box;
+  margin: -0.1em;
+  color: black;
+}
+
+.mana-dot-title {
+  border: 0.05em solid #fff;
 }
 
 .card-body {
-  padding: clamp(0.4em, 0.8vw, 0.75em);
-  flex: 1;
+  margin: 0.2em;
+  border-radius: 0.5em;
+  flex-shrink: 0;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -153,53 +162,74 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5em;
+  padding: 0.5em 0.2em;
+  border-bottom: 1px black solid;
+}
+
+.card-separator {
+  min-height: 33.33%;
+  flex: 1 0 auto;
 }
 
 .card-type {
-  font-size: clamp(0.55rem, 1vw, 0.8rem);
-  color: #aaa;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-size: 1em;
+  color: #fff;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
 
 .card-setcode {
-  font-weight: 700;
-  font-size: clamp(0.55rem, 1vw, 0.8rem);
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-weight: 800;
+  font-size: 0.9em;
+  letter-spacing: -0.05em;
+  text-shadow: 0 0 0.1em rgba(0, 0, 0, 1);
 }
 
 .card-text {
-  font-size: clamp(0.6rem, 1.1vw, 0.85rem);
+  font-size: 0.75em;
   line-height: 1.4;
-  color: #ccc;
-  margin-bottom: 0.5em;
-  min-height: 3em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 0.5em;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+}
+
+.card-text .mana-dot {
+  width: auto;
+  height: auto;
+  border-radius: 50%;
+  font-size: 1em;
+  aspect-ratio: 1 / 1;
+  line-height: 1;
+  padding: 0 0.1em;
+  vertical-align: middle;
+}
+
+.card-flavor-text {
+  color: #fff;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+  margin-top: 0.5em;
 }
 
 .card-footer {
-  padding: clamp(0.3em, 0.6vw, 0.5em) clamp(0.4em, 0.8vw, 0.75em);
+  padding: 0.2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #333;
+  min-height: 1.6em;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
 
-.card-artist {
+.card-left-info {
   font-size: clamp(0.5rem, 0.9vw, 0.75rem);
-  color: #888;
-  font-style: italic;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-align: left;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
 
 .card-power-toughness {
   font-weight: 700;
-  font-size: clamp(0.7rem, 1.4vw, 1.1rem);
-  color: #ccc;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
 
 .card-rarity {
@@ -208,7 +238,7 @@ main {
   letter-spacing: 0.5px;
   padding: 0.25em 0.5em;
   border-radius: 4px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
 
 .card-rarity.common { background: #999; color: #111; }

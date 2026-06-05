@@ -21,9 +21,11 @@ describe('CardRenderer', () => {
         className: '',
         dataset: {},
         textContent: '',
+        innerHTML: '',
         style: {},
         appendChild: vi.fn(),
       }),
+      createTextNode: vi.fn().mockReturnValue({}),
     });
   });
 

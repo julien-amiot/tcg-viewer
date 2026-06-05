@@ -74,6 +74,25 @@
 - When `imageUrl` is non-empty, render it as a background image on the card container with `background-size: cover`
 - Status: **Implemented**
 
+### 2.7 Card number display ✅
+- Display card number in footer to the left of the artist name
+- Status: **Implemented**
+
+### 2.8 Line breaks in text and flavorText ✅
+- Replace `\n` with `<br>` in both `text` and `flavorText` fields
+- Status: **Implemented**
+
+### 2.9 Dark grey card background ✅
+- Default card background color changed from blue-tinted to neutral dark grey (`#2a2a2a`)
+- Status: **Implemented**
+
+### 2.10 Card visual refinements ✅
+- Mana dots in title have 0.1em white border; mana dots in text stay round without border
+- Footer uses vertical gradient from card color to black (instead of `getTextAreaBackground`)
+- Intermediate cell between title and type line: min 1/3 card height, flex-grow to fill available space
+- 0.5em margin on each horizontal element (card-header, card-type-row, card-text, card-flavor-text)
+- Status: **Implemented**
+
 ---
 
 ## 3. Quality Infrastructure
