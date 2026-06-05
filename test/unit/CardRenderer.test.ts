@@ -74,6 +74,25 @@ describe('CardRenderer', () => {
     expect(() => renderer.render([card])).not.toThrow();
   });
 
+  it('renders card with flavor text inside <i> within same component as card text', () => {
+    const card = new Card({
+      id: '4',
+      name: CardName.from('Flavor'),
+      manaCost: ManaCost.from('1'),
+      cardType: CardType.creature([]),
+      powerToughness: PowerToughness.from('1/1'),
+      rarity: Rarity.common(),
+      colors: [Color.from('W')],
+      text: 'Main text',
+      flavorText: '"Flavor"',
+      setCode: 'SOS',
+      number: '004'
+    });
+
+    const renderer = new CardRenderer('cardGrid');
+    expect(() => renderer.render([card])).not.toThrow();
+  });
+
   it('renders card with multiple colors', () => {
     const card = new Card({
       id: '3',

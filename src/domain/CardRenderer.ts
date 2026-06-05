@@ -233,19 +233,16 @@ export class CardRenderer {
     const cleanedText = card.text.replace(/\([^)]*\)/g, '');
     textEl.appendChild(renderTextWithManaDots(cleanedText));
 
-    let flavorEl: HTMLElement | null = null;
     if (card.flavorText) {
-      flavorEl = document.createElement('div');
-      flavorEl.className = 'card-flavor-text';
-      flavorEl.style.fontStyle = 'italic';
-      flavorEl.innerHTML = card.flavorText.replaceAll('\n', '<br>');
+      textEl.appendChild(document.createElement('br'));
+      const flavorSpan = document.createElement('i');
+      flavorSpan.className = 'card-flavor-text';
+      flavorSpan.innerHTML = card.flavorText.replaceAll('\n', '<br>');
+      textEl.appendChild(flavorSpan);
     }
 
     body.appendChild(typeRow);
     body.appendChild(textEl);
-    if (flavorEl) {
-      body.appendChild(flavorEl);
-    }
 
     // Footer: number+artist (left) + power/toughness (right)
     const footer = document.createElement('div');
