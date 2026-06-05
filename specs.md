@@ -69,6 +69,11 @@
 - URL-based state (`?set=sos`) for shareability
 - Status: **Planned**
 
+### 2.6 Card Image Display ✅
+- Add `imageUrl` property to `Card` domain model
+- When `imageUrl` is non-empty, render it as a background image on the card container with `background-size: cover`
+- Status: **Implemented**
+
 ---
 
 ## 3. Quality Infrastructure

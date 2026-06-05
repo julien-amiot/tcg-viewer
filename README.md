@@ -87,6 +87,7 @@ npm run sonar:stop    # Stop containers
 | Unit test bootstrap | 🔲 Planned (3.3) |
 | E2E test bootstrap | 🔲 Planned (3.4) |
 | Set selector | 🔲 Planned (2.5) |
+| Card image display | ✅ imageUrl property + CSS `cover` background (2.6) |
 
 ## Dependency Fixes (2026-06-01)
 

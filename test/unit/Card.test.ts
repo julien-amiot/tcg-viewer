@@ -117,4 +117,44 @@ describe('Card', () => {
 
     expect(card.isLand).toBe(false);
   });
+
+  it('fromRaw populates imageUrl when provided', () => {
+    const raw = {
+      uuid: 'img-1', name: 'Image Card', manaCost: 'G', type: 'Creature',
+      text: '', rarity: 'common', colors: ['G'], subtypes: ['Beast'],
+      setCode: 'SOS', number: '001', imageUrl: 'https://example.com/card.png'
+    };
+
+    const card = Card.fromRaw(raw);
+    expect(card.imageUrl).toBe('https://example.com/card.png');
+  });
+
+  it('fromRaw leaves imageUrl undefined when not provided', () => {
+    const raw = {
+      uuid: 'img-2', name: 'No Image', manaCost: 'W', type: 'Creature',
+      text: '', rarity: 'common', colors: ['W'], subtypes: [],
+      setCode: 'SOS', number: '002'
+    };
+
+    const card = Card.fromRaw(raw);
+    expect(card.imageUrl).toBeUndefined();
+  });
+
+  it('creates Card with imageUrl via constructor', () => {
+    const card = new Card({
+      id: 'img-3',
+      name: CardName.from('Test'),
+      manaCost: ManaCost.from('1'),
+      cardType: CardType.creature([]),
+      powerToughness: PowerToughness.empty(),
+      rarity: Rarity.common(),
+      colors: [],
+      text: '',
+      setCode: 'SOS',
+      number: '003',
+      imageUrl: 'https://example.com/img.jpg'
+    });
+
+    expect(card.imageUrl).toBe('https://example.com/img.jpg');
+  });
 });

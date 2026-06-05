@@ -9,6 +9,38 @@ const manaColorMap: Record<string, string> = {
   G: '#b3ffb3',
 };
 
+const colorOrder = ['W', 'U', 'B', 'R', 'G'];
+
+function hexToRgba(hex: string): [number, number, number] {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return [r, g, b];
+}
+
+function getTextAreaBackground(colors: string[]): string {
+  if (colors.length > 3) {
+    return 'rgba(255, 193, 7, 0.5)';
+  }
+
+  const sorted = [...colors].sort((a, b) => colorOrder.indexOf(a) - colorOrder.indexOf(b));
+  const hexColors = sorted.map(c => manaColorMap[c] || '#cccccc');
+
+  if (sorted.length === 1) {
+    const [r, g, b] = hexToRgba(hexColors[0]);
+    return `rgba(${r}, ${g}, ${b}, 0.5)`;
+  }
+
+  const rgbaColors = hexColors.map(c => {
+    const [r, g, b] = hexToRgba(c);
+    return `rgba(${r}, ${g}, ${b}, 0.5)`;
+  });
+
+  const stops = sorted.map((_, i) => `${(i / (sorted.length - 1)) * 100}%`);
+  const gradientStops = rgbaColors.map((c, i) => `${c} ${stops[i]}`);
+  return `linear-gradient(135deg, ${gradientStops.join(', ')})`;
+}
+
 const manaGradientMap: Record<string, string> = {
   UW: 'linear-gradient(135deg, #a8d4ff 50%, #fff9c4 50%)',
   BW: 'linear-gradient(135deg, #555555 50%, #fff9c4 50%)',
@@ -76,9 +108,16 @@ export class CardRenderer {
     wrapper.className = 'card';
     wrapper.dataset.cardId = card.id;
 
+    if (card.imageUrl) {
+      wrapper.style.backgroundImage = `url('${card.imageUrl}')`;
+      wrapper.style.backgroundSize = 'cover';
+    }
+
     // Header: name + mana cost dots
     const header = document.createElement('div');
     header.className = 'card-header';
+    const colorValues = card.colors.map(c => c.value);
+    header.style.background = getTextAreaBackground(colorValues);
 
     const nameEl = document.createElement('span');
     nameEl.className = 'card-name';
@@ -108,6 +147,7 @@ export class CardRenderer {
     // Body: type + setCode + text
     const body = document.createElement('div');
     body.className = 'card-body';
+    body.style.background = getTextAreaBackground(colorValues);
 
     const typeRow = document.createElement('div');
     typeRow.className = 'card-type-row';
@@ -146,6 +186,7 @@ export class CardRenderer {
     // Footer: artist + power/toughness
     const footer = document.createElement('div');
     footer.className = 'card-footer';
+    footer.style.background = getTextAreaBackground(colorValues);
 
     if (card.artist) {
       const artistEl = document.createElement('span');

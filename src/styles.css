@@ -118,6 +118,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-mana-dots {
@@ -128,13 +129,13 @@ main {
 }
 
 .mana-dot {
-  width: clamp(16px, 2.5vw, 24px);
-  height: clamp(16px, 2.5vw, 24px);
+  width: clamp(12px, 1.8vw, 18px);
+  height: clamp(12px, 1.8vw, 18px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(0.6rem, 1.2vw, 1rem);
+  font-size: clamp(0.5rem, 1vw, 0.8rem);
   font-weight: 700;
   color: #1a1a2e;
 }
@@ -143,6 +144,9 @@ main {
   padding: clamp(0.4em, 0.8vw, 0.75em);
   flex: 1;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .card-type-row {
@@ -157,12 +161,14 @@ main {
   color: #aaa;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-setcode {
   font-weight: 700;
   font-size: clamp(0.55rem, 1vw, 0.8rem);
   letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-text {
@@ -171,6 +177,7 @@ main {
   color: #ccc;
   margin-bottom: 0.5em;
   min-height: 3em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-footer {
@@ -185,12 +192,14 @@ main {
   font-size: clamp(0.5rem, 0.9vw, 0.75rem);
   color: #888;
   font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-power-toughness {
   font-weight: 700;
   font-size: clamp(0.7rem, 1.4vw, 1.1rem);
   color: #ccc;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-rarity {
@@ -199,6 +208,7 @@ main {
   letter-spacing: 0.5px;
   padding: 0.25em 0.5em;
   border-radius: 4px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-rarity.common { background: #999; color: #111; }

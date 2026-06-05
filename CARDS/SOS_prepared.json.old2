@@ -478,8 +478,7 @@
         "types": [
           "Token"
         ],
-        "uuid": "ebb9c0a4-c359-58de-b739-03fddd775dfa",
-        "imageUrl": ""
+        "uuid": "ebb9c0a4-c359-58de-b739-03fddd775dfa"
       },
       {
         "artist": "Andrew Mar",
@@ -598,8 +597,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "6c146a4d-5a98-550b-b7c6-c0dc455084e6",
-        "imageUrl": ""
+        "uuid": "6c146a4d-5a98-550b-b7c6-c0dc455084e6"
       },
       {
         "artist": "Filipe Pagliuso",
@@ -685,8 +683,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "8c77df53-0a90-56ca-bef5-92c761a341d2",
-        "imageUrl": ""
+        "uuid": "8c77df53-0a90-56ca-bef5-92c761a341d2"
       },
       {
         "artist": "Abz J Harding",
@@ -871,8 +868,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "afc08b02-de0a-57d4-90a3-b9d5d060a5cc",
-        "imageUrl": ""
+        "uuid": "afc08b02-de0a-57d4-90a3-b9d5d060a5cc"
       },
       {
         "artist": "Rudy Siswanto",
@@ -1008,8 +1004,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "ad44b516-28bf-5949-b591-ea9cd4767bcd",
-        "imageUrl": ""
+        "uuid": "ad44b516-28bf-5949-b591-ea9cd4767bcd"
       },
       {
         "artist": "Billy Christian",
@@ -1108,8 +1103,7 @@
           "Creature",
           "Inkling"
         ],
-        "uuid": "c8ed3fa4-d351-5519-8864-725442d760a3",
-        "imageUrl": ""
+        "uuid": "c8ed3fa4-d351-5519-8864-725442d760a3"
       },
       {
         "artist": "Nia Kovalevski",
@@ -1191,8 +1185,7 @@
           "Creature",
           "Inkling"
         ],
-        "uuid": "03e437ca-c6d9-5728-ba28-aac7b5166161",
-        "imageUrl": ""
+        "uuid": "03e437ca-c6d9-5728-ba28-aac7b5166161"
       },
       {
         "artist": "Oriana Menendez",
@@ -1289,8 +1282,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "00a0801d-0212-5890-8957-3cde30f382f9",
-        "imageUrl": ""
+        "uuid": "00a0801d-0212-5890-8957-3cde30f382f9"
       },
       {
         "artist": "Nino Vecia",
@@ -1370,8 +1362,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "77b94566-2476-57f5-8f47-5904adcffe86",
-        "imageUrl": ""
+        "uuid": "77b94566-2476-57f5-8f47-5904adcffe86"
       },
       {
         "artist": "Marco Gorlei",
@@ -1486,8 +1477,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "adb60e53-80b9-5ebc-b352-616aa1e275e3",
-        "imageUrl": ""
+        "uuid": "adb60e53-80b9-5ebc-b352-616aa1e275e3"
       },
       {
         "artist": "Filipe Pagliuso",
@@ -1585,8 +1575,7 @@
           "Token",
           "Creature"
         ],
-        "uuid": "23c13def-d32d-58ae-9cd9-9a06eaa6723a",
-        "imageUrl": ""
+        "uuid": "23c13def-d32d-58ae-9cd9-9a06eaa6723a"
       },
       {
         "artist": "Joseph Meehan",
@@ -2072,8 +2061,7 @@
           "Token",
           "Artifact"
         ],
-        "uuid": "8dc5a01d-0271-51e0-bd2c-423b404802bc",
-        "imageUrl": ""
+        "uuid": "8dc5a01d-0271-51e0-bd2c-423b404802bc"
       },
       {
         "artist": "Lie Setiawan",
@@ -2141,8 +2129,7 @@
         "types": [
           "Emblem"
         ],
-        "uuid": "557d0e61-7450-5948-8f06-6d658b73ce1d",
-        "imageUrl": ""
+        "uuid": "557d0e61-7450-5948-8f06-6d658b73ce1d"
       },
       {
         "availability": [
@@ -2219,8 +2206,7 @@
         "types": [
           "Card"
         ],
-        "uuid": "c050a72f-8e40-53a2-8045-1d14701570cb",
-        "imageUrl": ""
+        "uuid": "c050a72f-8e40-53a2-8045-1d14701570cb"
       },
       {
         "availability": [
@@ -2296,8 +2282,7 @@
         "types": [
           "Card"
         ],
-        "uuid": "2bdaf7d7-547a-5ce7-816f-881e7826c030",
-        "imageUrl": ""
+        "uuid": "2bdaf7d7-547a-5ce7-816f-881e7826c030"
       }
     ],
     "totalSetSize": 368,
@@ -2374,8 +2359,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "37169c00-302e-545f-a33a-c1bc5b6c0781",
-        "imageUrl": "https://image-b2.civitai.com/file/civitai-media-cache/29d471ff-4e3b-4f56-abab-233bb77dbd5b/original"
+        "uuid": "37169c00-302e-545f-a33a-c1bc5b6c0781"
       },
       {
         "artist": "Lindsey Look",
@@ -2431,8 +2415,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "b98f5645-9f5b-5d0f-94f3-746eaa59106e",
-        "imageUrl": ""
+        "uuid": "b98f5645-9f5b-5d0f-94f3-746eaa59106e"
       },
       {
         "artist": "Aleksi Briclot",
@@ -2503,8 +2486,7 @@
         "uuid": "c1996e4c-6d04-5e12-bbfd-0683e42851dc",
         "variations": [
           "864806d8-63b6-58cb-b938-94f0b3b27b8f"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Aleksi Briclot",
@@ -2570,8 +2552,7 @@
         "uuid": "2e263415-adf1-5eb0-8799-68161f02b29e",
         "variations": [
           "4ceb6d57-b779-5bfd-a430-15c00a306c88"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Paolo Parente",
@@ -2633,8 +2614,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "97ce1f8b-e9df-57fd-a1f4-55e64d543792",
-        "imageUrl": ""
+        "uuid": "97ce1f8b-e9df-57fd-a1f4-55e64d543792"
       },
       {
         "artist": "Paolo Parente",
@@ -2691,8 +2671,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "0e5fef9a-75e3-55f0-adaf-fb58d285fcdd",
-        "imageUrl": ""
+        "uuid": "0e5fef9a-75e3-55f0-adaf-fb58d285fcdd"
       },
       {
         "artist": "Ryan Pancoast",
@@ -2760,8 +2739,7 @@
         "uuid": "3a257229-dcf3-58b0-b1a2-c648462985d1",
         "variations": [
           "11899ed9-007c-5e93-8029-6f298ef347d7"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Ryan Pancoast",
@@ -2823,8 +2801,7 @@
         "uuid": "0fe035b2-2a5e-5d75-8f8b-a6baae439dd3",
         "variations": [
           "da04a39e-53a3-54f4-a7f6-cfa70035af0f"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Elizabeth Peiró",
@@ -2893,8 +2870,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "61acc438-12a8-5c95-800d-55a98427157b",
-        "imageUrl": ""
+        "uuid": "61acc438-12a8-5c95-800d-55a98427157b"
       },
       {
         "artist": "Elizabeth Peiró",
@@ -2951,8 +2927,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "f124ed65-5451-5a39-91d3-364f3e7171bb",
-        "imageUrl": ""
+        "uuid": "f124ed65-5451-5a39-91d3-364f3e7171bb"
       },
       {
         "artist": "Oriana Menendez",
@@ -3020,8 +2995,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "8a8aeb84-5079-5a81-8b5f-3c9bcdbf8265",
-        "imageUrl": ""
+        "uuid": "8a8aeb84-5079-5a81-8b5f-3c9bcdbf8265"
       },
       {
         "artist": "Oriana Menendez",
@@ -3077,8 +3051,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "ed6cc646-7d6d-5efe-9cde-858c097d03bf",
-        "imageUrl": ""
+        "uuid": "ed6cc646-7d6d-5efe-9cde-858c097d03bf"
       },
       {
         "artist": "Madeline Boni",
@@ -3152,8 +3125,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "ddba4868-1af0-55a1-8870-ab1598ded66b",
-        "imageUrl": ""
+        "uuid": "ddba4868-1af0-55a1-8870-ab1598ded66b"
       },
       {
         "artist": "Madeline Boni",
@@ -3215,8 +3187,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "f5c059cf-216d-5a9f-b0e4-1db1a3ac776d",
-        "imageUrl": ""
+        "uuid": "f5c059cf-216d-5a9f-b0e4-1db1a3ac776d"
       },
       {
         "artist": "Evyn Fong",
@@ -3285,8 +3256,7 @@
         "variations": [
           "66843b36-7479-586e-aec8-59d1fddfe3a1",
           "c0600c73-8dfa-56cd-9175-6679695d38ca"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Evyn Fong",
@@ -3350,8 +3320,7 @@
         "variations": [
           "5db57aab-e9c9-513f-a8d5-b7e484145b2d",
           "a90b86a9-6b09-5c63-b8d3-8b47d313d9d8"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Oriana Menendez",
@@ -3420,8 +3389,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "5e4b10ef-ebcc-53d1-aee5-a5fd4e974ea9",
-        "imageUrl": ""
+        "uuid": "5e4b10ef-ebcc-53d1-aee5-a5fd4e974ea9"
       },
       {
         "artist": "Oriana Menendez",
@@ -3478,8 +3446,7 @@
         "types": [
           "Instant"
         ],
-        "uuid": "06a6c5dc-9375-57b9-90c2-790366216b46",
-        "imageUrl": ""
+        "uuid": "06a6c5dc-9375-57b9-90c2-790366216b46"
       },
       {
         "artist": "Marie Magny",
@@ -3546,8 +3513,7 @@
         "uuid": "a2af44fd-a85c-5576-9e4d-aa6584269ee8",
         "variations": [
           "3b0d974b-8c59-52cc-ace4-8d2b073fdf02"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Marie Magny",
@@ -3608,8 +3574,7 @@
         "uuid": "b2711307-bc44-5a48-809f-90a40097bdcc",
         "variations": [
           "75007207-b3b8-55c4-8774-d99c6500d079"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Martina Fačková",
@@ -3692,8 +3657,7 @@
         "uuid": "ab60c502-311a-525f-9384-a60bb5868666",
         "variations": [
           "6682c6f0-6d21-597c-b9a4-140dd6fa1535"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Martina Fačková",
@@ -3762,8 +3726,7 @@
         "uuid": "d47725e2-0492-5d04-8fae-09ef0e740e2e",
         "variations": [
           "b1b11489-7358-5e49-8b72-a7fb1d67e686"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Vincent Christiaens",
@@ -3824,8 +3787,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "ffb80500-6d47-56b2-a3bc-61b72f4db22e",
-        "imageUrl": ""
+        "uuid": "ffb80500-6d47-56b2-a3bc-61b72f4db22e"
       },
       {
         "artist": "Vincent Christiaens",
@@ -3881,8 +3843,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "2a4cb9f6-18eb-5525-92d3-28594c0b4239",
-        "imageUrl": ""
+        "uuid": "2a4cb9f6-18eb-5525-92d3-28594c0b4239"
       },
       {
         "artist": "Christina Kraus",
@@ -3951,8 +3912,7 @@
         "uuid": "6494fb47-a326-5a7a-afaa-26d6263c2c6c",
         "variations": [
           "b5e2412e-fb61-551b-93c5-d387f8ec0484"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Christina Kraus",
@@ -4016,8 +3976,7 @@
         "uuid": "4a41cab9-e643-598a-983f-a915d994ae11",
         "variations": [
           "5e580d07-5cab-5f54-9c0b-514f981817d3"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Scott Murphy",
@@ -4079,8 +4038,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "ac7d0982-c071-5eff-a600-335e589fa978",
-        "imageUrl": ""
+        "uuid": "ac7d0982-c071-5eff-a600-335e589fa978"
       },
       {
         "artist": "Scott Murphy",
@@ -4137,8 +4095,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "eed0bcf2-33e5-58c8-b781-670ee3e3f6ca",
-        "imageUrl": ""
+        "uuid": "eed0bcf2-33e5-58c8-b781-670ee3e3f6ca"
       },
       {
         "artist": "Josu Hernaiz",
@@ -4199,8 +4156,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "c3a939ea-c7fc-5243-822b-32838b919f82",
-        "imageUrl": ""
+        "uuid": "c3a939ea-c7fc-5243-822b-32838b919f82"
       },
       {
         "artist": "Josu Hernaiz",
@@ -4256,8 +4212,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "75b33ff1-621e-505b-a825-39fa3d5353f4",
-        "imageUrl": ""
+        "uuid": "75b33ff1-621e-505b-a825-39fa3d5353f4"
       },
       {
         "artist": "Diego Gisbert",
@@ -4318,8 +4273,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "37bda5ec-b474-5d38-8cf5-956c8b6bc456",
-        "imageUrl": ""
+        "uuid": "37bda5ec-b474-5d38-8cf5-956c8b6bc456"
       },
       {
         "artist": "Diego Gisbert",
@@ -4375,8 +4329,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "d03e8103-f17d-554f-bfb3-c69ebcb9e168",
-        "imageUrl": ""
+        "uuid": "d03e8103-f17d-554f-bfb3-c69ebcb9e168"
       },
       {
         "artist": "Jodie Muir",
@@ -4442,8 +4395,7 @@
         "uuid": "f10f2610-6715-5a2e-919b-39156a748ba7",
         "variations": [
           "ad40d6fb-6d84-5bba-8f69-587078fd70d0"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Jodie Muir",
@@ -4504,8 +4456,7 @@
         "uuid": "d70a6d24-c5dc-581a-be54-3c4c24f1943d",
         "variations": [
           "9168ecde-7c1f-5905-8377-1ee1d4f91b20"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Izzy",
@@ -4572,8 +4523,7 @@
         "uuid": "ad235bb4-be95-5da3-9fcd-b775ec1dd41d",
         "variations": [
           "be550921-2507-5f97-ae79-1e71274883af"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Izzy",
@@ -4635,8 +4585,7 @@
         "uuid": "b52bbccd-90f9-5ec8-a5f5-bcbafeab0414",
         "variations": [
           "e65f0d50-58f1-5517-b4a0-153787446d51"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Chris Rallis",
@@ -4704,8 +4653,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "5759045b-06b5-5e9d-8aad-823a54e3ee0f",
-        "imageUrl": ""
+        "uuid": "5759045b-06b5-5e9d-8aad-823a54e3ee0f"
       },
       {
         "artist": "Chris Rallis",
@@ -4761,8 +4709,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "b823ace3-084c-53de-a3a6-0db193326ed5",
-        "imageUrl": ""
+        "uuid": "b823ace3-084c-53de-a3a6-0db193326ed5"
       },
       {
         "artist": "Loïc Canavaggia",
@@ -4830,8 +4777,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "aab8c26c-935c-59cf-a469-1babf9d5fb64",
-        "imageUrl": ""
+        "uuid": "aab8c26c-935c-59cf-a469-1babf9d5fb64"
       },
       {
         "artist": "Loïc Canavaggia",
@@ -4887,8 +4833,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "52a7d535-43ee-5ef1-8af9-19eafef7e9fe",
-        "imageUrl": ""
+        "uuid": "52a7d535-43ee-5ef1-8af9-19eafef7e9fe"
       },
       {
         "artist": "Anna Steinbauer",
@@ -4956,8 +4901,7 @@
         "uuid": "9bdb7e17-eae6-5c01-8229-997201e4b695",
         "variations": [
           "97deb0bc-694b-5330-8bf9-ccbc196225bc"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Anna Steinbauer",
@@ -5020,8 +4964,7 @@
         "uuid": "c0349990-0bfe-5336-b13a-405ec4230b7f",
         "variations": [
           "16ea83aa-cf54-52b0-849c-4a9e4d3df6da"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Ashly Lovett",
@@ -5092,8 +5035,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "1e234333-bd29-588b-bdd5-53f0870648f0",
-        "imageUrl": ""
+        "uuid": "1e234333-bd29-588b-bdd5-53f0870648f0"
       },
       {
         "artist": "Ashly Lovett",
@@ -5152,8 +5094,7 @@
         "types": [
           "Instant"
         ],
-        "uuid": "029be1a0-e544-5048-829f-e08356639255",
-        "imageUrl": ""
+        "uuid": "029be1a0-e544-5048-829f-e08356639255"
       },
       {
         "artist": "Alix Branwyn",
@@ -5220,8 +5161,7 @@
         "uuid": "f049815a-f338-534d-8536-80ff35b3510c",
         "variations": [
           "e8ee9478-289c-5b14-b11d-9ceaee74ce52"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Alix Branwyn",
@@ -5283,8 +5223,7 @@
         "uuid": "7ac2b614-e049-502e-b429-fc10190ebd8c",
         "variations": [
           "1cfa654d-b4e2-5573-b389-386f11ba7096"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "David Auden Nash",
@@ -5358,8 +5297,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "8a8b2639-03a6-5259-97e6-f184fcab4148",
-        "imageUrl": ""
+        "uuid": "8a8b2639-03a6-5259-97e6-f184fcab4148"
       },
       {
         "artist": "David Auden Nash",
@@ -5428,8 +5366,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "4a9190d7-2f64-59dd-b35a-9ac44f3eceaf",
-        "imageUrl": ""
+        "uuid": "4a9190d7-2f64-59dd-b35a-9ac44f3eceaf"
       },
       {
         "artist": "Eelis Kyttanen",
@@ -5496,8 +5433,7 @@
         "uuid": "3f434eb0-f758-5229-8ee7-6f354576d30b",
         "variations": [
           "a861d621-322e-589d-8209-64a1aab26833"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Eelis Kyttanen",
@@ -5559,8 +5495,7 @@
         "uuid": "3cd9b797-8041-57c9-91ef-34c230abde68",
         "variations": [
           "e6d55ab5-a7dd-5b38-9776-70b9e545b104"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Gonzalo Kenny",
@@ -5629,8 +5564,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "48368344-3ebd-5987-adb5-c304c2addda6",
-        "imageUrl": ""
+        "uuid": "48368344-3ebd-5987-adb5-c304c2addda6"
       },
       {
         "artist": "Gonzalo Kenny",
@@ -5687,8 +5621,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "520287e1-cad6-5166-b0af-21e9a3de75ee",
-        "imageUrl": ""
+        "uuid": "520287e1-cad6-5166-b0af-21e9a3de75ee"
       },
       {
         "artist": "Craig J Spearing",
@@ -5755,8 +5688,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "e0fb845e-abfa-59b4-a807-67e32193cda9",
-        "imageUrl": ""
+        "uuid": "e0fb845e-abfa-59b4-a807-67e32193cda9"
       },
       {
         "artist": "Craig J Spearing",
@@ -5818,8 +5750,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "c1bab513-4621-5066-9d26-0b106511a41e",
-        "imageUrl": ""
+        "uuid": "c1bab513-4621-5066-9d26-0b106511a41e"
       },
       {
         "artist": "Justyna Dura",
@@ -5886,8 +5817,7 @@
         "uuid": "83cc7cba-219b-5c19-b997-7c8ca9b5de3f",
         "variations": [
           "3a771324-8431-51de-9fc7-75515a795a1c"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Justyna Dura",
@@ -5949,8 +5879,7 @@
         "uuid": "f7a0dda2-1123-5faa-868c-5456ae609ab8",
         "variations": [
           "6edda8ef-b3a8-5a8f-b071-91487618d051"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Nereida",
@@ -6018,8 +5947,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "84e7c9b9-0d64-5956-bc36-196ed2753e9e",
-        "imageUrl": ""
+        "uuid": "84e7c9b9-0d64-5956-bc36-196ed2753e9e"
       },
       {
         "artist": "Nereida",
@@ -6075,8 +6003,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "eae5e11a-26a0-5488-a420-9f0f7c783fef",
-        "imageUrl": ""
+        "uuid": "eae5e11a-26a0-5488-a420-9f0f7c783fef"
       },
       {
         "artist": "Mariah Tekulve",
@@ -6137,8 +6064,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "7425cd66-89c6-54e7-906d-c871d952a981",
-        "imageUrl": ""
+        "uuid": "7425cd66-89c6-54e7-906d-c871d952a981"
       },
       {
         "artist": "Mariah Tekulve",
@@ -6194,8 +6120,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "7239cfe1-01e0-5820-be73-956955e6c785",
-        "imageUrl": ""
+        "uuid": "7239cfe1-01e0-5820-be73-956955e6c785"
       },
       {
         "artist": "Bryan Sola",
@@ -6263,8 +6188,7 @@
         "uuid": "dd1c5df0-c39b-5628-87de-42e984740534",
         "variations": [
           "419adeaf-9db4-5793-a027-0499695a00d8"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Bryan Sola",
@@ -6327,8 +6251,7 @@
         "uuid": "da0147d1-26d4-5f4b-a254-a8597ccdf809",
         "variations": [
           "3bbe284d-02e3-54d8-9c8c-74288d22e45b"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Olivier Bernard",
@@ -6404,8 +6327,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "af18a0b9-ee33-55e3-ab2f-51cc7dbcd7af",
-        "imageUrl": ""
+        "uuid": "af18a0b9-ee33-55e3-ab2f-51cc7dbcd7af"
       },
       {
         "artist": "Olivier Bernard",
@@ -6467,8 +6389,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "5a4b67c7-cffb-52e1-8855-1b5e3c6a6aff",
-        "imageUrl": ""
+        "uuid": "5a4b67c7-cffb-52e1-8855-1b5e3c6a6aff"
       },
       {
         "artist": "Bryan Sola",
@@ -6544,8 +6465,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "7cabcc30-650f-51a2-95d0-603d857b7493",
-        "imageUrl": ""
+        "uuid": "7cabcc30-650f-51a2-95d0-603d857b7493"
       },
       {
         "artist": "Bryan Sola",
@@ -6607,8 +6527,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "a71fcbe4-0da9-5d19-9cba-69c0d1b93e19",
-        "imageUrl": ""
+        "uuid": "a71fcbe4-0da9-5d19-9cba-69c0d1b93e19"
       },
       {
         "artist": "Alix Branwyn",
@@ -6688,8 +6607,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "a6514fdc-24e7-5beb-a643-2009c4547515",
-        "imageUrl": ""
+        "uuid": "a6514fdc-24e7-5beb-a643-2009c4547515"
       },
       {
         "artist": "Alix Branwyn",
@@ -6755,8 +6673,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "bf7149d8-087d-5950-8a54-42c7cd7405f2",
-        "imageUrl": ""
+        "uuid": "bf7149d8-087d-5950-8a54-42c7cd7405f2"
       },
       {
         "artist": "Justin Gerard",
@@ -6837,8 +6754,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "2c096db2-4a73-5b24-ab54-5c8f35441dd1",
-        "imageUrl": ""
+        "uuid": "2c096db2-4a73-5b24-ab54-5c8f35441dd1"
       },
       {
         "artist": "Justin Gerard",
@@ -6905,8 +6821,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "1a431c3a-6f5f-5882-99f1-ddaaa8c07641",
-        "imageUrl": ""
+        "uuid": "1a431c3a-6f5f-5882-99f1-ddaaa8c07641"
       },
       {
         "artist": "Jodie Muir",
@@ -6982,8 +6897,7 @@
         "types": [
           "Creature"
         ],
-        "uuid": "461fa4af-c8d6-5841-a87c-ded471f9ad10",
-        "imageUrl": ""
+        "uuid": "461fa4af-c8d6-5841-a87c-ded471f9ad10"
       },
       {
         "artist": "Jodie Muir",
@@ -7045,8 +6959,7 @@
         "types": [
           "Sorcery"
         ],
-        "uuid": "fffd0537-882d-5774-b01f-c16ad20a96b4",
-        "imageUrl": ""
+        "uuid": "fffd0537-882d-5774-b01f-c16ad20a96b4"
       },
       {
         "artist": "Raph Lomotan",
@@ -7097,8 +7010,7 @@
           "Artifact",
           "Creature"
         ],
-        "uuid": "a7182c82-0d3e-5532-a3ab-843b2c26bdcb",
-        "imageUrl": ""
+        "uuid": "a7182c82-0d3e-5532-a3ab-843b2c26bdcb"
       },
       {
         "artist": "Jorge Jacinto",
@@ -7146,8 +7058,7 @@
         "types": [
           "Land"
         ],
-        "uuid": "169c5c28-5f35-5eb9-ab96-3101f9a4edd2",
-        "imageUrl": ""
+        "uuid": "169c5c28-5f35-5eb9-ab96-3101f9a4edd2"
       },
       {
         "artist": "Mark Poole",
@@ -7220,8 +7131,7 @@
         "variations": [
           "6c3412bc-06bd-5daf-b514-674859443ea5",
           "c0600c73-8dfa-56cd-9175-6679695d38ca"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Mark Poole",
@@ -7289,8 +7199,7 @@
         "variations": [
           "53f078ee-77fb-50fe-90a2-537c533321ef",
           "a90b86a9-6b09-5c63-b8d3-8b47d313d9d8"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Aleksi Briclot",
@@ -7364,8 +7273,7 @@
         "uuid": "864806d8-63b6-58cb-b938-94f0b3b27b8f",
         "variations": [
           "c1996e4c-6d04-5e12-bbfd-0683e42851dc"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Aleksi Briclot",
@@ -7434,8 +7342,7 @@
         "uuid": "4ceb6d57-b779-5bfd-a430-15c00a306c88",
         "variations": [
           "2e263415-adf1-5eb0-8799-68161f02b29e"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Ryan Pancoast",
@@ -7506,8 +7413,7 @@
         "uuid": "11899ed9-007c-5e93-8029-6f298ef347d7",
         "variations": [
           "3a257229-dcf3-58b0-b1a2-c648462985d1"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Ryan Pancoast",
@@ -7572,8 +7478,7 @@
         "uuid": "da04a39e-53a3-54f4-a7f6-cfa70035af0f",
         "variations": [
           "0fe035b2-2a5e-5d75-8f8b-a6baae439dd3"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Evyn Fong",
@@ -7645,8 +7550,7 @@
         "variations": [
           "66843b36-7479-586e-aec8-59d1fddfe3a1",
           "6c3412bc-06bd-5daf-b514-674859443ea5"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Evyn Fong",
@@ -7713,8 +7617,7 @@
         "variations": [
           "53f078ee-77fb-50fe-90a2-537c533321ef",
           "5db57aab-e9c9-513f-a8d5-b7e484145b2d"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Marie Magny",
@@ -7784,8 +7687,7 @@
         "uuid": "3b0d974b-8c59-52cc-ace4-8d2b073fdf02",
         "variations": [
           "a2af44fd-a85c-5576-9e4d-aa6584269ee8"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Marie Magny",
@@ -7849,8 +7751,7 @@
         "uuid": "75007207-b3b8-55c4-8774-d99c6500d079",
         "variations": [
           "b2711307-bc44-5a48-809f-90a40097bdcc"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Martina Fačková",
@@ -7934,8 +7835,7 @@
         "uuid": "6682c6f0-6d21-597c-b9a4-140dd6fa1535",
         "variations": [
           "ab60c502-311a-525f-9384-a60bb5868666"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Martina Fačková",
@@ -8005,8 +7905,7 @@
         "uuid": "b1b11489-7358-5e49-8b72-a7fb1d67e686",
         "variations": [
           "d47725e2-0492-5d04-8fae-09ef0e740e2e"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Christina Kraus",
@@ -8078,8 +7977,7 @@
         "uuid": "b5e2412e-fb61-551b-93c5-d387f8ec0484",
         "variations": [
           "6494fb47-a326-5a7a-afaa-26d6263c2c6c"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Christina Kraus",
@@ -8146,8 +8044,7 @@
         "uuid": "5e580d07-5cab-5f54-9c0b-514f981817d3",
         "variations": [
           "4a41cab9-e643-598a-983f-a915d994ae11"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Jodie Muir",
@@ -8216,8 +8113,7 @@
         "uuid": "ad40d6fb-6d84-5bba-8f69-587078fd70d0",
         "variations": [
           "f10f2610-6715-5a2e-919b-39156a748ba7"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Jodie Muir",
@@ -8281,8 +8177,7 @@
         "uuid": "9168ecde-7c1f-5905-8377-1ee1d4f91b20",
         "variations": [
           "d70a6d24-c5dc-581a-be54-3c4c24f1943d"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Izzy",
@@ -8352,8 +8247,7 @@
         "uuid": "be550921-2507-5f97-ae79-1e71274883af",
         "variations": [
           "ad235bb4-be95-5da3-9fcd-b775ec1dd41d"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Izzy",
@@ -8418,8 +8312,7 @@
         "uuid": "e65f0d50-58f1-5517-b4a0-153787446d51",
         "variations": [
           "b52bbccd-90f9-5ec8-a5f5-bcbafeab0414"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Anna Steinbauer",
@@ -8490,8 +8383,7 @@
         "uuid": "97deb0bc-694b-5330-8bf9-ccbc196225bc",
         "variations": [
           "9bdb7e17-eae6-5c01-8229-997201e4b695"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Anna Steinbauer",
@@ -8557,8 +8449,7 @@
         "uuid": "16ea83aa-cf54-52b0-849c-4a9e4d3df6da",
         "variations": [
           "c0349990-0bfe-5336-b13a-405ec4230b7f"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Alix Branwyn",
@@ -8628,8 +8519,7 @@
         "uuid": "e8ee9478-289c-5b14-b11d-9ceaee74ce52",
         "variations": [
           "f049815a-f338-534d-8536-80ff35b3510c"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Alix Branwyn",
@@ -8694,8 +8584,7 @@
         "uuid": "1cfa654d-b4e2-5573-b389-386f11ba7096",
         "variations": [
           "7ac2b614-e049-502e-b429-fc10190ebd8c"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Eelis Kyttanen",
@@ -8765,8 +8654,7 @@
         "uuid": "a861d621-322e-589d-8209-64a1aab26833",
         "variations": [
           "3f434eb0-f758-5229-8ee7-6f354576d30b"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Eelis Kyttanen",
@@ -8831,8 +8719,7 @@
         "uuid": "e6d55ab5-a7dd-5b38-9776-70b9e545b104",
         "variations": [
           "3cd9b797-8041-57c9-91ef-34c230abde68"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Justyna Dura",
@@ -8902,8 +8789,7 @@
         "uuid": "3a771324-8431-51de-9fc7-75515a795a1c",
         "variations": [
           "83cc7cba-219b-5c19-b997-7c8ca9b5de3f"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Justyna Dura",
@@ -8968,8 +8854,7 @@
         "uuid": "6edda8ef-b3a8-5a8f-b071-91487618d051",
         "variations": [
           "f7a0dda2-1123-5faa-868c-5456ae609ab8"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Bryan Sola",
@@ -9040,8 +8925,7 @@
         "uuid": "419adeaf-9db4-5793-a027-0499695a00d8",
         "variations": [
           "dd1c5df0-c39b-5628-87de-42e984740534"
-        ],
-        "imageUrl": ""
+        ]
       },
       {
         "artist": "Bryan Sola",
@@ -9107,8 +8991,7 @@
         "uuid": "3bbe284d-02e3-54d8-9c8c-74288d22e45b",
         "variations": [
           "da0147d1-26d4-5f4b-a254-a8597ccdf809"
-        ],
-        "imageUrl": ""
+        ]
       }
     ]
   }
