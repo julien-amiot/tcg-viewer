@@ -183,8 +183,9 @@ main {
 .card-setcode {
   font-weight: 800;
   font-size: 0.9em;
-  letter-spacing: -0.05em;
-  text-shadow: 0 0 0.1em rgba(0, 0, 0, 1);
+  letter-spacing: -0.2em;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+  margin: 0 0.2em;
 }
 
 .card-text {
