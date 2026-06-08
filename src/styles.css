@@ -158,15 +158,33 @@ main {
   border: 0.05em solid #fff;
 }
 
-/* Card Body */
+/* Separator between header and body (card image area) */
+.card-separator {
+  min-height: 25%;
+  flex-shrink: 0;
+}
+
+/* Card Body - type row + text, no scrolling on body itself */
 .card-body {
   margin: 0.2em;
   border-radius: 0.5em;
-  flex-shrink: 0;
-  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(100% - 33.33%);
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
+}
+
+/* Card Text - scrollable area */
+.card-text {
+  font-size: 0.75em;
+  color: #fff;
+  padding: 0.5em;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+  flex-shrink: 1;
+  overflow-y: auto;
 }
 
 /* Card Type Row */
@@ -176,11 +194,6 @@ main {
   align-items: center;
   padding: 0.2em 0.5em;
   border-bottom: 1px black solid;
-}
-
-.card-separator {
-  min-height: 33.33%;
-  flex: 1 0 auto;
 }
 
 .card-type {
@@ -200,14 +213,7 @@ main {
   margin: 0 0.2em;
 }
 
-/* Card Text */
-.card-text {
-  font-size: 0.75em;
-  color: #fff;
-  padding: 0.5em;
-  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
-}
-
+/* Card Text Mana Dots */
 .card-text .mana-dot {
   border-radius: 0.5em;
   font-size: 0.9em;
