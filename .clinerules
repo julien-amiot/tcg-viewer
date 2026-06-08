@@ -13,6 +13,7 @@ Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
 
 ## Working rules
 1. Every feature must be documented in `specs.md` before implementation.
+2. If a SonarQube analysis fails due to an issue related to the number of new lines, ask the operator what to do before proceeding with fixes.
 2. Each spec node (header) represents a feature of **less than 300 lines** of code.
 3. After implementing a feature, update `README.md` with a short description, requirement summary, or Mermaid diagram.
 4. The pre-push hook blocks pushes that exceed 300 lines of diff or fail the SonarQube quality gate.
@@ -22,6 +23,7 @@ Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
 8. **Never skip SonarQube.** If the quality gate fails, stop and ask the user how to proceed.
 9. **Before merging a PR, always ask for the user's explicit validation.** Do not merge without approval.
 10. **E2E tests (Playwright) must pass before any PR merge.** Run Playwright BDD tests as part of pre-merge validation. If E2E tests fail, stop and ask the user how to proceed.
+11. Use `scripts/sonar-analyze.ts` to connect to SonarQube and run an analysis before merging. If the analysis is failing, fix the issues. If you're unable to do it, ask the operator how to proceed.
 
 ## Test strategy
 - **Unit tests:** Vitest - live in `test/unit/`, run with `npm test`

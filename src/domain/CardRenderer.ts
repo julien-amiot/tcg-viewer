@@ -19,13 +19,8 @@ function hexToRgba(hex: string): [number, number, number] {
 }
 
 function getTextAreaBackground(colors: string[]): string {
-  if (colors.length === 0) {
-    return 'rgba(128, 128, 128, 0.4)';
-  }
-
-  if (colors.length > 3) {
-    return 'rgba(255, 193, 7, 0.4)';
-  }
+  if (colors.length === 0) return 'rgba(128, 128, 128, 0.4)';
+  if (colors.length > 3) return 'rgba(255, 193, 7, 0.4)';
 
   const sorted = [...colors].sort((a, b) => colorOrder.indexOf(a) - colorOrder.indexOf(b));
   const hexColors = sorted.map(c => manaColorMap[c] || '#cccccc');
@@ -35,13 +30,12 @@ function getTextAreaBackground(colors: string[]): string {
     return `rgba(${r}, ${g}, ${b}, 0.4)`;
   }
 
-  const rgbaColors = hexColors.map(c => {
-    const [r, g, b] = hexToRgba(c);
-    return `rgba(${r}, ${g}, ${b}, 0.4)`;
+  const n = sorted.length - 1;
+  const gradientStops = hexColors.map((hex, i) => {
+    const [r, g, b] = hexToRgba(hex);
+    return `rgba(${r}, ${g}, ${b}, 0.4) ${(i / n) * 100}%`;
   });
 
-  const stops = sorted.map((_, i) => `${(i / (sorted.length - 1)) * 100}%`);
-  const gradientStops = rgbaColors.map((c, i) => `${c} ${stops[i]}`);
   return `linear-gradient(135deg, ${gradientStops.join(', ')})`;
 }
 
@@ -72,6 +66,20 @@ function createManaDot(content: string, color?: string, gradient?: string): HTML
   return dot;
 }
 
+function renderManaToken(inner: string): HTMLElement {
+  if (inner.includes('/')) {
+    const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
+    const key = sortedParts.join('');
+    const gradient = manaGradientMap[key];
+    return createManaDot(inner, undefined, gradient);
+  }
+  if (manaColorMap[inner]) {
+    return createManaDot(inner, manaColorMap[inner]);
+  }
+  // Numbers, X, T, or generic — pale grey
+  return createManaDot(inner, '#cccccc');
+}
+
 function renderTextWithManaDots(text: string): HTMLElement {
   const container = document.createElement('span');
   let i = 0;
@@ -80,17 +88,7 @@ function renderTextWithManaDots(text: string): HTMLElement {
       const end = text.indexOf('}', i);
       if (end > -1) {
         const inner = text.substring(i + 1, end);
-        if (inner.includes('/')) {
-          const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
-          const key = sortedParts.join('');
-          const gradient = manaGradientMap[key];
-          container.appendChild(createManaDot(inner, undefined, gradient));
-        } else if (manaColorMap[inner]) {
-          container.appendChild(createManaDot(inner, manaColorMap[inner]));
-        } else {
-          // Numbers, X, T, or generic — pale grey
-          container.appendChild(createManaDot(inner, '#cccccc'));
-        }
+        container.appendChild(renderManaToken(inner));
         i = end + 1;
       } else {
         container.appendChild(document.createTextNode(text[i]));
@@ -122,12 +120,12 @@ function parseManaCost(raw: string): Array<{ content: string; color?: string; gr
             const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
             const key = sortedParts.join('');
             tokens.push({ content: inner, gradient: manaGradientMap[key] });
-        } else if (manaColorMap[inner]) {
-          tokens.push({ content: inner, color: manaColorMap[inner] });
-        } else {
-          // Number or generic - pale grey
-          tokens.push({ content: inner, color: '#cccccc' });
-        }
+          } else if (manaColorMap[inner]) {
+            tokens.push({ content: inner, color: manaColorMap[inner] });
+          } else {
+            // Number or generic - pale grey
+            tokens.push({ content: inner, color: '#cccccc' });
+          }
         i = end + 1;
       } else {
         tokens.push({ content: raw[i] });
@@ -230,7 +228,7 @@ export class CardRenderer {
     const textEl = document.createElement('div');
     textEl.className = 'card-text';
     // Remove parenthesized content from card text
-    const cleanedText = card.text.replace(/\([^)]*\)/g, '');
+    const cleanedText = card.text.replaceAll(/\([^)]*\)/g, '');
     textEl.appendChild(renderTextWithManaDots(cleanedText));
 
     if (card.flavorText) {
