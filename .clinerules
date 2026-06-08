@@ -23,7 +23,11 @@ Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
 8. **Never skip SonarQube.** If the quality gate fails, stop and ask the user how to proceed.
 9. **Before merging a PR, always ask for the user's explicit validation.** Do not merge without approval.
 10. **E2E tests (Playwright) must pass before any PR merge.** Run Playwright BDD tests as part of pre-merge validation. If E2E tests fail, stop and ask the user how to proceed.
-11. Use `scripts/sonar-analyze.ts` to connect to SonarQube and run an analysis before merging. If the analysis is failing, fix the issues. If you're unable to do it, ask the operator how to proceed.
+11. Use `npx tsx scripts/sonar-analyze.ts` to connect to SonarQube and run an analysis before merging. This script will:
+    - Check Docker status and start SonarQube containers if needed
+    - Run the sonar-scanner for analysis
+    - Fetch issues from the SonarQube API
+12. If the SonarQube quality gate fails due to `new_lines` exceeding 300, ask the operator what to do before proceeding (skip SonarQube, reduce lines, or adjust threshold).
 
 ## Test strategy
 - **Unit tests:** Vitest - live in `test/unit/`, run with `npm test`
