@@ -160,21 +160,16 @@ main {
 
 /* Separator between header and body (card image area) */
 .card-separator {
-  min-height: 25%;
   flex-shrink: 0;
+  min-height: 25%;
 }
 
-/* Card Body - type row + text, no scrolling on body itself */
+/* Card Body - type row + text, shrink to minimal content */
 .card-body {
   margin: 0.2em;
   border-radius: 0.5em;
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 0 0 auto;
   max-height: calc(100% - 33.33%);
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 }
 
 /* Card Text - scrollable area */
@@ -183,7 +178,6 @@ main {
   color: #fff;
   padding: 0.5em;
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
-  flex-shrink: 1;
   overflow-y: auto;
 }
 
