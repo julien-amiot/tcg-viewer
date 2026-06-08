@@ -93,6 +93,14 @@
 - 0.5em margin on each horizontal element (card-header, card-type-row, card-text, card-flavor-text)
 - Status: **Implemented**
 
+### 2.11 Planeswalker Initial Loyalty Display ✅
+- Planeswalker cards display initial loyalty value at bottom right of the card
+- Uses same position/style as power/toughness (footer area, right-aligned)
+- Value rendered from `loyalty` field in raw card data via `InitialLoyalty` value object
+- Styled with rounded dark gradient box, distinct from P/T to visually differentiate planeswalker cards
+- Only shown when loyalty is present (cards without loyalty show nothing in this position)
+- Status: **Implemented**
+
 ---
 
 ## 3. Quality Infrastructure

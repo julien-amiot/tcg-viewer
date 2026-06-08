@@ -24,6 +24,7 @@ A web-based Magic: The Gathering card viewer / tabletop companion. Loads card da
 │  │  src/domain/ (hex layer) │               │
 │  │  Color, Card, CardName   │               │
 │  │  ManaCost, CardType ...  │               │
+│  │  Loyalty, PowerToughness │               │
 │  └──────────┬───────────────┘               │
 │             │                               │
 │  ┌──────────v───────────────┐               │
@@ -73,21 +74,25 @@ npm run sonar:stop    # Stop containers
 | Frontend | Vanilla TS + HTML + CSS (no framework) |
 | Data | MTGJSON JSON (`CARDS/`) |
 
-## Current Status
+## Current Features
 
-| Area | Status |
-|------|--------|
+### Domain Model & Rendering
+- **Value objects:** `Color`, `CardName`, `ManaCost`, `CardType`, `PowerToughness`, `Rarity`, `InitialLoyalty`
+- **Planeswalker cards** display initial loyalty at bottom right (footer), styled with rounded dark gradient box — same position as P/T, but visually distinct.
+
+### Card Viewer Features
+| Feature | Status |
+|---------|--------|
 | TypeScript strict mode | ✅ Build passes |
 | Domain model (Card, Value Objects) | ✅ Fully implemented |
 | Card data loader | ✅ Fetch + type mapping |
 | Card renderer | ✅ DOM-based MTG layout |
 | Card list / grid | ✅ Grid + 4 filters (name, color, type, rarity) |
 | SonarQube setup | ✅ Running (SQ 26.5.0, first analysis PASSED) |
-| Pre-push hook | ✅ Implemented (3.2) — scripts/pre-push.sh with SonarQube integration |
-| Unit test bootstrap | 🔲 Planned (3.3) |
-| E2E test bootstrap | 🔲 Planned (3.4) |
+| Pre-push hook | ✅ Implemented — scripts/pre-push.sh with SonarQube integration |
 | Set selector | 🔲 Planned (2.5) |
-| Card image display | ✅ imageUrl property + CSS `cover` background (2.6) |
+| Card image display | ✅ `imageUrl` property + CSS `cover` background (2.6) |
+| Planeswalker loyalty display | ✅ `InitialLoyalty` value object + footer rendering (2.11) |
 
 ## Dependency Fixes (2026-06-01)
 

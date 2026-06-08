@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "tsc --noEmit && npx esbuild src/main.ts --bundle --outfile=dist/main.js && npm run copy:assets",
-    "copy:assets": "node -e \"const fs=require('fs');const p=['src/index.html','src/styles.css'];p.forEach(f=>{fs.copyFileSync(f,f.replace('src/','dist/'))});fs.cpSync('CARDS','dist/CARDS',{recursive:true});\"",
+    "build": "node scripts/build.js",
+    "copy:assets": "node scripts/copy-assets.js",
     "test": "vitest --run",
     "test:unit": "vitest run",
     "test:e2e": "vitest play",

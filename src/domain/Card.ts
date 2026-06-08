@@ -7,6 +7,7 @@ import { CardType } from './CardType';
 import { PowerToughness } from './PowerToughness';
 import { Rarity } from './Rarity';
 import { Color } from './Color';
+import { InitialLoyalty } from './InitialLoyalty';
 
 export interface RawCardData {
   uuid: string;
@@ -16,6 +17,7 @@ export interface RawCardData {
   text: string;
   power?: string;
   toughness?: string;
+  loyalty?: string;
   rarity: string;
   colors: string[];
   subtypes: string[];
@@ -34,6 +36,7 @@ export interface CardOptions {
   manaCost: ManaCost;
   cardType: CardType;
   powerToughness: PowerToughness;
+  initialLoyalty: InitialLoyalty;
   rarity: Rarity;
   colors: Color[];
   text: string;
@@ -51,6 +54,7 @@ export class Card {
   public readonly manaCost: ManaCost;
   public readonly cardType: CardType;
   public readonly powerToughness: PowerToughness;
+  public readonly initialLoyalty: InitialLoyalty;
   public readonly rarity: Rarity;
   public readonly colors: Color[];
   public readonly text: string;
@@ -61,12 +65,13 @@ export class Card {
   public readonly faceName?: string;
   public readonly imageUrl?: string;
 
-  constructor({ id, name, manaCost, cardType, powerToughness, rarity, colors, text, setCode, number, artist, flavorText, faceName, imageUrl }: CardOptions) {
+  constructor({ id, name, manaCost, cardType, powerToughness, initialLoyalty, rarity, colors, text, setCode, number, artist, flavorText, faceName, imageUrl }: CardOptions) {
     this.id = id;
     this.name = name;
     this.manaCost = manaCost;
     this.cardType = cardType;
     this.powerToughness = powerToughness;
+    this.initialLoyalty = initialLoyalty;
     this.rarity = rarity;
     this.colors = colors;
     this.text = text;
@@ -84,12 +89,15 @@ export class Card {
       ? PowerToughness.from(`${raw.power}/${raw.toughness}`)
       : PowerToughness.empty();
 
+    const loyalty = InitialLoyalty.from(raw.loyalty);
+
     return new Card({
       id: raw.uuid,
       name: CardName.from(raw.name),
       manaCost: ManaCost.from(raw.manaCost),
       cardType: CardType.from(raw.type, raw.subtypes),
       powerToughness: pt,
+      initialLoyalty: loyalty,
       rarity: Rarity.from(raw.rarity),
       colors,
       text: raw.text || '',
@@ -104,6 +112,10 @@ export class Card {
 
   get hasPowerToughness(): boolean {
     return !this.powerToughness.isEmpty;
+  }
+
+  get hasInitialLoyalty(): boolean {
+    return !this.initialLoyalty.isEmpty;
   }
 
   get isCreature(): boolean {

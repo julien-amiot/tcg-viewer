@@ -16,6 +16,12 @@ body {
   min-height: 100vh;
 }
 
+/* Shared text styles */
+.text-shadow {
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+}
+
+/* Header Styles */
 header {
   background: #16213e;
   padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 2rem);
@@ -43,6 +49,7 @@ header h1 {
   background: #219a52;
 }
 
+/* Filter Controls */
 #filters {
   display: flex;
   gap: clamp(0.5rem, 1vw, 1rem);
@@ -68,6 +75,7 @@ header h1 {
   min-width: clamp(80px, 15vw, 120px);
 }
 
+/* Main Content */
 main {
   padding: clamp(1rem, 2vw, 2rem);
 }
@@ -103,6 +111,7 @@ main {
   box-shadow: 0 8px 24px rgba(233, 69, 96, 0.2);
 }
 
+/* Card Header */
 .card-header {
   padding: 0.2em 0.5em;
   margin: 0.2em;
@@ -130,6 +139,7 @@ main {
   align-items: center;
 }
 
+/* Mana Dots */
 .mana-dot {
   display: inline-block;
   width: 1.2em;
@@ -148,6 +158,7 @@ main {
   border: 0.05em solid #fff;
 }
 
+/* Card Body */
 .card-body {
   margin: 0.2em;
   border-radius: 0.5em;
@@ -158,6 +169,7 @@ main {
   justify-content: flex-end;
 }
 
+/* Card Type Row */
 .card-type-row {
   display: flex;
   justify-content: space-between;
@@ -188,6 +200,7 @@ main {
   margin: 0 0.2em;
 }
 
+/* Card Text */
 .card-text {
   font-size: 0.75em;
   color: #fff;
@@ -210,6 +223,7 @@ main {
   margin-top: 0.5em;
 }
 
+/* Card Footer */
 .card-footer {
   padding: 0.2em;
   display: flex;
@@ -226,23 +240,11 @@ main {
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
 
-.card-power-toughness {
+.card-power-toughness,
+.card-initial-loyalty 
+{
   font-weight: 700;
   font-size: 1.2em;
   color: #fff;
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
-
-.card-rarity {
-  font-size: clamp(0.5rem, 0.9vw, 0.75rem);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 0.25em 0.5em;
-  border-radius: 4px;
-  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
-}
-
-.card-rarity.common { background: #999; color: #111; }
-.card-rarity.uncommon { background: #c0c0c0; color: #222; }
-.card-rarity.rare { background: #ffd700; color: #111; }
-.card-rarity.mythic { background: #9b59b6; color: #fff; }

@@ -4,6 +4,7 @@ import { CardName } from '../../src/domain/CardName';
 import { ManaCost } from '../../src/domain/ManaCost';
 import { CardType } from '../../src/domain/CardType';
 import { PowerToughness } from '../../src/domain/PowerToughness';
+import { InitialLoyalty } from '../../src/domain/InitialLoyalty';
 import { Rarity } from '../../src/domain/Rarity';
 import { Color } from '../../src/domain/Color';
 
@@ -15,6 +16,7 @@ describe('Card', () => {
       manaCost: ManaCost.from('1R'),
       cardType: CardType.creature(['Human']),
       powerToughness: PowerToughness.from('2/2'),
+      initialLoyalty: InitialLoyalty.empty(),
       rarity: Rarity.common(),
       colors: [Color.from('R')],
       text: 'Test text',
@@ -71,6 +73,7 @@ describe('Card', () => {
     const card = Card.fromRaw(raw);
     expect(card.isCreature).toBe(true);
     expect(card.hasPowerToughness).toBe(true);
+    expect(card.hasInitialLoyalty).toBe(false);
     expect(card.colors.length).toBe(2);
   });
 
@@ -140,6 +143,28 @@ describe('Card', () => {
     expect(card.imageUrl).toBeUndefined();
   });
 
+  it('fromRaw creates planeswalker card with loyalty', () => {
+    const raw = {
+      uuid: 'abc-789',
+      name: 'Chandra, Torch of Defiance',
+      manaCost: '3RR',
+      type: 'Planeswalker',
+      text: '+L: This card deals 1 damage to any target.',
+      power: undefined,
+      toughness: undefined,
+      loyalty: '4',
+      rarity: 'mythic',
+      colors: ['R'],
+      subtypes: ['Chandra'],
+      setCode: 'SOS',
+      number: '200'
+    };
+
+    const card = Card.fromRaw(raw);
+    expect(card.hasInitialLoyalty).toBe(true);
+    expect(card.initialLoyalty.value).toBe('4');
+  });
+
   it('creates Card with imageUrl via constructor', () => {
     const card = new Card({
       id: 'img-3',
@@ -147,6 +172,7 @@ describe('Card', () => {
       manaCost: ManaCost.from('1'),
       cardType: CardType.creature([]),
       powerToughness: PowerToughness.empty(),
+      initialLoyalty: InitialLoyalty.empty(),
       rarity: Rarity.common(),
       colors: [],
       text: '',
@@ -156,5 +182,45 @@ describe('Card', () => {
     });
 
     expect(card.imageUrl).toBe('https://example.com/img.jpg');
+  });
+
+  it('creates a planeswalker card without loyalty value', () => {
+    const raw = {
+      uuid: 'pw-1',
+      name: 'Jace, the Mind Sculptor',
+      manaCost: '{3}{U}',
+      type: 'Planeswalker',
+      text: '+1: Draw a card.',
+      rarity: 'mythic',
+      colors: ['U'],
+      subtypes: ['Jace'],
+      setCode: 'SOS',
+      number: '007'
+    };
+
+    const card = Card.fromRaw(raw);
+    expect(card.isCreature).toBe(false);
+    expect(card.hasPowerToughness).toBe(false);
+    expect(card.hasInitialLoyalty).toBe(false);
+  });
+
+  it('creates a planeswalker card with loyalty value', () => {
+    const raw = {
+      uuid: 'pw-2',
+      name: 'Chandra, Torch of Defiance',
+      manaCost: '{3}{R}{R}',
+      type: 'Planeswalker — Chandra',
+      text: '+1: Chandra deals 1 damage to any target.',
+      rarity: 'mythic',
+      colors: ['R'],
+      subtypes: ['Chandra'],
+      loyalty: '4',
+      setCode: 'SOS',
+      number: '025'
+    };
+
+    const card = Card.fromRaw(raw);
+    expect(card.hasInitialLoyalty).toBe(true);
+    expect(card.initialLoyalty.value).toBe('4');
   });
 });

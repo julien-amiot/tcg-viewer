@@ -242,7 +242,7 @@ export class CardRenderer {
     body.appendChild(typeRow);
     body.appendChild(textEl);
 
-    // Footer: number+artist (left) + power/toughness (right)
+    // Footer: number+artist (left) + power/toughness or loyalty (right)
     const footer = document.createElement('div');
     footer.className = 'card-footer';
     const leftInfo = document.createElement('span');
@@ -253,11 +253,17 @@ export class CardRenderer {
     }
     footer.appendChild(leftInfo);
 
+    // Power/toughness for creatures, loyalty for planeswalkers
     if (card.hasPowerToughness) {
       const ptEl = document.createElement('span');
       ptEl.className = 'card-power-toughness';
       ptEl.textContent = card.powerToughness.display;
       footer.appendChild(ptEl);
+    } else if (card.hasInitialLoyalty) {
+      const loyaltyEl = document.createElement('span');
+      loyaltyEl.className = 'card-initial-loyalty';
+      loyaltyEl.textContent = card.initialLoyalty.value;
+      footer.appendChild(loyaltyEl);
     }
 
     wrapper.appendChild(header);

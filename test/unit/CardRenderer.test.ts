@@ -5,6 +5,7 @@ import { CardName } from '../../src/domain/CardName';
 import { ManaCost } from '../../src/domain/ManaCost';
 import { CardType } from '../../src/domain/CardType';
 import { PowerToughness } from '../../src/domain/PowerToughness';
+import { InitialLoyalty } from '../../src/domain/InitialLoyalty';
 import { Rarity } from '../../src/domain/Rarity';
 import { Color } from '../../src/domain/Color';
 
@@ -45,6 +46,7 @@ describe('CardRenderer', () => {
       manaCost: ManaCost.from('1'),
       cardType: CardType.creature([]),
       powerToughness: PowerToughness.from('1/1'),
+      initialLoyalty: InitialLoyalty.empty(),
       rarity: Rarity.common(),
       colors: [Color.from('R')],
       text: 'Test text',
@@ -56,13 +58,14 @@ describe('CardRenderer', () => {
     expect(() => renderer.render([card])).not.toThrow();
   });
 
-  it('renders card without power/toughness', () => {
+  it('renders card without power/toughness or loyalty', () => {
     const card = new Card({
       id: '2',
       name: CardName.from('Instant'),
       manaCost: ManaCost.from('R'),
       cardType: CardType.instant(),
       powerToughness: PowerToughness.empty(),
+      initialLoyalty: InitialLoyalty.empty(),
       rarity: Rarity.rare(),
       colors: [Color.from('R')],
       text: 'Deals damage',
@@ -81,6 +84,7 @@ describe('CardRenderer', () => {
       manaCost: ManaCost.from('1'),
       cardType: CardType.creature([]),
       powerToughness: PowerToughness.from('1/1'),
+      initialLoyalty: InitialLoyalty.empty(),
       rarity: Rarity.common(),
       colors: [Color.from('W')],
       text: 'Main text',
@@ -100,11 +104,31 @@ describe('CardRenderer', () => {
       manaCost: ManaCost.from('WR'),
       cardType: CardType.creature(['Human']),
       powerToughness: PowerToughness.from('2/2'),
+      initialLoyalty: InitialLoyalty.empty(),
       rarity: Rarity.uncommon(),
       colors: [Color.from('W'), Color.from('R')],
       text: '',
       setCode: 'SOS',
       number: '003'
+    });
+
+    const renderer = new CardRenderer('cardGrid');
+    expect(() => renderer.render([card])).not.toThrow();
+  });
+
+  it('renders planeswalker card with loyalty', () => {
+    const card = new Card({
+      id: '5',
+      name: CardName.from('Chandra'),
+      manaCost: ManaCost.from('3RR'),
+      cardType: CardType.from('Planeswalker', ['Chandra']),
+      powerToughness: PowerToughness.empty(),
+      initialLoyalty: InitialLoyalty.from('4'),
+      rarity: Rarity.mythic(),
+      colors: [Color.from('R')],
+      text: '+L: Deal 1 damage to any target.',
+      setCode: 'SOS',
+      number: '200'
     });
 
     const renderer = new CardRenderer('cardGrid');
