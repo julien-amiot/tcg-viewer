@@ -198,9 +198,13 @@ export class CardRenderer {
     header.appendChild(nameEl);
     header.appendChild(manaContainer);
 
-    // Separator between header and body
+    // Separator between header and body (image area)
     const separator = document.createElement('div');
     separator.className = 'card-separator';
+
+    // Spacer to push footer + text block below separator
+    const spacer = document.createElement('div');
+    spacer.className = 'card-spacer';
 
     // Body: type + setCode + text
     const body = document.createElement('div');
@@ -267,7 +271,7 @@ export class CardRenderer {
     }
 
     wrapper.appendChild(header);
-    wrapper.appendChild(separator);
+    wrapper.appendChild(spacer);
     wrapper.appendChild(body);
     wrapper.appendChild(footer);
 

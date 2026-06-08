@@ -164,11 +164,16 @@ main {
   min-height: 25%;
 }
 
-/* Card Body - type row + text, shrink to minimal content */
+/* Spacer to push footer + text block below separator */
+.card-spacer {
+  flex-grow: 1;
+}
+
+/* Card Body - type row + text, pushed to bottom of card via margin-top:auto */
 .card-body {
   margin: 0.2em;
   border-radius: 0.5em;
-  flex: 0 0 auto;
+  flex-shrink: 0;
   max-height: calc(100% - 33.33%);
 }
 
