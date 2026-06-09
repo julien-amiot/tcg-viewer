@@ -7,7 +7,7 @@
     "copy:assets": "node scripts/copy-assets.js",
     "test": "vitest --run",
     "test:unit": "vitest run",
-    "test:e2e": "vitest play",
+    "test:e2e": "playwright test",
     "sonar:scan": "sonar-scanner",
     "sonar:start": "docker compose -f docker-compose.sonar.yml up -d",
     "sonar:stop": "docker compose -f docker-compose.sonar.yml down"

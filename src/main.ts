@@ -114,18 +114,56 @@ async function init(): Promise<void> {
     });
   }
 
+  function updateSetSelector(): void {
+    if (!setSelector) return;
+    setSelector.innerHTML = '<option value="">-- Select a Set --</option>';
+    const savedSets = setStorage.listSets();
+    for (const setName of savedSets) {
+      const option = document.createElement('option');
+      option.value = setName;
+      option.textContent = setName;
+      setSelector.appendChild(option);
+    }
+  }
+
   // Wire save set button listener
-  document.getElementById('saveSetButton')?.addEventListener('click', async () => {
+  document.getElementById('saveSetButton')?.addEventListener('click', () => {
     const cards = loader.getAll();
     if (cards.length === 0) {
       alert('No cards to save. Load a set first.');
       return;
     }
-    const name = prompt('Enter a name for this set:', 'My Custom Set');
-    if (!name?.trim()) return;
-    const jsonData = JSON.stringify(cards, null, 2);
-    setStorage.saveSet(name.trim(), jsonData);
-    alert(`Set "${name}" saved!`);
+    // Remove any previous input (e.g. from a prior click) to avoid duplicate IDs
+    const existing = document.getElementById('set-name-input');
+    if (existing) {
+      document.body.removeChild(existing);
+    }
+
+    // Show an input dialog for the set name
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.value = 'My Custom Set';
+    nameInput.id = 'set-name-input';
+    nameInput.setAttribute('style', 'display:block;margin:10px auto;padding:8px;font-size:14px;');
+    document.body.appendChild(nameInput);
+    nameInput.focus();
+    nameInput.select();
+
+    const handleSave = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        const name = nameInput.value.trim();
+        if (!name) return;
+        const jsonData = JSON.stringify(cards, null, 2);
+        setStorage.saveSet(name, jsonData);
+        updateSetSelector();
+        alert(`Set "${name}" saved!`);
+      } else if (e.key === 'Escape') {
+        // Cancel
+      }
+      document.body.removeChild(nameInput);
+    };
+
+    nameInput.addEventListener('keydown', handleSave);
   });
 
   // Wire file upload listener
@@ -163,5 +201,11 @@ async function init(): Promise<void> {
     updateCount(loader.getAll().length, filtered.length);
   });
 }
+
+// Expose for testing (E2E via Playwright)
+(window as any).CardLoader = CardLoader;
+(window as any).SetStorage = SetStorage;
+(window as any).loader = loader;
+(window as any).setSelector = setSelector;
 
 init();
