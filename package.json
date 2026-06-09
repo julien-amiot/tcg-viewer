@@ -5,8 +5,8 @@
   "scripts": {
     "build": "node scripts/build.js",
     "copy:assets": "node scripts/copy-assets.js",
-    "test": "vitest --run",
-    "test:unit": "vitest run",
+    "test": "vitest --run --pool=forks --no-file-parallelism",
+    "test:unit": "vitest run --pool=forks --no-file-parallelism",
     "test:e2e": "playwright test",
     "sonar:scan": "sonar-scanner",
     "sonar:start": "docker compose -f docker-compose.sonar.yml up -d",
