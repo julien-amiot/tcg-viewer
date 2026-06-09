@@ -136,7 +136,7 @@ async function init(): Promise<void> {
     // Remove any previous input (e.g. from a prior click) to avoid duplicate IDs
     const existing = document.getElementById('set-name-input');
     if (existing) {
-      document.body.removeChild(existing);
+      existing.remove();
     }
 
     // Show an input dialog for the set name
@@ -160,7 +160,7 @@ async function init(): Promise<void> {
       } else if (e.key === 'Escape') {
         // Cancel
       }
-      document.body.removeChild(nameInput);
+      nameInput.remove();
     };
 
     nameInput.addEventListener('keydown', handleSave);
@@ -203,9 +203,9 @@ async function init(): Promise<void> {
 }
 
 // Expose for testing (E2E via Playwright)
-(window as any).CardLoader = CardLoader;
-(window as any).SetStorage = SetStorage;
-(window as any).loader = loader;
-(window as any).setSelector = setSelector;
+(globalThis as any).CardLoader = CardLoader;
+(globalThis as any).SetStorage = SetStorage;
+(globalThis as any).loader = loader;
+(globalThis as any).setSelector = setSelector;
 
 init();
