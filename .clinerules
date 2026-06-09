@@ -74,3 +74,21 @@ git commit -m "feat: new feature"
 git merge --no-ff -m "Merge branch 'feature/xyz'" feature/xyz
    ```
 5. **Verify before pushing:** Check `git log --oneline -5` to ensure all changes are staged and committed
+
+## GitHub Logging
+17. **Always log progress and status to GitHub using the GITHUB_PAT stored in .env.** After completing meaningful milestones (feature implemented, tests passing, PR opened), post a comment on the relevant active PR or issue summarizing:
+    - What was accomplished during this session
+    - Key changes made
+    - Any blockers or notes for later
+    - Next steps planned
+    Use `curl` with the `Authorization: Bearer $GITHUB_PAT` header against the GitHub API:
+    ```bash
+    curl -s -X POST \
+      -H "Accept: application/vnd.github+json" \
+      -H "Authorization: Bearer $GITHUB_PAT" \
+      -d '{"body":"<comment body>"}' \
+      https://api.github.com/repos/julien-amiot/tcg-viewer/issues/<issue_or_pr_number>/comments
+    ```
+
+## Architecture Documentation Maintenance
+18. **After implementing a feature, update `.clinerules-architecture.md` if necessary.** Whenever you add or modify domain classes, components, build scripts, test files, configuration, or any structural element of the project, ensure that this architecture document reflects those changes. The directory structure section, diagrams, and domain layer summary should stay current to serve as an accurate reference for future work.
