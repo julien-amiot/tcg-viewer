@@ -101,6 +101,19 @@ npm run sonar:stop    # Stop containers
 - Updated `@types/node` from `18.15.x` to `^22.0.0` (TS 5.4 compatibility)
 - Added `esbuild@^0.28.0` for bundling (replaces raw `tsc` emit)
 
-## Working Rules
+## CI/CD Pipeline
+
+GitHub Actions workflows are defined in `.github/workflows/`:
+
+| Workflow | File | Trigger | Description |
+|----------|------|---------|-------------|
+| Unit Tests | `unit-tests.yml` | PR + push to trunk | Runs Vitest with coverage |
+| E2E Tests | `e2e-tests.yml` | PR + push to trunk | Runs Playwright BDD tests (Chromium) |
+| Deploy | `deploy-gh-pages.yml` | Push to trunk | Builds app and deploys to GitHub Pages |
+
+**PR requirements:** Unit tests pass, E2E tests pass.
+**Deployment flow:** Merge → trunk → auto-deploy to GitHub Pages.
+
+## Working Rules 
 
 See [.clinerules](.clinerules) for binding rules (TDD, BDD, hexagonal architecture, ≤300 lines per feature, SonarQube gate enforcement).
