@@ -19,6 +19,7 @@
     "jsdom": "^29.1.1",
     "playwright": "^1.45.0",
     "playwright-bdd": "^6.6.0",
+    "serve": "^14.2.0",
     "sonarqube-scanner": "^3.5.0",
     "typescript": "^5.4.0",
     "vitest": "^4.1.8"
