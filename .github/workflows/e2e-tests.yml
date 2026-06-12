@@ -25,7 +25,12 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Run E2E tests
+      - name: Build project
+        run: npm run build
+
+      - name: Serve built files and run E2E tests
         run: |
-          npx playwright test \
-            --reporter=list
+          npx serve -s dist -l 3000 &
+          # Wait for server to be ready
+          for i in $(seq 1 30); do curl -sf http://localhost:3000 > /dev/null 2>&1 && break; sleep 1; done
+          npx playwright test --reporter=list
