@@ -14,20 +14,31 @@ Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
 ## Working rules
 1. Every feature must be documented in `specs.md` before implementation.
 2. If a SonarQube analysis fails due to an issue related to the number of new lines, ask the operator what to do before proceeding with fixes.
-2. Each spec node (header) represents a feature of **less than 300 lines** of code.
-3. After implementing a feature, update `README.md` with a short description, requirement summary, or Mermaid diagram.
-4. The pre-push hook blocks pushes that exceed 300 lines of diff or fail the SonarQube quality gate.
-5. Always read `specs.md` and `README.md` at the start of any session to understand current state.
-6. When adding a feature, create a new header in `specs.md`, implement it, then update `README.md`.
-7. Before any merge or push to origin, always run the SonarQube quality gate first. Only merge/push if the gate passes. If the gate fails, fix the issues before proceeding.
-8. **Never skip SonarQube.** If the quality gate fails, stop and ask the user how to proceed.
-9. **Before merging a PR, always ask for the user's explicit validation.** Do not merge without approval.
-10. **E2E tests (Playwright) must pass before any PR merge.** Run Playwright BDD tests as part of pre-merge validation. If E2E tests fail, stop and ask the user how to proceed.
-11. Use `npx tsx scripts/sonar-analyze.ts` to connect to SonarQube and run an analysis before merging. This script will:
+3. Each spec node (header) represents a feature of **less than 300 lines** of code.
+4. After implementing a feature, update `README.md` with a short description, requirement summary, or Mermaid diagram.
+5. The pre-push hook blocks pushes that exceed 300 lines of diff or fail the SonarQube quality gate.
+6. Always read `specs.md` and `README.md` at the start of any session to understand current state.
+7. When adding a feature, create a new header in `specs.md`, implement it, then update `README.md`.
+8. **Never push or merge directly to trunk.** All changes must go through GitHub pull requests:
+   - Always create a new branch from trunk for each feature/fix (`feature/<name>` or `fix/<name>`)
+   - Push the branch and open a PR on GitHub
+   - Never run `git push --no-verify -u origin trunk` — only push your feature branches (e.g., `origin fix/vitest-timeout`, `origin fix/sonarqube-issues`)
+9. **Never merge directly to trunk.** All merges must happen via a merged PR on GitHub.
+10. Before any PR is opened, always run the SonarQube quality gate first. Only open/merge if the gate passes. If it fails, fix issues before proceeding.
+11. **Never skip SonarQube.** If the quality gate fails, stop and ask the user how to proceed.
+12. **Before merging a PR, always ask for the user's explicit validation.** Do not merge without approval.
+13. **E2E tests (Playwright) must pass before any PR merge.** Run Playwright BDD tests as part of pre-merge validation. If E2E tests fail, stop and ask the user how to proceed.
+14. Use `npx tsx scripts/sonar-analyze.ts` to connect to SonarQube and run an analysis before merging. This script will:
     - Check Docker status and start SonarQube containers if needed
     - Run the sonar-scanner for analysis
     - Fetch issues from the SonarQube API
-12. If the SonarQube quality gate fails due to `new_lines` exceeding 300, ask the operator what to do before proceeding (skip SonarQube, reduce lines, or adjust threshold).
+15. If the SonarQube quality gate fails due to `new_lines` exceeding 300, ask the operator what to do before proceeding (skip SonarQube, reduce lines, or adjust threshold).
+16. **Always create a PR before pushing.** Use `node scripts/create-pr.js` to create a PR from the current branch to `trunk`. Never push directly to trunk.
+17. **After a PR is merged to trunk on GitHub, deploy a new version as a GitHub Pages release.** Use semantic versioning:
+    - `X` = breaking change (e.g., JSON format changes)
+    - `Y` = new feature
+    - `Z` = bug fix
+    - Run the build (`npm run build`) and create a GitHub Pages deployment from trunk after each merge.
 
 ## Test strategy
 - **Unit tests:** Vitest - live in `test/unit/`, run with `npm test`
@@ -64,3 +75,17 @@ git commit -m "feat: new feature"
 git merge --no-ff -m "Merge branch 'feature/xyz'" feature/xyz
    ```
 5. **Verify before pushing:** Check `git log --oneline -5` to ensure all changes are staged and committed
+
+## GitHub Logging
+18. **Always log progress and status to GitHub using the GITHUB_PAT stored in .env.** After completing meaningful milestones (feature implemented, tests passing, PR opened), post a comment on the relevant active PR or issue summarizing:
+    - What was accomplished during this session
+    - Key changes made
+    - Any blockers or notes for later
+    - Next steps planned
+    Use the dedicated script instead of `curl`:
+    ```bash
+    node scripts/github-log.js --pr=<issue_or_pr_number> "<comment body>"
+    ```
+
+## Architecture Documentation Maintenance
+19. **After implementing a feature, update `.clinerules-architecture.md` if necessary.** Whenever you add or modify domain classes, components, build scripts, test files, configuration, or any structural element of the project,

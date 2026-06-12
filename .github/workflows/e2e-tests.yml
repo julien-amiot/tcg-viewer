@@ -1,0 +1,36 @@
+name: E2E Tests (Playwright)
+
+on:
+  push:
+    branches: [trunk]
+  pull_request:
+    branches: [trunk]
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build project
+        run: npm run build
+
+      - name: Serve built files and run E2E tests
+        run: |
+          npx serve -s dist -l 3000 &
+          # Wait for server to be ready
+          for i in $(seq 1 30); do curl -sf http://localhost:3000 > /dev/null 2>&1 && break; sleep 1; done
+          npx playwright test --reporter=list
