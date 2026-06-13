@@ -1,4 +1,5 @@
 # SC-TCG — Custom Card Sets Feature
+# Jira Test Case: TCGV-3
 # BDD Scenarios for Upload, Save, and Load custom card sets via localStorage
 
 Feature: Custom Card Set Management

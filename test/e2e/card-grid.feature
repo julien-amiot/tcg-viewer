@@ -1,3 +1,7 @@
+# SC-TCG — Card Grid Display Feature
+# Jira Test Case: TCGV-1
+# BDD Scenarios for card grid display with filtering
+
 Feature: Card Grid Display
   As a user
   I want to see cards rendered in a scrollable grid with filtering options
