@@ -8,6 +8,8 @@
     "test": "vitest --run --pool=forks --no-file-parallelism",
     "test:unit": "vitest run --pool=forks --no-file-parallelism",
     "test:e2e": "playwright test",
+    "test:e2e:jira": "node scripts/run-e2e-with-jira.js",
+    "e2e:issues": "node scripts/create-e2e-issues.js",
     "sonar:scan": "sonar-scanner",
     "sonar:start": "docker compose -f docker-compose.sonar.yml up -d",
     "sonar:stop": "docker compose -f docker-compose.sonar.yml down"

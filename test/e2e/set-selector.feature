@@ -1,3 +1,7 @@
+# SC-TCG — Set Selector Feature
+# Jira Test Case: TCGV-2
+# BDD Scenarios for set selector functionality
+
 Feature: Set Selector
   As a user
   I want to switch between available card sets using the set selector dropdown
