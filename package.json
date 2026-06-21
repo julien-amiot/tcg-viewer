@@ -22,7 +22,7 @@
     "playwright": "^1.45.0",
     "playwright-bdd": "^9.0.0",
     "serve": "^14.2.0",
-    "sonarqube-scanner": "^4.3.6",
+    "sonarqube-scanner": "^4.3.8",
     "typescript": "^6.0.3",
     "vitest": "^4.1.8"
   }
