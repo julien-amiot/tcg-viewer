@@ -1,0 +1,49 @@
+/* SC-TCG Design System — Atoms: Mana Dots */
+
+.mana-dot {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  font-size: 0.9em;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1em;
+  box-sizing: border-box;
+  margin: -0.1em;
+  color: black;
+}
+
+.mana-dot--W   { background: var(--ds-mana-W); }
+.mana-dot--U   { background: var(--ds-mana-U); }
+.mana-dot--B   { background: var(--ds-mana-B); }
+.mana-dot--R   { background: var(--ds-mana-R); }
+.mana-dot--G   { background: var(--ds-mana-G); }
+.mana-dot--generic { background: var(--ds-mana-generic); }
+
+/* Split mana dots (hybrid) */
+.mana-dot--WU  { background: linear-gradient(135deg, var(--ds-mana-U) 50%, var(--ds-mana-W) 50%); }
+.mana-dot--BW  { background: linear-gradient(135deg, var(--ds-mana-B) 50%, var(--ds-mana-W) 50%); }
+.mana-dot--RW  { background: linear-gradient(135deg, var(--ds-mana-R) 50%, var(--ds-mana-W) 50%); }
+.mana-dot--GW  { background: linear-gradient(135deg, var(--ds-mana-G) 50%, var(--ds-mana-W) 50%); }
+.mana-dot--UB  { background: linear-gradient(135deg, var(--ds-mana-U) 50%, var(--ds-mana-B) 50%); }
+.mana-dot--UR  { background: linear-gradient(135deg, var(--ds-mana-U) 50%, var(--ds-mana-R) 50%); }
+.mana-dot--UG  { background: linear-gradient(135deg, var(--ds-mana-U) 50%, var(--ds-mana-G) 50%); }
+.mana-dot--BR  { background: linear-gradient(135deg, var(--ds-mana-B) 50%, var(--ds-mana-R) 50%); }
+.mana-dot--BG  { background: linear-gradient(135deg, var(--ds-mana-B) 50%, var(--ds-mana-G) 50%); }
+.mana-dot--RG  { background: linear-gradient(135deg, var(--ds-mana-R) 50%, var(--ds-mana-G) 50%); }
+
+/* Title mana dots — with white border */
+.mana-dot--title {
+  border: 0.05em solid #fff;
+}
+
+/* Text box mana dots — round, no border */
+.mana-dot--text {
+  border-radius: 0.5em;
+  font-size: 0.9em;
+  aspect-ratio: 1 / 1;
+  line-height: 1;
+  padding: 0.05em;
+  text-shadow: none;
+}

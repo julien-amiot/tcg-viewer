@@ -1,0 +1,7 @@
+/* SC-TCG Design System — Molecules: Mana Cost Bar */
+
+.card-mana-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}

@@ -1,0 +1,28 @@
+/* SC-TCG Design System — Molecules: Card Header */
+
+.card-header {
+  padding: var(--ds-space-xs) var(--ds-space-sm);
+  margin: var(--ds-space-xs);
+  border-radius: var(--ds-radius-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-name {
+  font-weight: var(--ds-font-weight-bold);
+  font-size: var(--ds-font-size-lg);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ds-color-text-white);
+  text-shadow: var(--ds-text-shadow);
+}
+
+.card-mana-dots {
+  display: flex;
+  gap: 3px;
+  margin-left: var(--ds-space-sm);
+  align-items: center;
+}

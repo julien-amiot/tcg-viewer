@@ -1,0 +1,15 @@
+/* SC-TCG Design System — Molecules: Card Text */
+
+.card-text {
+  font-size: var(--ds-font-size-base);
+  color: var(--ds-color-text-white);
+  padding: var(--ds-space-sm);
+  text-shadow: var(--ds-text-shadow);
+  overflow-y: auto;
+}
+
+.card-flavor-text {
+  color: var(--ds-color-text-white);
+  text-shadow: var(--ds-text-shadow);
+  margin-top: var(--ds-space-sm);
+}

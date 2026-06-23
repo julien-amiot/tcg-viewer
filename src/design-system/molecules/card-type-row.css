@@ -1,0 +1,26 @@
+/* SC-TCG Design System — Molecules: Card Type Row */
+
+.card-type-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ds-space-xs) var(--ds-space-sm);
+  border-bottom: 1px black solid;
+}
+
+.card-type {
+  font-size: 1em;
+  color: var(--ds-color-text-white);
+  text-shadow: var(--ds-text-shadow);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-setcode {
+  font-weight: var(--ds-font-weight-extrabold);
+  font-size: 0.9em;
+  letter-spacing: -0.2em;
+  text-shadow: var(--ds-text-shadow);
+  margin: 0 0.2em;
+}

@@ -1,0 +1,8 @@
+/* SC-TCG Design System — Atoms: Rarity */
+
+.rarity--common { color: var(--ds-rarity-common); }
+.rarity--uncommon { color: var(--ds-rarity-uncommon); }
+.rarity--rare { color: var(--ds-rarity-rare); }
+.rarity--mythic { color: var(--ds-rarity-mythic); }
+
+.rarity--common .card-setcode { text-shadow: 0 0 0.1em rgba(255, 255, 255, 1); }

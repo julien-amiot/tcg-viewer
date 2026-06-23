@@ -1,0 +1,32 @@
+/* SC-TCG Design System — Atoms: Color Identity */
+
+/* Single-color backgrounds with alpha */
+.color-identity--W  { background: rgba(255, 249, 196, 0.4); }
+.color-identity--U  { background: rgba(168, 212, 255, 0.4); }
+.color-identity--B  { background: rgba(85, 85, 85, 0.4); }
+.color-identity--R  { background: rgba(255, 179, 179, 0.4); }
+.color-identity--G  { background: rgba(179, 255, 179, 0.4); }
+
+/* No color (colorless) */
+.color-identity--none { background: rgba(128, 128, 128, 0.4); }
+
+/* Two-color gradients */
+.color-identity--WU  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
+.color-identity--BW  { background: linear-gradient(135deg, rgba(85, 85, 85, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
+.color-identity--RW  { background: linear-gradient(135deg, rgba(255, 179, 179, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
+.color-identity--GW  { background: linear-gradient(135deg, rgba(179, 255, 179, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
+.color-identity--UB  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 50%, rgba(85, 85, 85, 0.4) 50%); }
+.color-identity--UR  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 50%, rgba(255, 179, 179, 0.4) 50%); }
+.color-identity--UG  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 50%, rgba(179, 255, 179, 0.4) 50%); }
+.color-identity--BR  { background: linear-gradient(135deg, rgba(85, 85, 85, 0.4) 50%, rgba(255, 179, 179, 0.4) 50%); }
+.color-identity--BG  { background: linear-gradient(135deg, rgba(85, 85, 85, 0.4) 50%, rgba(179, 255, 179, 0.4) 50%); }
+.color-identity--RG  { background: linear-gradient(135deg, rgba(255, 179, 179, 0.4) 50%, rgba(179, 255, 179, 0.4) 50%); }
+
+/* Three-color gradients */
+.color-identity--WUB { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 33%, rgba(85, 85, 85, 0.4) 33%, rgba(255, 249, 196, 0.4) 66%); }
+.color-identity--WUBR { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 25%, rgba(85, 85, 85, 0.4) 25%, rgba(255, 179, 179, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
+.color-identity--WUBG { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 25%, rgba(85, 85, 85, 0.4) 25%, rgba(179, 255, 179, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
+.color-identity--WUBRG { background: linear-gradient(135deg, rgba(255, 193, 7, 0.4) 0%); }
+
+/* Four-color (gold) */
+.color-identity--gold { background: rgba(255, 193, 7, 0.4); }

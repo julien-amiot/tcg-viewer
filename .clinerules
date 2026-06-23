@@ -11,81 +11,63 @@ Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
 - Quality: SonarQube (local Docker), pre-push hook enforces quality gate + max 300 lines per push
 - Data: MTGJSON-derived JSON (`CARDS/SOS_prepared.json`)
 
-## Working rules
-1. Every feature must be documented in `specs.md` before implementation.
-2. If a SonarQube analysis fails due to an issue related to the number of new lines, ask the operator what to do before proceeding with fixes.
-3. Each spec node (header) represents a feature of **less than 300 lines** of code.
-4. After implementing a feature, update `README.md` with a short description, requirement summary, or Mermaid diagram.
-5. The pre-push hook blocks pushes that exceed 300 lines of diff or fail the SonarQube quality gate.
-6. Always read `specs.md` and `README.md` at the start of any session to understand current state.
-7. When adding a feature, create a new header in `specs.md`, implement it, then update `README.md`.
-8. **Never push or merge directly to trunk.** All changes must go through GitHub pull requests:
-   - Always create a new branch from trunk for each feature/fix (`feature/<name>` or `fix/<name>`)
-   - Push the branch and open a PR on GitHub
-   - Never run `git push --no-verify -u origin trunk` — only push your feature branches (e.g., `origin fix/vitest-timeout`, `origin fix/sonarqube-issues`)
-9. **Never merge directly to trunk.** All merges must happen via a merged PR on GitHub.
-10. Before any PR is opened, always run the SonarQube quality gate first. Only open/merge if the gate passes. If it fails, fix issues before proceeding.
-11. **Never skip SonarQube.** If the quality gate fails, stop and ask the user how to proceed.
-12. **Before merging a PR, always ask for the user's explicit validation.** Do not merge without approval.
-13. **E2E tests (Playwright) must pass before any PR merge.** Run Playwright BDD tests as part of pre-merge validation. If E2E tests fail, stop and ask the user how to proceed.
-14. Use `npx tsx scripts/sonar-analyze.ts` to connect to SonarQube and run an analysis before merging. This script will:
-    - Check Docker status and start SonarQube containers if needed
-    - Run the sonar-scanner for analysis
-    - Fetch issues from the SonarQube API
-15. If the SonarQube quality gate fails due to `new_lines` exceeding 300, ask the operator what to do before proceeding (skip SonarQube, reduce lines, or adjust threshold).
-16. **Always create a PR before pushing.** Use `node scripts/create-pr.js` to create a PR from the current branch to `trunk`. Never push directly to trunk.
-17. **After a PR is merged to trunk on GitHub, deploy a new version as a GitHub Pages release.** Use semantic versioning:
+## 1. Session Start Rules
+1. **Always read `specs.md` and `README.md`** at the start of any session to understand the current state.
+2. **Always run the SonarQube analysis script at the start of every new session.** Use `npx tsx scripts/sonar-analyze.ts` to connect to SonarQube and run an analysis. This script will check Docker status, start SonarQube containers if needed, run the scanner, and fetch issues from the API.
+
+## 2. Feature Development & Specification Workflow
+3. **Every feature must be documented in `specs.md` before implementation.** Each spec node (header) represents a feature of **less than 300 lines** of code.
+4. **When adding a feature, follow this sequence:**
+   - Create a new header in `specs.md`.
+   - Implement the feature.
+   - Update `README.md` with a short description, requirement summary, or Mermaid diagram.
+5. **Enforce the 300-line limit per push.** The pre-push hook blocks pushes that exceed 300 lines of diff.
+6. **Maintain architecture documentation.** After implementing any feature that adds or modifies domain classes, components, build scripts, test files, configuration, or structural elements, update `.clinerules-architecture.md` to reflect the changes.
+
+## 3. Testing & Code Quality Standards
+7. **Test Suites & Strategy:**
+   - **Unit tests:** Vitest (live in `test/unit/`, run with `npm test`).
+   - **E2E / BDD tests:** Playwright (live in `test/e2e/`, scenarios written in Given/When/Then style, run with `npm run test:e2e`).
+8. **Never skip SonarQube.** If the local quality gate fails, stop and ask the user how to proceed.
+9. **Handle SonarQube size limits:** If SonarQube analysis fails because `new_lines` exceeds 300, ask the operator what to do before proceeding (skip SonarQube, reduce lines, or adjust threshold).
+
+## 4. Git Command Procedure & Branching Workflow
+10. **CRITICAL POWERSHELL RULE:** Always execute **one git command per tool call**. Do NOT combine multiple commands using `&&` or other operators.
+    * *Why?* The system uses **PowerShell** where `&&` is not a valid instruction separator for chaining in standard command parsing.
+    * *Correct Usage:*
+      ```bash
+      git add -A
+      git commit -m "feat: new feature"
+      ```
+11. **Strict PR Workflow (Never push or merge directly to trunk):**
+    - Always create a new branch from trunk for each feature/fix: `feature/<name>` or `fix/<name>`.
+    - Push the branch and open a PR on GitHub. Never run `git push --no-verify -u origin trunk`.
+12. **Always create a PR before pushing.** Use `node scripts/create-pr.js` to create a PR from the current branch to `trunk`.
+13. **Git Workflow Validation Checklist:**
+    - Always run the SonarQube quality gate first before any PR is opened (`npx tsx scripts/sonar-analyze.ts`). Fix issues before proceeding.
+    - Playwright BDD tests (E2E) must pass before any PR merge. If they fail, stop and ask the user how to proceed.
+    - Always ask for the user's explicit validation/approval before merging a PR.
+14. **Merging PRs:** All merges must happen via a merged PR on GitHub (no direct local merges to trunk).
+15. **Release Deployment:** After a PR is merged to trunk on GitHub, deploy a new version as a GitHub Pages release. Use semantic versioning:
     - `X` = breaking change (e.g., JSON format changes)
     - `Y` = new feature
     - `Z` = bug fix
     - Run the build (`npm run build`) and create a GitHub Pages deployment from trunk after each merge.
 
-## Test strategy
-- **Unit tests:** Vitest - live in `test/unit/`, run with `npm test`
-- **E2E / BDD tests:** Playwright - live in `test/e2e/`, scenarios written in Given/When/Then style, run with `npm run test:e2e`
+## 5. Jira Test Management
+17. **When creating a new E2E test (.feature file), create the corresponding Jira Test Case ticket in a batch process.** Run `node scripts/create-e2e-test-cases.js` to create Jira Test Case tickets in the configured project. Each .feature file should have a `# Jira Test Case: TCGV-X` header linking it to its Jira key.
+    - **Batch #1 (dependency graph):** Before creating any tickets, analyze the feature files and their dependencies to build a dependency graph. Identify which Test Cases, Tasks, and sub-items must be created first and in what order.
+    - **Batch #2 (create tickets):** Create all Jira tickets based on the dependency graph.
+    - **Batch #3 (link tickets):** After all tickets are created, link them together using Jira's issue linking API (e.g., Test Case → Task, Parent → Child).
+18. **When creating a new feature or fix, create Jira Task tickets for each E2E test in a batch process.** Run `node scripts/create-e2e-issues.js` to create Jira Task tickets (one per test case) in the TCGV project. Each ticket is tagged with labels `e2e` and `playwright`.
+    - Follow the same three-batch approach: build dependency graph, create tickets, then link them.
+19. **When running E2E tests, use the Jira-integrated runner.** Use `node scripts/run-e2e-with-jira.js` to run Playwright tests and automatically create/update Jira Test Executions with results. This script:
+    - Reads Jira keys from `.feature` file headers (`# Jira Test Case: TCGV-X`)
+    - Creates or finds existing Test Executions for each Test Case
+    - Updates status to Passed/Failed with log output and screenshot attachments on failure
+20. **Maintain Jira key mappings.** Keep the mapping between `.feature` files and Jira Test Case keys in the feature file headers (`# Jira Test Case: TCGV-X`). The `run-e2e-with-jira.js` script uses these mappings to link Test Executions to Test Cases.
 
-## Git Command Execution Procedure
-**CRITICAL RULE:** Always execute **one command per tool call**. Do NOT combine multiple commands using `&&` or other operators.
-
-### Why?
-The system uses **PowerShell** as its default shell (not Bash/Unix-like shells). In PowerShell:
-- `;` separates commands in a pipeline
-- `&&` has different semantics (used for conditional execution, not simple chaining)
-- When you write `git add -A && git commit`, PowerShell tries to parse this as a single command with an invalid operator, causing the parser error: `Le jeton « && » n'est pas un séparateur d'instruction valide`
-
-### Correct Usage:
-❌ **WRONG:**
-```bash
-git add -A && git commit -m "feat: new feature"
-```
-
-✅ **CORRECT (one command per call):**
-```bash
-git add -A
-git commit -m "feat: new feature"
-```
-
-### Git Workflow Checklist:
-1. **Add files:** `git add <file>` or `git add -A` (single command)
-2. **Commit:** `git commit -m "<message>"` (single command)
-3. **Push:** `git push --no-verify -u origin <branch>` (single command)
-4. **Merge branches:**
-   ```bash
-   git checkout trunk
-git merge --no-ff -m "Merge branch 'feature/xyz'" feature/xyz
-   ```
-5. **Verify before pushing:** Check `git log --oneline -5` to ensure all changes are staged and committed
-
-## GitHub Logging
-18. **Always log progress and status to GitHub using the GITHUB_PAT stored in .env.** After completing meaningful milestones (feature implemented, tests passing, PR opened), post a comment on the relevant active PR or issue summarizing:
-    - What was accomplished during this session
-    - Key changes made
-    - Any blockers or notes for later
-    - Next steps planned
-    Use the dedicated script instead of `curl`:
+## 6. Progress Logging
+21. **Always log progress and status to GitHub using the GITHUB_PAT stored in .env.** After completing meaningful milestones (feature implemented, tests passing, PR opened), post a comment on the relevant active PR or issue summarizing accomplishments, changes, blockers, and next steps:
     ```bash
     node scripts/github-log.js --pr=<issue_or_pr_number> "<comment body>"
-    ```
-
-## Architecture Documentation Maintenance
-19. **After implementing a feature, update `.clinerules-architecture.md` if necessary.** Whenever you add or modify domain classes, components, build scripts, test files, configuration, or any structural element of the project,

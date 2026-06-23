@@ -27,7 +27,7 @@ if (!match) {
 const [_, owner, repo] = match;
 
 // Branches
-const HEAD_BRANCH = 'feat/github-actions-workflows';
+const HEAD_BRANCH = execSync('git branch --show-current').toString().trim();
 const BASE_BRANCH = 'trunk';
 
 // Get the latest commit message for the PR title

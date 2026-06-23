@@ -1,6 +1,8 @@
 // CardRenderer - renders Card domain objects to DOM elements
+// Uses CSS class composition for all styling; no inline styles for layout/appearance.
 import { Card } from './Card';
 
+// Mana color map for tokens in text (title dots use CSS classes)
 const manaColorMap: Record<string, string> = {
   W: '#fff9c4',
   U: '#a8d4ff',
@@ -9,36 +11,7 @@ const manaColorMap: Record<string, string> = {
   G: '#b3ffb3',
 };
 
-const colorOrder = ['W', 'U', 'B', 'R', 'G'];
-
-function hexToRgba(hex: string): [number, number, number] {
-  const r = Number.parseInt(hex.slice(1, 3), 16);
-  const g = Number.parseInt(hex.slice(3, 5), 16);
-  const b = Number.parseInt(hex.slice(5, 7), 16);
-  return [r, g, b];
-}
-
-function getTextAreaBackground(colors: string[]): string {
-  if (colors.length === 0) return 'rgba(128, 128, 128, 0.4)';
-  if (colors.length > 3) return 'rgba(255, 193, 7, 0.4)';
-
-  const sorted = [...colors].sort((a, b) => colorOrder.indexOf(a) - colorOrder.indexOf(b));
-  const hexColors = sorted.map(c => manaColorMap[c] || '#cccccc');
-
-  if (sorted.length === 1) {
-    const [r, g, b] = hexToRgba(hexColors[0]);
-    return `rgba(${r}, ${g}, ${b}, 0.4)`;
-  }
-
-  const n = sorted.length - 1;
-  const gradientStops = hexColors.map((hex, i) => {
-    const [r, g, b] = hexToRgba(hex);
-    return `rgba(${r}, ${g}, ${b}, 0.4) ${(i / n) * 100}%`;
-  });
-
-  return `linear-gradient(135deg, ${gradientStops.join(', ')})`;
-}
-
+// Mana gradient map for hybrid/split mana tokens in text
 const manaGradientMap: Record<string, string> = {
   UW: 'linear-gradient(135deg, #a8d4ff 50%, #fff9c4 50%)',
   BW: 'linear-gradient(135deg, #555555 50%, #fff9c4 50%)',
@@ -113,19 +86,19 @@ function parseManaCost(raw: string): Array<{ content: string; color?: string; gr
   while (i < raw.length) {
     if (raw[i] === '{') {
       const end = raw.indexOf('}', i);
-        if (end > -1) {
-          const inner = raw.substring(i + 1, end);
-          // Check for split cost like B/G
-          if (inner.includes('/')) {
-            const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
-            const key = sortedParts.join('');
-            tokens.push({ content: inner, gradient: manaGradientMap[key] });
-          } else if (manaColorMap[inner]) {
-            tokens.push({ content: inner, color: manaColorMap[inner] });
-          } else {
-            // Number or generic - pale grey
-            tokens.push({ content: inner, color: '#cccccc' });
-          }
+      if (end > -1) {
+        const inner = raw.substring(i + 1, end);
+        // Check for split cost like B/G
+        if (inner.includes('/')) {
+          const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
+          const key = sortedParts.join('');
+          tokens.push({ content: inner, gradient: manaGradientMap[key] });
+        } else if (manaColorMap[inner]) {
+          tokens.push({ content: inner, color: manaColorMap[inner] });
+        } else {
+          // Number or generic - pale grey
+          tokens.push({ content: inner, color: '#cccccc' });
+        }
         i = end + 1;
       } else {
         tokens.push({ content: raw[i] });
@@ -156,11 +129,21 @@ export class CardRenderer {
     }
   }
 
-  private createCardElement(card: Card): HTMLElement {
+  /** Create a card element without adding it to the grid (used by showcase). */
+  createCardElement(card: Card): HTMLElement {
     const wrapper = document.createElement('div');
-    wrapper.className = 'card';
     wrapper.dataset.cardId = card.id;
 
+    // Build class list from card CSS properties
+    const classes = ['card', card.cssLayout];
+    classes.push(...card.cssTypes);
+    classes.push(...card.cssSupertypes);
+    if (card.cssFrameVersion) classes.push(card.cssFrameVersion);
+    classes.push(card.cssColorIdentity);
+    classes.push(card.cssRarity);
+    wrapper.className = classes.join(' ');
+
+    // Image URL (still set via inline style — no CSS class for dynamic image paths)
     if (card.imageUrl) {
       wrapper.style.backgroundImage = `url('${card.imageUrl}')`;
       wrapper.style.backgroundSize = 'cover';
@@ -169,8 +152,6 @@ export class CardRenderer {
     // Header: name + mana cost dots
     const header = document.createElement('div');
     header.className = 'card-header';
-    const colorValues = card.colors.map(c => c.value);
-    header.style.background = getTextAreaBackground(colorValues);
 
     const nameEl = document.createElement('span');
     nameEl.className = 'card-name';
@@ -209,7 +190,6 @@ export class CardRenderer {
     // Body: type + setCode + text
     const body = document.createElement('div');
     body.className = 'card-body';
-    body.style.background = getTextAreaBackground(colorValues);
 
     const typeRow = document.createElement('div');
     typeRow.className = 'card-type-row';
@@ -220,10 +200,6 @@ export class CardRenderer {
 
     const setCodeEl = document.createElement('span');
     setCodeEl.className = 'card-setcode';
-    setCodeEl.style.color = card.rarity.colorCode;
-    if (card.rarity.isCommon) {
-      setCodeEl.style.textShadow = '0 0 0.1em rgba(255, 255, 255, 1)';
-    }
     setCodeEl.textContent = card.setCode;
 
     typeRow.appendChild(typeEl);

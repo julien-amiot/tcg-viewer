@@ -1,0 +1,14 @@
+/* SC-TCG Design System — Templates: Card Grid */
+
+#cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 20vw, 250px), 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+#cardCount {
+  margin-top: 1rem;
+  text-align: center;
+  color: #aaa;
+  font-size: 0.7em;
+}

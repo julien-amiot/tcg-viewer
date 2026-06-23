@@ -1,0 +1,25 @@
+/* SC-TCG Design System — Atoms: Typography */
+
+.text-body {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-base);
+  color: var(--ds-color-text);
+}
+
+.text-white {
+  color: var(--ds-color-text-white);
+}
+
+.text-bold {
+  font-weight: var(--ds-font-weight-bold);
+}
+
+.text-extrabold {
+  font-weight: var(--ds-font-weight-extrabold);
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -27,6 +27,10 @@ export interface RawCardData {
   flavorText?: string;
   faceName?: string;
   imageUrl?: string;
+  layout?: string;
+  supertypes?: string[];
+  types?: string[];
+  frameVersion?: string;
   [key: string]: any;
 }
 
@@ -46,6 +50,10 @@ export interface CardOptions {
   flavorText?: string;
   faceName?: string;
   imageUrl?: string;
+  layout?: string;
+  supertypes?: string[];
+  types?: string[];
+  frameVersion?: string;
 }
 
 export class Card {
@@ -64,8 +72,12 @@ export class Card {
   public readonly flavorText?: string;
   public readonly faceName?: string;
   public readonly imageUrl?: string;
+  public readonly layout?: string;
+  public readonly supertypes: string[];
+  public readonly types: string[];
+  public readonly frameVersion?: string;
 
-  constructor({ id, name, manaCost, cardType, powerToughness, initialLoyalty, rarity, colors, text, setCode, number, artist, flavorText, faceName, imageUrl }: CardOptions) {
+  constructor({ id, name, manaCost, cardType, powerToughness, initialLoyalty, rarity, colors, text, setCode, number, artist, flavorText, faceName, imageUrl, layout, supertypes, types, frameVersion }: CardOptions) {
     this.id = id;
     this.name = name;
     this.manaCost = manaCost;
@@ -81,6 +93,10 @@ export class Card {
     this.flavorText = flavorText;
     this.faceName = faceName;
     this.imageUrl = imageUrl;
+    this.layout = layout;
+    this.supertypes = supertypes || [];
+    this.types = types || [];
+    this.frameVersion = frameVersion;
   }
 
   static fromRaw(raw: RawCardData): Card {
@@ -106,7 +122,11 @@ export class Card {
       artist: raw.artist,
       flavorText: raw.flavorText,
       faceName: raw.faceName,
-      imageUrl: raw.imageUrl
+      imageUrl: raw.imageUrl,
+      layout: raw.layout,
+      supertypes: raw.supertypes || [],
+      types: raw.types || [raw.cardType.value],
+      frameVersion: raw.frameVersion
     });
   }
 
@@ -133,5 +153,39 @@ export class Card {
   matchesName(query: string): boolean {
     const q = query.toLowerCase().trim();
     return this.name.value.toLowerCase().includes(q);
+  }
+
+  // CSS class helpers for design system
+  get cssLayout(): string {
+    if (!this.layout) return 'layout--normal';
+    return `layout--${this.layout}`;
+  }
+
+  get cssTypes(): string[] {
+    // Use the types array, normalize to CSS-safe class names
+    return (this.types || []).map(t => `type--${t.toLowerCase()}`);
+  }
+
+  get cssSupertypes(): string[] {
+    return (this.supertypes || []).map(s => `supertype--${s.toLowerCase()}`);
+  }
+
+  get cssFrameVersion(): string {
+    return this.frameVersion ? `frame--${this.frameVersion}` : '';
+  }
+
+  get cssColorIdentity(): string {
+    const colors = this.colors.map(c => c.value);
+    if (colors.length === 0) return 'color-identity--none';
+    if (colors.length === 1) return `color-identity--${colors[0]}`;
+    const sorted = [...colors].sort();
+    if (colors.length === 2) return `color-identity--${sorted.join('')}`;
+    if (colors.length === 3) return `color-identity--${sorted.join('')}`;
+    if (colors.length === 4) return 'color-identity--gold';
+    return 'color-identity--gold'; // 5-color
+  }
+
+  get cssRarity(): string {
+    return `rarity--${this.rarity.value}`;
   }
 }
