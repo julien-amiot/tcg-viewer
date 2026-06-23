@@ -1,0 +1,25 @@
+/* SC-TCG Design System — Molecules: Card Footer */
+
+.card-footer {
+  padding: var(--ds-space-xs);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 2em;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
+.card-left-info {
+  font-size: var(--ds-font-size-sm);
+  color: var(--ds-color-text-white);
+  text-align: left;
+  text-shadow: var(--ds-text-shadow);
+}
+
+.card-power-toughness,
+.card-initial-loyalty {
+  font-weight: var(--ds-font-weight-bold);
+  font-size: var(--ds-font-size-xl);
+  color: var(--ds-color-text-white);
+  text-shadow: var(--ds-text-shadow);
+}

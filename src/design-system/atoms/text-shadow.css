@@ -1,0 +1,5 @@
+/* SC-TCG Design System — Atoms: Text Shadow */
+
+.text-shadow {
+  text-shadow: var(--ds-text-shadow);
+}

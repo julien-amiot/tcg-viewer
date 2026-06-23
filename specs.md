@@ -101,6 +101,28 @@
 - Only shown when loyalty is present (cards without loyalty show nothing in this position)
 - Status: **Implemented**
 
+### 2.12 Card Design System (Atomic CSS) ✅
+- **Goal:** All card rendering/layout defined purely through CSS — no inline styles in `CardRenderer.ts`.
+- **Architecture:** Atomic Design (Smashing Magazine pattern library):
+  - **Atoms:** Design tokens (CSS custom properties), mana dots, rarity indicators, color identity backgrounds, typography.
+  - **Molecules:** Card header, mana cost bar, card type row, card text block, card footer.
+  - **Organisms:** Card layouts — different visual structures based on card properties.
+  - **Templates:** Page-level layouts (card grid, design system showcase).
+- **Class composition:** Every card wrapper receives semantic CSS classes derived from its data properties:
+  - `layout--normal`, `layout--token`, `layout--emblem`, `layout--prepare`, `layout--double_faced_token`
+  - `type--creature`, `type--land`, `type--instant`, `type--sorcery`, `type--artifact`, `type--enchantment`
+  - `color-identity--W`, `color-identity--U`, `color-identity--B`, `color-identity--R`, `color-identity--G`
+  - `color-identity--WU`, `color-identity--BW`, etc. (multi-color gradients)
+  - `color-identity--gold` (4-5 color)
+  - `color-identity--none` (colorless)
+  - `frame--2015`, `frame--2003`
+  - `rarity--common`, `rarity--uncommon`, `rarity--rare`, `rarity--mythic`
+  - `supertype--legendary`
+- **Design system showcase page:** `/design-system.html` auto-scans card JSON, identifies all unique combinations of exposed CSS properties, and renders one specimen card per combination.
+- **File structure:** `src/design-system/{tokens,atoms,molecules,organisms,templates}/*.css` + barrel `index.css`.
+- **Domain model extensions:** `Card` now exposes `cssLayout`, `cssTypes`, `cssSupertypes`, `cssFrameVersion`, `cssColorIdentity`, `cssRarity` getters. `layout`, `supertypes`, `types`, `frameVersion` added to `CardOptions`/`RawCardData`.
+- **Status:** **Implemented**
+
 ---
 
 ## 3. Quality Infrastructure

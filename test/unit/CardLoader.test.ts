@@ -25,7 +25,11 @@ describe('CardLoader', () => {
         colors: ['U'],
         subtypes: ['Human', 'Warrior'],
         setCode: 'SOS',
-        number: '001'
+        number: '001',
+        layout: 'normal',
+        supertypes: [],
+        types: ['Creature'],
+        frameVersion: '2015'
       };
       const jsonData = [rawCard];
 
@@ -44,7 +48,11 @@ describe('CardLoader', () => {
         colors: ['W'],
         subtypes: ['Elf'],
         setCode: 'SOS',
-        number: '002'
+        number: '002',
+        layout: 'normal',
+        supertypes: [],
+        types: ['Creature'],
+        frameVersion: '2015'
       };
       const jsonData = [
         { id: '1', name: 'Invalid Card' }, // Missing required fields
@@ -66,7 +74,11 @@ describe('CardLoader', () => {
         colors: [],
         subtypes: ['Plains'],
         setCode: 'SOS',
-        number: '100'
+        number: '100',
+        layout: 'normal',
+        supertypes: [],
+        types: ['Land'],
+        frameVersion: '2015'
       });
 
       const jsonData1 = [makeRaw('1', 'Card 1')];
@@ -98,7 +110,11 @@ describe('CardLoader', () => {
         colors: ['U'],
         subtypes: ['Human', 'Warrior'],
         setCode: 'SOS',
-        number: '001'
+        number: '001',
+        layout: 'normal',
+        supertypes: [],
+        types: ['Creature'],
+        frameVersion: '2015'
       };
       const jsonData = [rawCard];
 
@@ -122,7 +138,11 @@ describe('CardLoader', () => {
         colors: ['U'],
         subtypes: ['Human', 'Warrior'],
         setCode: 'SOS',
-        number: '001'
+        number: '001',
+        layout: 'normal',
+        supertypes: [],
+        types: ['Creature'],
+        frameVersion: '2015'
       };
       const jsonData = [rawCard];
 
@@ -153,7 +173,11 @@ describe('CardLoader', () => {
         colors: ['U'],
         subtypes: ['Human', 'Warrior'],
         setCode: 'SOS',
-        number: '001'
+        number: '001',
+        layout: 'normal',
+        supertypes: [],
+        types: ['Creature'],
+        frameVersion: '2015'
       };
       const jsonData = [rawCard, rawCard];
 

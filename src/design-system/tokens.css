@@ -1,0 +1,50 @@
+/* SC-TCG Design System — Tokens */
+
+:root {
+  /* Page theme */
+  --ds-bg-page: #1a1a2e;
+  --ds-bg-header: #16213e;
+  --ds-bg-card: #2a2a2a;
+  --ds-color-accent: #e94560;
+  --ds-color-text: #e0e0e0;
+  --ds-color-text-white: #fff;
+
+  /* Mana colors */
+  --ds-mana-W: #fff9c4;
+  --ds-mana-U: #a8d4ff;
+  --ds-mana-B: #555555;
+  --ds-mana-R: #ffb3b3;
+  --ds-mana-G: #b3ffb3;
+  --ds-mana-generic: #cccccc;
+
+  /* Rarity colors */
+  --ds-rarity-common: #000000;
+  --ds-rarity-uncommon: #C0C0C0;
+  --ds-rarity-rare: #FFD700;
+  --ds-rarity-mythic: #9b59b6;
+
+  /* Spacing scale */
+  --ds-space-xs: 0.2em;
+  --ds-space-sm: 0.5em;
+  --ds-space-md: 1em;
+
+  /* Typography */
+  --ds-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --ds-font-size-base: 0.75em;
+  --ds-font-size-sm: clamp(0.5rem, 0.9vw, 0.75rem);
+  --ds-font-size-lg: 1em;
+  --ds-font-size-xl: 1.2em;
+  --ds-font-weight-bold: 700;
+  --ds-font-weight-extrabold: 800;
+
+  /* Shadows */
+  --ds-shadow-card: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --ds-shadow-card-hover: 0 8px 24px rgba(233, 69, 96, 0.2);
+
+  /* Borders & radii */
+  --ds-radius-card: 0.5em;
+  --ds-text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+
+  /* Aspect ratio */
+  --ds-card-ratio: 2.5 / 3.5;
+}

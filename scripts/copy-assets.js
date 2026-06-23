@@ -15,6 +15,31 @@ p.forEach(f => {
   }
 });
 
+// Copy design-system folder recursively
+const dsSrc = path.join('src', 'design-system');
+const dsDst = path.join('dist', 'design-system');
+
+if (fs.existsSync(dsSrc)) {
+  if (fs.existsSync(dsDst)) {
+    try { fs.rmSync(dsDst, { recursive: true, force: true }); } catch (e) {}
+  }
+  copyDir(dsSrc, dsDst);
+}
+
+function copyDir(src, dst) {
+  if (!fs.existsSync(dst)) fs.mkdirSync(dst, { recursive: true });
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+  for (const entry of entries) {
+    const sp = path.join(src, entry.name);
+    const dp = path.join(dst, entry.name);
+    if (entry.isDirectory()) {
+      copyDir(sp, dp);
+    } else {
+      try { fs.copyFileSync(sp, dp); } catch (e) {}
+    }
+  }
+}
+
 // Copy CARDS folder
 const cardsSrc = path.join('CARDS');
 const cardsDst = path.join('dist', 'CARDS');

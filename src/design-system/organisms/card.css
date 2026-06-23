@@ -1,0 +1,70 @@
+/* SC-TCG Design System — Organisms: Card */
+
+/* Base card */
+.card {
+  background: var(--ds-bg-card);
+  border-radius: var(--ds-radius-card);
+  overflow: hidden;
+  box-shadow: var(--ds-shadow-card);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: var(--ds-card-ratio);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ds-shadow-card-hover);
+}
+
+/* Separator between header and body */
+.card-separator {
+  flex-shrink: 0;
+  min-height: 25%;
+}
+
+/* Spacer to push footer + text block below separator */
+.card-spacer {
+  flex-grow: 1;
+}
+
+/* Body: type row + text, pushed to bottom of card via margin-top:auto */
+.card-body {
+  margin: var(--ds-space-xs);
+  border-radius: var(--ds-radius-card);
+  flex-shrink: 0;
+  max-height: calc(100% - 33.33%);
+}
+
+/* Layout variants */
+.card.layout--token .card-mana-dots {
+  display: none;
+}
+
+.card.layout--emblem .card-body {
+  display: none;
+}
+
+/* Frame version variants */
+.card.frame--2003 {
+  border: 2px solid #888;
+}
+
+/* Supertype variants */
+.card.supertype--legendary .card-header {
+  border-bottom: 2px solid var(--ds-rarity-rare);
+}
+
+/* Type variants */
+.card.type--land .card-mana-dots {
+  display: none;
+}
+
+.card.type--creature .card-power-toughness {
+  display: block;
+}
+
+.card.type--planeswalker .card-initial-loyalty {
+  display: block;
+}

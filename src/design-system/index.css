@@ -1,0 +1,16 @@
+/* SC-TCG Design System — Barrel Import */
+
+@import url('tokens.css');
+@import url('atoms/mana-dot.css');
+@import url('atoms/rarity.css');
+@import url('atoms/color-identity.css');
+@import url('atoms/text-shadow.css');
+@import url('atoms/typography.css');
+@import url('molecules/card-header.css');
+@import url('molecules/mana-cost.css');
+@import url('molecules/card-type-row.css');
+@import url('molecules/card-text.css');
+@import url('molecules/card-footer.css');
+@import url('organisms/card.css');
+@import url('templates/card-grid.css');
+@import url('templates/showcase.css');

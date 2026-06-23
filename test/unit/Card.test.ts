@@ -44,7 +44,11 @@ describe('Card', () => {
       colors: ['R'],
       subtypes: [],
       setCode: 'SOS',
-      number: '050'
+      number: '050',
+      layout: 'normal',
+      supertypes: [],
+      types: ['Instant'],
+      frameVersion: '2015'
     };
 
     const card = Card.fromRaw(raw);
@@ -67,7 +71,11 @@ describe('Card', () => {
       colors: ['R', 'G'],
       subtypes: ['Goblin'],
       setCode: 'SOS',
-      number: '100'
+      number: '100',
+      layout: 'normal',
+      supertypes: [],
+      types: ['Creature'],
+      frameVersion: '2015'
     };
 
     const card = Card.fromRaw(raw);
@@ -81,7 +89,8 @@ describe('Card', () => {
     const card = Card.fromRaw({
       uuid: '1', name: 'Lightning Bolt', manaCost: 'R', type: 'Instant',
       text: '', rarity: 'common', colors: ['R'], subtypes: [],
-      setCode: 'SOS', number: '001'
+      setCode: 'SOS', number: '001', layout: 'normal', supertypes: [],
+      types: ['Instant'], frameVersion: '2015'
     });
 
     expect(card.matchesName('lightning')).toBe(true);
@@ -93,7 +102,8 @@ describe('Card', () => {
     const card = Card.fromRaw({
       uuid: '1', name: 'Test', manaCost: 'WR', type: 'Creature',
       text: '', rarity: 'common', colors: ['W', 'R'], subtypes: [],
-      setCode: 'SOS', number: '001'
+      setCode: 'SOS', number: '001', layout: 'normal', supertypes: [],
+      types: ['Creature'], frameVersion: '2015'
     });
 
     expect(card.containsColor(Color.from('W'))).toBe(true);
@@ -104,7 +114,8 @@ describe('Card', () => {
     const card = Card.fromRaw({
       uuid: '1', name: 'Island', manaCost: '', type: 'Land',
       text: '', rarity: 'common', colors: [], subtypes: ['Island'],
-      setCode: 'SOS', number: '001'
+      setCode: 'SOS', number: '001', layout: 'normal', supertypes: [],
+      types: ['Land'], frameVersion: '2015'
     });
 
     expect(card.isLand).toBe(true);
@@ -115,7 +126,8 @@ describe('Card', () => {
     const card = Card.fromRaw({
       uuid: '1', name: 'Goblin', manaCost: 'R', type: 'Creature',
       text: '', rarity: 'common', colors: ['R'], subtypes: ['Goblin'],
-      setCode: 'SOS', number: '001'
+      setCode: 'SOS', number: '001', layout: 'normal', supertypes: [],
+      types: ['Creature'], frameVersion: '2015'
     });
 
     expect(card.isLand).toBe(false);
@@ -125,7 +137,8 @@ describe('Card', () => {
     const raw = {
       uuid: 'img-1', name: 'Image Card', manaCost: 'G', type: 'Creature',
       text: '', rarity: 'common', colors: ['G'], subtypes: ['Beast'],
-      setCode: 'SOS', number: '001', imageUrl: 'https://example.com/card.png'
+      setCode: 'SOS', number: '001', imageUrl: 'https://example.com/card.png',
+      layout: 'normal', supertypes: [], types: ['Creature'], frameVersion: '2015'
     };
 
     const card = Card.fromRaw(raw);
@@ -136,7 +149,8 @@ describe('Card', () => {
     const raw = {
       uuid: 'img-2', name: 'No Image', manaCost: 'W', type: 'Creature',
       text: '', rarity: 'common', colors: ['W'], subtypes: [],
-      setCode: 'SOS', number: '002'
+      setCode: 'SOS', number: '002', layout: 'normal', supertypes: [],
+      types: ['Creature'], frameVersion: '2015'
     };
 
     const card = Card.fromRaw(raw);
@@ -157,7 +171,11 @@ describe('Card', () => {
       colors: ['R'],
       subtypes: ['Chandra'],
       setCode: 'SOS',
-      number: '200'
+      number: '200',
+      layout: 'normal',
+      supertypes: ['Legendary'],
+      types: ['Planeswalker'],
+      frameVersion: '2015'
     };
 
     const card = Card.fromRaw(raw);
@@ -195,7 +213,11 @@ describe('Card', () => {
       colors: ['U'],
       subtypes: ['Jace'],
       setCode: 'SOS',
-      number: '007'
+      number: '007',
+      layout: 'normal',
+      supertypes: ['Legendary'],
+      types: ['Planeswalker'],
+      frameVersion: '2015'
     };
 
     const card = Card.fromRaw(raw);
@@ -216,7 +238,11 @@ describe('Card', () => {
       subtypes: ['Chandra'],
       loyalty: '4',
       setCode: 'SOS',
-      number: '025'
+      number: '025',
+      layout: 'normal',
+      supertypes: ['Legendary'],
+      types: ['Planeswalker'],
+      frameVersion: '2015'
     };
 
     const card = Card.fromRaw(raw);
