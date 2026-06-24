@@ -31,11 +31,10 @@ if (!JIRA_URL) {
 }
 
 // Jira Test Case mappings (feature file -> Jira key)
-const TEST_CASE_MAPPINGS = {
-  'card-grid.feature': 'TCGV-1',
-  'set-selector.feature': 'TCGV-2',
-  'custom-card-sets.feature': 'TCGV-3',
-};
+// Format: JSON string of key-value pairs, e.g. '{"card-grid.feature":"TCGV-1","set-selector.feature":"TCGV-2"}'
+const TEST_CASE_MAPPINGS = process.env.JIRA_TEST_CASE_MAPPINGS
+  ? JSON.parse(process.env.JIRA_TEST_CASE_MAPPINGS)
+  : {};
 
 // Jira project configuration from environment variables
 const JIRA_PROJECT_KEY = process.argv.includes('--project')
@@ -56,9 +55,9 @@ if (!JIRA_PROJECT_ID) {
 
 // Jira workflow statuses for Test Execution
 const JIRA_STATUSES = {
-  PASSED: 'Passed',
-  FAILED: 'Failed',
-  RUNNING: 'Running',
+  PASSED: process.env.JIRA_STATUS_PASSED || 'Passed',
+  FAILED: process.env.JIRA_STATUS_FAILED || 'Failed',
+  RUNNING: process.env.JIRA_STATUS_RUNNING || 'Running',
 };
 
 // Jira API helper
