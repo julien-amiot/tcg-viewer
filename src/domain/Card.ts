@@ -125,7 +125,7 @@ export class Card {
       imageUrl: raw.imageUrl,
       layout: raw.layout,
       supertypes: raw.supertypes || [],
-      types: raw.types || [raw.cardType.value],
+      types: raw.types || [raw.type],
       frameVersion: raw.frameVersion
     });
   }
