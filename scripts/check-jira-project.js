@@ -1,12 +1,17 @@
 const https = require('https');
 
 // Load Jira credentials from environment variables
-const JIRA_URL = process.env.JIRA_URL || 'https://cairnworks.atlassian.net';
+const JIRA_URL = process.env.JIRA_URL;
 const JIRA_TOKEN = process.env.JIRA_TOKEN;
-const JIRA_PROJECT_KEY = process.env.JIRA_PROJECT_KEY || 'TCGV';
+const JIRA_PROJECT_KEY = process.env.JIRA_PROJECT_KEY;
 
 if (!JIRA_TOKEN) {
   console.error('ERROR: JIRA_TOKEN environment variable is required');
+  process.exit(1);
+}
+
+if (!JIRA_URL) {
+  console.error('ERROR: JIRA_URL environment variable is required');
   process.exit(1);
 }
 

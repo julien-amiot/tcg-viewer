@@ -4,12 +4,27 @@ const https = require('https');
 
 // GitHub credentials from environment variables
 const GITHUB_PAT = process.env.GITHUB_PAT;
-const GITHUB_OWNER = process.env.GITHUB_OWNER || 'julien-amiot';
-const GITHUB_REPO = process.env.GITHUB_REPO || 'tcg-viewer';
-const GITHUB_API_URL = process.env.GITHUB_API_URL || 'https://api.github.com';
+const GITHUB_OWNER = process.env.GITHUB_OWNER;
+const GITHUB_REPO = process.env.GITHUB_REPO;
+const GITHUB_API_URL = process.env.GITHUB_API_URL;
 
 if (!GITHUB_PAT) {
   console.error('ERROR: GITHUB_PAT environment variable is required');
+  process.exit(1);
+}
+
+if (!GITHUB_OWNER) {
+  console.error('ERROR: GITHUB_OWNER environment variable is required');
+  process.exit(1);
+}
+
+if (!GITHUB_REPO) {
+  console.error('ERROR: GITHUB_REPO environment variable is required');
+  process.exit(1);
+}
+
+if (!GITHUB_API_URL) {
+  console.error('ERROR: GITHUB_API_URL environment variable is required');
   process.exit(1);
 }
 

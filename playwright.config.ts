@@ -17,8 +17,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run build && npx serve -s dist -l ' + (process.env.PLAYWRIGHT_PORT || '3000'),
-    url: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
+    command: 'npm run build && npx serve -s dist -l ' + process.env.PLAYWRIGHT_PORT,
+    url: process.env.PLAYWRIGHT_BASE_URL,
     reuseExistingServer: !process.env.CI,
   },
   // @ts-expect-error: playwright-bdd plugin
