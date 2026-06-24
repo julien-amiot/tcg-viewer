@@ -6,7 +6,7 @@ if (!fs.existsSync('dist')) {
 }
 
 // Copy HTML and CSS files (skip on error)
-const p = ['src/index.html', 'src/styles.css'];
+const p = ['src/index.html', 'src/design-system.html', 'src/styles.css'];
 p.forEach(f => {
   try {
     fs.copyFileSync(f, f.replace('src/', 'dist/'));

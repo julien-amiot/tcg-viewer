@@ -70,4 +70,12 @@ Current scope: Scars of Miracula (SC) and The Duels of Magic (TDM) sets.
 ## 6. Progress Logging
 21. **Always log progress and status to GitHub using the GITHUB_PAT stored in .env.** After completing meaningful milestones (feature implemented, tests passing, PR opened), post a comment on the relevant active PR or issue summarizing accomplishments, changes, blockers, and next steps:
     ```bash
-    node scripts/github-log.js --pr=<issue_or_pr_number> "<comment body>"
+    node scripts/github-log.js --pr=<issue_or_pr_number> "<comment body>" and summarize
+
+## 7. PR Body Updates
+22. **Update PR change summary on creation.** After creating a PR with `node scripts/create-pr.js`, always run `node scripts/update-pr-body.js` to replace the default trunk-based diff stats with the current commit's actual changes. The `create-pr.js` script uses `git diff --stat trunk...HEAD` which shows all historical changes on the branch, not just the current commit.
+23. **PR title and summary guidelines:**
+    - Keep the PR title to ~50 characters maximum.
+    - Use the conventional commit format: `type: short description` (e.g., `fix: fix design system showcase loading error`).
+    - Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`.
+    - The PR body should summarize the changes, root cause (if applicable), and what was fixed.

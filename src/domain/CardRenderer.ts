@@ -115,17 +115,30 @@ function parseManaCost(raw: string): Array<{ content: string; color?: string; gr
 export class CardRenderer {
   private readonly grid: HTMLElement | null;
 
-  constructor(gridId: string = 'cardGrid') {
-    this.grid = document.getElementById(gridId);
-    if (!this.grid) {
-      throw new Error(`Card grid element '#${gridId}' not found`);
+  constructor(gridId?: string | '') {
+    // If gridId is undefined, default to 'cardGrid'.
+    // If gridId is empty string, skip grid (used by showcase).
+    // If gridId is a non-empty string, use it (throw if not found).
+    if (gridId === '') {
+      this.grid = null;
+    } else if (gridId) {
+      this.grid = document.getElementById(gridId);
+      if (!this.grid) {
+        throw new Error(`Card grid element '#${gridId}' not found`);
+      }
+    } else {
+      this.grid = document.getElementById('cardGrid');
+      if (!this.grid) {
+        throw new Error("Card grid element '#cardGrid' not found");
+      }
     }
   }
 
   render(cards: Card[]): void {
-    this.grid!.innerHTML = '';
+    if (!this.grid) return;
+    this.grid.innerHTML = '';
     for (const card of cards) {
-      this.grid!.appendChild(this.createCardElement(card));
+      this.grid.appendChild(this.createCardElement(card));
     }
   }
 
