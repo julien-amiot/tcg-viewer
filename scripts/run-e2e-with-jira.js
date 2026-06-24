@@ -15,10 +15,10 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
+// Configuration from environment variables
 const JIRA_URL = process.env.JIRA_URL || 'https://cairnworks.atlassian.net';
-const JIRA_TOKEN = process.env.JIRA_TOKEN || '';
-const JIRA_EMAIL = process.env.JIRA_EMAIL || '';
+const JIRA_TOKEN = process.env.JIRA_TOKEN;
+const JIRA_EMAIL = process.env.JIRA_EMAIL;
 
 if (!JIRA_TOKEN) {
   console.error('ERROR: JIRA_TOKEN environment variable is required');
@@ -32,12 +32,12 @@ const TEST_CASE_MAPPINGS = {
   'custom-card-sets.feature': 'TCGV-3',
 };
 
-// Jira project configuration
+// Jira project configuration from environment variables
 const JIRA_PROJECT_KEY = process.argv.includes('--project')
   ? process.argv[process.argv.indexOf('--project') + 1]
-  : 'TCGV';
+  : process.env.JIRA_PROJECT_KEY || 'TCGV';
 
-const JIRA_PROJECT_ID = '10047'; // TCGV project ID
+const JIRA_PROJECT_ID = process.env.JIRA_PROJECT_ID || '10047'; // TCGV project ID
 
 // Jira workflow statuses for Test Execution
 const JIRA_STATUSES = {

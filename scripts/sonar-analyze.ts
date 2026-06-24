@@ -3,16 +3,18 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 
-const SONAR_TOKEN_FILE = path.resolve('.env');
+const SONAR_TOKEN = process.env.SONAR_TOKEN;
+const SONAR_HOST_URL = process.env.SONAR_HOST_URL || 'http://localhost:9000';
+const SONAR_PROJECT_KEY = process.env.SONAR_PROJECT_KEY;
 const DOCKER_COMPOSE_FILE = path.resolve('docker-compose.sonar.yml');
+const SONAR_CONTAINER_NAME = process.env.SONAR_CONTAINER_NAME || 'sc-tcg-sonarqube';
 
-function getEnvVar(key: string): string {
-  const content = fs.readFileSync(SONAR_TOKEN_FILE, 'utf8');
-  const match = content.match(new RegExp(`^${key}=(.+)$`, 'm'));
-  if (match) {
-    return match[1].trim();
+function getRequiredEnvVar(key: string): string {
+  const value = process.env[key];
+  if (!value) {
+    throw new Error(`Environment variable ${key} is not set. Please configure it in your .env file.`);
   }
-  throw new Error(`Environment variable ${key} not found in .env file.`);
+  return value;
 }
 
 function runCommand(command: string) {
@@ -45,7 +47,7 @@ async function main() {
 
   console.log('Checking SonarQube containers...');
   try {
-    execSync('docker ps --filter "name=sc-tcg-sonarqube" -q', { stdio: 'ignore' });
+    execSync(`docker ps --filter "name=${SONAR_CONTAINER_NAME}" -q`, { stdio: 'ignore' });
     console.log('SonarQube containers are already running.');
   } catch {
     console.log('Starting SonarQube containers...');
@@ -57,7 +59,7 @@ async function main() {
     // SonarQube takes a long time to start. We'll poll for a much longer period.
     for (let i = 0; i < 120; i++) {
       try {
-        const status = execSync('curl -s http://localhost:9000/api/system/status', { stdio: 'ignore' });
+        const status = execSync(`curl -s ${SONAR_HOST_URL}/api/system/status`, { stdio: 'ignore' });
         if (status.toString().includes('OK')) {
           console.log('SonarQube is ready!');
           ready = true;
@@ -70,22 +72,22 @@ async function main() {
       }
     }
     if (!ready) {
-      console.error('SonarQube failed to start in time or is not responding on port 9000.');
+      console.error('SonarQube failed to start in time or is not responding.');
       console.log('Current status check:');
       try {
-        execSync('curl -s http://localhost:9000/api/system/status', { stdio: 'inherit' });
+        execSync(`curl -s ${SONAR_HOST_URL}/api/system/status`, { stdio: 'inherit' });
       } catch {
-        console.log('Port 9000 is still unreachable.');
+        console.log('SonarQube is still unreachable.');
       }
-      console.log('Please check the logs: docker logs sc-tcg-sonarqube');
+      console.log(`Please check the logs: docker logs ${SONAR_CONTAINER_NAME}`);
       process.exit(1);
     }
   }
 
-  const token = getEnvVar('SONAR_TOKEN');
+  const token = SONAR_TOKEN || getRequiredEnvVar('SONAR_TOKEN');
   
   // Determine project key
-  let projectKey = process.env.SONAR_PROJECT_KEY;
+  let projectKey = SONAR_PROJECT_KEY;
   if (!projectKey) {
     try {
       const props = fs.readFileSync('sonar-project.properties', 'utf8');
@@ -140,7 +142,7 @@ async function main() {
   try {
     // Fetch issues from SonarQube API
     // We need to use the SONAR_TOKEN for authentication
-    const issuesUrl = `http://localhost:9000/api/issues/search?project=${projectKey}&sources=src`;
+    const issuesUrl = `${SONAR_HOST_URL}/api/issues/search?project=${projectKey}&sources=src`;
     const response = execSync(`curl -s -H "Authorization: Bearer ${token}" ${issuesUrl}`, { encoding: 'utf8' });
     
     const issues = JSON.parse(response);

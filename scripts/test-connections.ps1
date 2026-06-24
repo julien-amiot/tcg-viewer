@@ -48,12 +48,13 @@ try {
 
 # --- SonarQube ---
 Write-Host "`n=== SonarQube ==="
-$sonarUrl = "http://localhost:9000/api/system/status"
+$sonarHostUrl = $env:SONAR_HOST_URL -or "http://localhost:9000"
+$sonarUrl = "$sonarHostUrl/api/system/status"
 try {
     $response = Invoke-RestMethod -Uri $sonarUrl -Headers @{ Authorization = "Bearer $env:SONAR_TOKEN" } -ErrorAction Stop
     Write-Host "[OK] SonarQube running: $($response | ConvertTo-Json -Compress)"
 } catch {
-    Write-Host "[FAIL] SonarQube not reachable at localhost:9000 (is Docker Desktop running?)"
+    Write-Host "[FAIL] SonarQube not reachable at $sonarHostUrl (is Docker Desktop running?)"
     $hasErrors = $true
 }
 

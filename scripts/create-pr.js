@@ -3,28 +3,31 @@ const path = require('path');
 const https = require('https');
 const { execSync } = require('child_process');
 
-// Read .env file
-const envPath = path.resolve(__dirname, '..', '.env');
-const envContent = fs.readFileSync(envPath, 'utf-8');
+// GitHub credentials from environment variables
+const GITHUB_PAT = process.env.GITHUB_PAT;
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'julien-amiot';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'tcg-viewer';
+const GITHUB_API_URL = process.env.GITHUB_API_URL || 'https://api.github.com';
 
-// Parse GITHUB_PAT from .env
-const patMatch = envContent.match(/^GITHUB_PAT=(.+)$/m);
-if (!patMatch) {
-  console.error('ERROR: GITHUB_PAT not found in .env file');
+if (!GITHUB_PAT) {
+  console.error('ERROR: GITHUB_PAT environment variable is required');
   process.exit(1);
 }
-const GITHUB_PAT = patMatch[1].trim();
 
-// Git config for repo URL
-const repoUrl = execSync('git config --get remote.origin.url').toString().trim();
+// Git config for repo URL (fallback if owner/repo not in env)
+let owner = GITHUB_OWNER;
+let repo = GITHUB_REPO;
 
-// Extract owner and repo from URL
-const match = repoUrl.match(/github\.com[:/]([^/]+)\/([^/.]+)\.git$/);
-if (!match) {
-  console.error('ERROR: Could not extract owner/repo from remote URL:', repoUrl);
-  process.exit(1);
+try {
+  const repoUrl = execSync('git config --get remote.origin.url').toString().trim();
+  const match = repoUrl.match(/github\.com[:/]([^/]+)\/([^/.]+)\.git$/);
+  if (match) {
+    owner = match[1];
+    repo = match[2];
+  }
+} catch (e) {
+  // Use env values if git config fails
 }
-const [_, owner, repo] = match;
 
 // Branches
 const HEAD_BRANCH = execSync('git branch --show-current').toString().trim();
@@ -70,7 +73,7 @@ console.log(`Title: ${prTitle}`);
 const postData = JSON.stringify(prData);
 
 const options = {
-  hostname: 'api.github.com',
+  hostname: GITHUB_API_URL.replace('https://', '').replace('http://', ''),
   port: 443,
   path: `/repos/${owner}/${repo}/pulls`,
   method: 'POST',

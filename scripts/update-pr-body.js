@@ -1,61 +1,51 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-
-// Read .env file
-const envPath = path.resolve(__dirname, '..', '.env');
-const envContent = fs.readFileSync(envPath, 'utf-8');
-
-const patMatch = envContent.match(/^GITHUB_PAT=(.+)$/m);
-if (!patMatch) {
-  console.error('ERROR: GITHUB_PAT not found in .env file');
-  process.exit(1);
-}
-const GITHUB_PAT = patMatch[1].trim();
-
 const { execSync } = require('child_process');
 
-const repoUrl = execSync('git config --get remote.origin.url').toString().trim();
-const match = repoUrl.match(/github\.com[:/]([^/]+)\/([^/.]+)\.git$/);
-if (!match) {
-  console.error('ERROR: Could not extract owner/repo from remote URL:', repoUrl);
+// GitHub credentials from environment variables
+const GITHUB_PAT = process.env.GITHUB_PAT;
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'julien-amiot';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'tcg-viewer';
+const GITHUB_API_URL = process.env.GITHUB_API_URL || 'https://api.github.com';
+
+if (!GITHUB_PAT) {
+  console.error('ERROR: GITHUB_PAT environment variable is required');
   process.exit(1);
 }
-const [_, owner, repo] = match;
 
-const HEAD_BRANCH = execSync('git branch --show-current').toString().trim();
-const HEAD_COMMIT = execSync('git rev-parse HEAD').toString().trim();
-const PARENT_COMMIT = execSync('git rev-parse HEAD^').toString().trim();
+// Git config for repo URL (fallback if owner/repo not in env)
+let owner = GITHUB_OWNER;
+let repo = GITHUB_REPO;
 
-// Get diff stats for the current commit only
-const diffStats = execSync(`git diff --stat ${PARENT_COMMIT}..${HEAD_COMMIT}`).toString().trim();
-const commitMsg = execSync('git log -1 --pretty=%B').toString().trim();
+try {
+  const repoUrl = execSync('git config --get remote.origin.url').toString().trim();
+  const match = repoUrl.match(/github\.com[:/]([^/]+)\/([^/.]+)\.git$/);
+  if (match) {
+    owner = match[1];
+    repo = match[2];
+  }
+} catch (e) {
+  // Use env values if git config fails
+}
 
-// Build PR description with current commit diff
-const prBody = [
-  '## Description',
-  commitMsg,
-  '',
-  '## Changes Summary (current commit)',
-  '```',
-  diffStats,
-  '```',
-  '',
-  '## Checklist',
-  '- [ ] SonarQube quality gate passes',
-  '- [ ] Unit tests pass',
-  '- [ ] E2E tests pass',
-  '- [ ] Code reviewed',
-  ''
-].join('\n');
+// Parse arguments
+const args = process.argv.slice(2);
+const prNumber = args.find(a => a.startsWith('--pr='))?.split('=')[1];
 
-// PR number (hardcoded for current PR)
-const prNumber = 13;
+if (!prNumber) {
+  console.error('Usage: node scripts/update-pr-body.js --pr=<number> <body>');
+  process.exit(1);
+}
 
-console.log(`Updating PR #${prNumber} body...`);
+const body = args.filter(a => !a.startsWith('--pr='))
+  .map(a => a.replace(/^-+/, '').replace(/=/g, ' '))
+  .join(' ') || process.argv.slice(2).join(' ');
+
+const prData = JSON.stringify({ body });
 
 const options = {
-  hostname: 'api.github.com',
+  hostname: GITHUB_API_URL.replace('https://', '').replace('http://', ''),
   port: 443,
   path: `/repos/${owner}/${repo}/pulls/${prNumber}`,
   method: 'PATCH',
@@ -64,21 +54,23 @@ const options = {
     'Accept': 'application/vnd.github+json',
     'Authorization': `Bearer ${GITHUB_PAT}`,
     'X-GitHub-Api-Version': '2022-11-28',
-    'User-Agent': 'Node.js'
-  }
+  },
 };
 
-const patchData = { body: prBody };
-const postData = JSON.stringify(patchData);
+console.log(`Updating PR #${prNumber} body...`);
 
 const req = https.request(options, (res) => {
   let data = '';
-  res.on('data', (chunk) => { data += chunk; });
+
+  res.on('data', (chunk) => {
+    data += chunk;
+  });
+
   res.on('end', () => {
     try {
       const result = JSON.parse(data);
-      if (result.message === 'Unprocessable Entity' || result.message) {
-        console.error('ERROR updating PR:', JSON.stringify(result, null, 2));
+      if (result.errors) {
+        console.error('ERROR updating PR:', JSON.stringify(result.errors, null, 2));
         process.exit(1);
       }
       console.log('✅ PR body updated successfully!');
@@ -95,5 +87,5 @@ req.on('error', (error) => {
   process.exit(1);
 });
 
-req.write(postData);
+req.write(prData);
 req.end();
