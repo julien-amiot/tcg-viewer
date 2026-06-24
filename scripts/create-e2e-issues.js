@@ -2,12 +2,24 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-// Jira credentials (from user-level .env)
-const JIRA_URL = 'https://cairnworks.atlassian.net';
-const JIRA_TOKEN = process.env.JIRA_TOKEN || 'ATATT3xFfGF0AdsBmtsUOCE1cYYNAhHeL9vhcf7hKAJmNBS02ocPx2FJpD39sj9Gi0eU7JZJM2ZYvkNBwb9MSNNh4ssAW1K4KQizNbDhlLkqWCjno9k_nQlVbrP-UvVuuqxb6bGpOuPzzhMxXrOKCUinkVws5048di6BWzr2qHuo8JRmT3pWrY4=25265C3E';
+// Jira credentials from environment variables
+const JIRA_URL = process.env.JIRA_URL;
+const JIRA_TOKEN = process.env.JIRA_TOKEN;
+const JIRA_PROJECT_ID = process.env.JIRA_PROJECT_ID;
+const JIRA_ISSUE_TYPE = process.env.JIRA_ISSUE_TYPE;
 
-if (!JIRA_URL || !JIRA_TOKEN) {
-  console.error('ERROR: JIRA_URL or JIRA_TOKEN not set');
+if (!JIRA_URL) {
+  console.error('ERROR: JIRA_URL environment variable is required');
+  process.exit(1);
+}
+
+if (!JIRA_TOKEN) {
+  console.error('ERROR: JIRA_TOKEN environment variable is required');
+  process.exit(1);
+}
+
+if (!JIRA_PROJECT_ID) {
+  console.error('ERROR: JIRA_PROJECT_ID environment variable is required');
   process.exit(1);
 }
 
@@ -59,10 +71,10 @@ function createJiraIssue(testName, testFile, index) {
 
   const payload = {
     fields: {
-      project: { id: '10047' },
+      project: { id: JIRA_PROJECT_ID },
       summary: title,
       description,
-      issuetype: { name: 'Task' },
+      issuetype: { name: JIRA_ISSUE_TYPE },
       labels: ['e2e', 'playwright'],
     },
   };

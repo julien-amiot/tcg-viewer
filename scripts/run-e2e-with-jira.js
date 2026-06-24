@@ -1,13 +1,13 @@
 /**
  * Run e2e tests with Jira Test Execution tracking
- * 
+ *
  * For each .feature file, creates/updates a "Test Execution" child item
  * in the corresponding Jira "Test Case" with:
  * - Current date as start date
  * - Status based on test results (Passed/Failed)
  * - Log output on failure
  * - Screenshot attachment if available
- * 
+ *
  * Usage: node scripts/run-e2e-with-jira.js [--project <projectKey>]
  */
 
@@ -15,35 +15,49 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
-const JIRA_URL = process.env.JIRA_URL || 'https://cairnworks.atlassian.net';
-const JIRA_TOKEN = process.env.JIRA_TOKEN || '';
-const JIRA_EMAIL = process.env.JIRA_EMAIL || '';
+// Configuration from environment variables
+const JIRA_URL = process.env.JIRA_URL;
+const JIRA_TOKEN = process.env.JIRA_TOKEN;
+const JIRA_EMAIL = process.env.JIRA_EMAIL;
 
 if (!JIRA_TOKEN) {
   console.error('ERROR: JIRA_TOKEN environment variable is required');
   process.exit(1);
 }
 
-// Jira Test Case mappings (feature file -> Jira key)
-const TEST_CASE_MAPPINGS = {
-  'card-grid.feature': 'TCGV-1',
-  'set-selector.feature': 'TCGV-2',
-  'custom-card-sets.feature': 'TCGV-3',
-};
+if (!JIRA_URL) {
+  console.error('ERROR: JIRA_URL environment variable is required');
+  process.exit(1);
+}
 
-// Jira project configuration
+// Jira Test Case mappings (feature file -> Jira key)
+// Format: JSON string of key-value pairs, e.g. '{"card-grid.feature":"TCGV-1","set-selector.feature":"TCGV-2"}'
+const TEST_CASE_MAPPINGS = process.env.JIRA_TEST_CASE_MAPPINGS
+  ? JSON.parse(process.env.JIRA_TEST_CASE_MAPPINGS)
+  : {};
+
+// Jira project configuration from environment variables
 const JIRA_PROJECT_KEY = process.argv.includes('--project')
   ? process.argv[process.argv.indexOf('--project') + 1]
-  : 'TCGV';
+  : process.env.JIRA_PROJECT_KEY;
 
-const JIRA_PROJECT_ID = '10047'; // TCGV project ID
+const JIRA_PROJECT_ID = process.env.JIRA_PROJECT_ID;
+
+if (!JIRA_PROJECT_KEY) {
+  console.error('ERROR: JIRA_PROJECT_KEY environment variable is required');
+  process.exit(1);
+}
+
+if (!JIRA_PROJECT_ID) {
+  console.error('ERROR: JIRA_PROJECT_ID environment variable is required');
+  process.exit(1);
+}
 
 // Jira workflow statuses for Test Execution
 const JIRA_STATUSES = {
-  PASSED: 'Passed',
-  FAILED: 'Failed',
-  RUNNING: 'Running',
+  PASSED: process.env.JIRA_STATUS_PASSED || 'Passed',
+  FAILED: process.env.JIRA_STATUS_FAILED || 'Failed',
+  RUNNING: process.env.JIRA_STATUS_RUNNING || 'Running',
 };
 
 // Jira API helper

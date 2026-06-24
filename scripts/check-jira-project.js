@@ -1,9 +1,23 @@
 const https = require('https');
-const JIRA_TOKEN = 'ATATT3xFfGF0AdsBmtsUOCE1cYYNAhHeL9vhcf7hKAJmNBS02ocPx2FJpD39sj9Gi0eU7JZJM2ZYvkNBwb9MSNNh4ssAW1K4KQizNbDhlLkqWCjno9k_nQlVbrP-UvVuuqxb6bGpOuPzzhMxXrOKCUinkVws5048di6BWzr2qHuo8JRmT3pWrY4=25265C3E';
+
+// Load Jira credentials from environment variables
+const JIRA_URL = process.env.JIRA_URL;
+const JIRA_TOKEN = process.env.JIRA_TOKEN;
+const JIRA_PROJECT_KEY = process.env.JIRA_PROJECT_KEY;
+
+if (!JIRA_TOKEN) {
+  console.error('ERROR: JIRA_TOKEN environment variable is required');
+  process.exit(1);
+}
+
+if (!JIRA_URL) {
+  console.error('ERROR: JIRA_URL environment variable is required');
+  process.exit(1);
+}
 
 const options = {
-  hostname: 'cairnworks.atlassian.net',
-  path: '/rest/api/3/project/TCGV',
+  hostname: JIRA_URL.replace('https://', ''),
+  path: `/rest/api/3/project/${JIRA_PROJECT_KEY}`,
   method: 'GET',
   headers: {
     'Authorization': `Basic ${Buffer.from(`:${JIRA_TOKEN}`).toString('base64')}`,
