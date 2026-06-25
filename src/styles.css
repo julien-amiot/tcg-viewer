@@ -1,4 +1,6 @@
-/* SC-TCG Card Viewer Styles */
+/* SC-TCG Card Viewer Styles — uses design system tokens */
+@import url('design-system/tokens.css');
+
 * {
   margin: 0;
   padding: 0;
@@ -10,9 +12,9 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #1a1a2e;
-  color: #e0e0e0;
+  font-family: var(--ds-font-family);
+  background: var(--ds-bg-page);
+  color: var(--ds-color-text);
   min-height: 100vh;
 }
 
@@ -23,7 +25,7 @@ body {
 
 /* Header Styles */
 header {
-  background: #16213e;
+  background: var(--ds-bg-header);
   padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 2rem);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -31,7 +33,7 @@ header {
 header h1 {
   margin-bottom: clamp(0.5rem, 1vw, 1rem);
   font-size: clamp(1rem, 2vw, 1.5rem);
-  color: #e94560;
+  color: var(--ds-color-accent);
 }
 
 #clearFiltersButton {
@@ -62,7 +64,7 @@ header h1 {
   border: 1px solid #333;
   border-radius: 4px;
   background: #0f3460;
-  color: #e0e0e0;
+  color: var(--ds-color-text);
   font-size: clamp(0.7rem, 1.2vw, 0.9rem);
 }
 
@@ -89,26 +91,26 @@ main {
 #cardCount {
   margin-top: 1rem;
   text-align: center;
-  color: #aaa;
+  color: #888;
   font-size: 0.7em;
 }
 
 /* Card Styles — 2.5 : 3.5 aspect ratio */
 .card {
-  background: #2a2a2a;
-  border-radius: 0.5em;
+  background: var(--ds-bg-card);
+  border-radius: var(--ds-radius-card);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--ds-shadow-card);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  aspect-ratio: 2.5 / 3.5;
+  aspect-ratio: var(--ds-card-ratio);
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.2);
+  box-shadow: var(--ds-shadow-card-hover);
 }
 
 /* Card Header */
@@ -128,7 +130,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #fff;
+  color: var(--ds-color-text-white);
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
 
@@ -179,8 +181,8 @@ main {
 
 /* Card Text - scrollable area */
 .card-text {
-  font-size: 0.75em;
-  color: #fff;
+  font-size: var(--ds-font-size-base);
+  color: var(--ds-color-text-white);
   padding: 0.5em;
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
   overflow-y: auto;
@@ -196,8 +198,8 @@ main {
 }
 
 .card-type {
-  font-size: 1em;
-  color: #fff;
+  font-size: var(--ds-font-size-lg);
+  color: var(--ds-color-text-white);
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -223,7 +225,7 @@ main {
 }
 
 .card-flavor-text {
-  color: #fff;
+  color: var(--ds-color-text-white);
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
   margin-top: 0.5em;
 }
@@ -239,8 +241,8 @@ main {
 }
 
 .card-left-info {
-  font-size: clamp(0.5rem, 0.9vw, 0.75rem);
-  color: #fff;
+  font-size: var(--ds-font-size-sm);
+  color: var(--ds-color-text-white);
   text-align: left;
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }
@@ -248,8 +250,8 @@ main {
 .card-power-toughness,
 .card-initial-loyalty 
 {
-  font-weight: 700;
-  font-size: 1.2em;
-  color: #fff;
+  font-weight: var(--ds-font-weight-bold);
+  font-size: var(--ds-font-size-xl);
+  color: var(--ds-color-text-white);
   text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
 }

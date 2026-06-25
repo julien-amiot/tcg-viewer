@@ -15,29 +15,46 @@ p.forEach(f => {
   }
 });
 
-// Copy design-system folder recursively
+// Copy design-system: consolidate all CSS into a single index.css to avoid
+// locked-directory issues with subdirectories.
 const dsSrc = path.join('src', 'design-system');
 const dsDst = path.join('dist', 'design-system');
 
 if (fs.existsSync(dsSrc)) {
-  if (fs.existsSync(dsDst)) {
-    try { fs.rmSync(dsDst, { recursive: true, force: true }); } catch (e) {}
-  }
-  copyDir(dsSrc, dsDst);
-}
+  // Remove old dist/design-system (skip on error — may be locked)
+  try { fs.rmSync(dsDst, { recursive: true, force: true }); } catch (e) {}
 
-function copyDir(src, dst) {
-  if (!fs.existsSync(dst)) fs.mkdirSync(dst, { recursive: true });
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-  for (const entry of entries) {
-    const sp = path.join(src, entry.name);
-    const dp = path.join(dst, entry.name);
-    if (entry.isDirectory()) {
-      copyDir(sp, dp);
-    } else {
-      try { fs.copyFileSync(sp, dp); } catch (e) {}
+  // Ensure destination directory exists
+  fs.mkdirSync(dsDst, { recursive: true });
+
+  // Collect all CSS files in source order
+  const cssFiles = [
+    'tokens.css',
+    'atoms/mana-dot.css',
+    'atoms/rarity.css',
+    'atoms/color-identity.css',
+    'atoms/text-shadow.css',
+    'atoms/typography.css',
+    'molecules/card-header.css',
+    'molecules/mana-cost.css',
+    'molecules/card-type-row.css',
+    'molecules/card-text.css',
+    'molecules/card-footer.css',
+    'organisms/card.css',
+    'templates/card-grid.css',
+    'templates/showcase.css',
+  ];
+
+  let allCss = [];
+  for (const cssFile of cssFiles) {
+    const cssPath = path.join(dsSrc, cssFile);
+    try {
+      allCss.push(fs.readFileSync(cssPath, 'utf8'));
+    } catch (e) {
+      console.log('[copy-assets] Warning: could not read', cssFile, e.message);
     }
   }
+  fs.writeFileSync(path.join(dsDst, 'index.css'), allCss.join('\n'), 'utf8');
 }
 
 // Copy CARDS folder
