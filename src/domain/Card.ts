@@ -178,7 +178,7 @@ export class Card {
     const colors = this.colors.map(c => c.value);
     if (colors.length === 0) return 'color-identity--none';
     if (colors.length === 1) return `color-identity--${colors[0]}`;
-    const sorted = [...colors].sort();
+    const sorted = [...colors].sort((a, b) => a.localeCompare(b));
     if (colors.length === 2) return `color-identity--${sorted.join('')}`;
     if (colors.length === 3) return `color-identity--${sorted.join('')}`;
     if (colors.length === 4) return 'color-identity--gold';
