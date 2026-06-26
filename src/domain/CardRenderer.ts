@@ -2,55 +2,25 @@
 // Uses CSS class composition for all styling; no inline styles for layout/appearance.
 import { Card } from './Card';
 
-// Mana color map for tokens in text (title dots use CSS classes)
+// Mana color map for CSS class suffixes
 const manaColorMap: Record<string, string> = {
-  W: '#fff9c4',
-  U: '#a8d4ff',
-  B: '#555555',
-  R: '#ffb3b3',
-  G: '#b3ffb3',
+  W: 'W',
+  U: 'U',
+  B: 'B',
+  R: 'R',
+  G: 'G',
 };
 
-// Mana gradient map for hybrid/split mana tokens in text
-const manaGradientMap: Record<string, string> = {
-  UW: 'linear-gradient(135deg, #a8d4ff 50%, #fff9c4 50%)',
-  BW: 'linear-gradient(135deg, #555555 50%, #fff9c4 50%)',
-  RW: 'linear-gradient(135deg, #ffb3b3 50%, #fff9c4 50%)',
-  GW: 'linear-gradient(135deg, #b3ffb3 50%, #fff9c4 50%)',
-  UB: 'linear-gradient(135deg, #a8d4ff 50%, #555555 50%)',
-  UR: 'linear-gradient(135deg, #a8d4ff 50%, #ffb3b3 50%)',
-  UG: 'linear-gradient(135deg, #a8d4ff 50%, #b3ffb3 50%)',
-  BR: 'linear-gradient(135deg, #555555 50%, #ffb3b3 50%)',
-  BG: 'linear-gradient(135deg, #555555 50%, #b3ffb3 50%)',
-  RG: 'linear-gradient(135deg, #ffb3b3 50%, #b3ffb3 50%)',
-};
-
-function createManaDot(content: string, color?: string, gradient?: string): HTMLElement {
+function createManaDot(content: string, colorClass?: string): HTMLElement {
   const dot = document.createElement('span');
   dot.className = 'mana-dot';
   if (/^\d+$/.test(content) || content === 'X' || content === 'T') {
     dot.textContent = content;
   }
-  if (gradient) {
-    dot.style.background = gradient;
-  } else if (color) {
-    dot.style.background = color;
+  if (colorClass) {
+    dot.classList.add(`mana-dot--${colorClass}`);
   }
   return dot;
-}
-
-function renderManaToken(inner: string): HTMLElement {
-  if (inner.includes('/')) {
-    const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
-    const key = sortedParts.join('');
-    const gradient = manaGradientMap[key];
-    return createManaDot(inner, undefined, gradient);
-  }
-  if (manaColorMap[inner]) {
-    return createManaDot(inner, manaColorMap[inner]);
-  }
-  // Numbers, X, T, or generic — pale grey
-  return createManaDot(inner, '#cccccc');
 }
 
 function renderTextWithManaDots(text: string): HTMLElement {
@@ -80,8 +50,21 @@ function renderTextWithManaDots(text: string): HTMLElement {
   return container;
 }
 
-function parseManaCost(raw: string): Array<{ content: string; color?: string; gradient?: string }> {
-  const tokens: Array<{ content: string; color?: string; gradient?: string }> = [];
+function renderManaToken(inner: string): HTMLElement {
+  if (inner.includes('/')) {
+    const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
+    const key = sortedParts.join('');
+    return createManaDot(inner, key);
+  }
+  if (manaColorMap[inner]) {
+    return createManaDot(inner, manaColorMap[inner]);
+  }
+  // Numbers, X, T, or generic - pale grey
+  return createManaDot(inner, 'generic');
+}
+
+function parseManaCost(raw: string): Array<{ content: string; colorClass?: string }> {
+  const tokens: Array<{ content: string; colorClass?: string }> = [];
   let i = 0;
   while (i < raw.length) {
     if (raw[i] === '{') {
@@ -92,12 +75,12 @@ function parseManaCost(raw: string): Array<{ content: string; color?: string; gr
         if (inner.includes('/')) {
           const sortedParts = inner.split('/').toSorted((a, b) => a.localeCompare(b));
           const key = sortedParts.join('');
-          tokens.push({ content: inner, gradient: manaGradientMap[key] });
+          tokens.push({ content: inner, colorClass: key });
         } else if (manaColorMap[inner]) {
-          tokens.push({ content: inner, color: manaColorMap[inner] });
+          tokens.push({ content: inner, colorClass: manaColorMap[inner] });
         } else {
           // Number or generic - pale grey
-          tokens.push({ content: inner, color: '#cccccc' });
+          tokens.push({ content: inner, colorClass: 'generic' });
         }
         i = end + 1;
       } else {
@@ -154,13 +137,16 @@ export class CardRenderer {
     if (card.cssFrameVersion) classes.push(card.cssFrameVersion);
     classes.push(card.cssColorIdentity);
     classes.push(card.cssRarity);
-    wrapper.className = classes.join(' ');
 
-    // Image URL (still set via inline style — no CSS class for dynamic image paths)
+    // Add has-image modifier when card has an image URL.
+    // backgroundImage must remain inline because the URL is dynamic.
+    // The .card--has-image class handles structural styling (overlay, z-index).
     if (card.imageUrl) {
+      classes.push('card--has-image');
       wrapper.style.backgroundImage = `url('${card.imageUrl}')`;
-      wrapper.style.backgroundSize = 'cover';
     }
+
+    wrapper.className = classes.join(' ');
 
     // Header: name + mana cost dots
     const header = document.createElement('div');
@@ -176,15 +162,13 @@ export class CardRenderer {
     const tokens = parseManaCost(card.manaCost.value);
     for (const token of tokens) {
       const dot = document.createElement('span');
-      dot.className = 'mana-dot mana-dot-title';
+      dot.className = 'mana-dot mana-dot--title';
       // Show numbers and X (generic mana variable), hide color letters
       if (/^\d+$/.test(token.content) || token.content === 'X') {
         dot.textContent = token.content;
       }
-      if (token.gradient) {
-        dot.style.background = token.gradient;
-      } else if (token.color) {
-        dot.style.background = token.color;
+      if (token.colorClass) {
+        dot.classList.add(`mana-dot--${token.colorClass}`);
       }
       manaContainer.appendChild(dot);
     }
