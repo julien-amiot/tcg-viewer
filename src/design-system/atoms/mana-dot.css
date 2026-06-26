@@ -14,6 +14,7 @@
   color: black;
 }
 
+/* Single-color mana dots */
 .mana-dot--W   { background: var(--ds-mana-W); }
 .mana-dot--U   { background: var(--ds-mana-U); }
 .mana-dot--B   { background: var(--ds-mana-B); }

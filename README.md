@@ -8,7 +8,7 @@ A web-based Magic: The Gathering card viewer / tabletop companion. Loads card da
 
 ```
 ┌─────────────────────────────────────────────┐
-│              Browser (index.html)            │
+│              Browser (index.html)           │
 │                                             │
 │  ┌──────────┐    ┌──────────┐               │
 │  │ CardList │    │ CardView │               │
@@ -109,7 +109,7 @@ GitHub Actions workflows are defined in `.github/workflows/`:
 |----------|------|---------|-------------|
 | Unit Tests | `unit-tests.yml` | PR + push to trunk | Runs Vitest with coverage |
 | E2E Tests | `e2e-tests.yml` | PR + push to trunk | Runs Playwright BDD tests (Chromium) |
-| Deploy | `deploy-gh-pages.yml` | Push to trunk | Builds app and deploys to GitHub Pages |
+| Deploy | `deploy-gh-pages.yml` | Push to trunk | Builds app and deploys to GitHub Pages: https://julien-amiot.github.io/tcg-viewer/ |
 
 **PR requirements:** Unit tests pass, E2E tests pass.
 **Deployment flow:** Merge → trunk → auto-deploy to GitHub Pages.

@@ -27,6 +27,7 @@
   --ds-space-xs: 0.2em;
   --ds-space-sm: 0.5em;
   --ds-space-md: 1em;
+  --ds-space-lg: 1.5em;
 
   /* Typography */
   --ds-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

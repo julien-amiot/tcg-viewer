@@ -16,11 +16,11 @@
   <section class="showcase-section">
     <h2>Tokens (Base Layer)</h2>
     <h3>Theme Colors</h3>
-    <div class="showcase-row" style="gap:2rem;">
+    <div class="showcase-row showcase-row--gap-lg">
       <span><code>--ds-bg-page: #1a1a2e</code></span>
       <span><code>--ds-bg-header: #16213e</code></span>
       <span><code>--ds-bg-card: #2a2a2a</code></span>
-      <span><code style="color:#e94560; font-size:1.1em;">--ds-color-accent: #e94560</code></span>
+      <span><code class="text-accent">--ds-color-accent: #e94560</code></span>
     </div>
 
     <h3>Mana Colors (tokens)</h3>
@@ -37,8 +37,8 @@
     <div class="showcase-row">
       <span><code>--ds-rarity-common: #000000</code></span>
       <span><code>--ds-rarity-uncommon: #C0C0C0</code></span>
-      <span><code style="color:#FFD700;">--ds-rarity-rare: #FFD700</code></span>
-      <span style="color:#9b59b6;"><code>--ds-rarity-mythic: #9b59b6</code></span>
+      <span><code class="text-rarity-rare">--ds-rarity-rare: #FFD700</code></span>
+      <span class="text-rarity-mythic"><code>--ds-rarity-mythic: #9b59b6</code></span>
     </div>
 
     <h3>Typography Tokens</h3>
@@ -56,6 +56,16 @@
       <span><code>--ds-space-xs: 0.2em</code></span>
       <span><code>--ds-space-sm: 0.5em</code></span>
       <span><code>--ds-space-md: 1em</code></span>
+      <span><code>--ds-space-lg: 1.5em</code></span>
+    </div>
+
+    <!-- Spacing visual demo -->
+    <h3>Spacing Scale (visual)</h3>
+    <div class="showcase-row">
+      <span class="specimen specimen--w-md"><div class="spacing-visual-bar spacing-visual-bar--xs"></div><p class="typo-label">xs (0.2em)</p></span>
+      <span class="specimen specimen--w-md"><div class="spacing-visual-bar spacing-visual-bar--sm"></div><p class="typo-label">sm (0.5em)</p></span>
+      <span class="specimen specimen--w-md"><div class="spacing-visual-bar spacing-visual-bar--md"></div><p class="typo-label">md (1em)</p></span>
+      <span class="specimen specimen--w-md"><div class="spacing-visual-bar spacing-visual-bar--lg"></div><p class="typo-label">lg (1.5em)</p></span>
     </div>
 
     <h3>Sizing & Shadows (tokens)</h3>
@@ -76,52 +86,80 @@
       <span class="specimen"><p class="text-white text-body">Normal body</p></span>
       <span class="specimen"><p class="text-white text-bold">Bold (700)</p></span>
       <span class="specimen"><p class="text-white text-extrabold">Extrabold (800)</p></span>
-      <span class="specimen"><p class="text-body" style="font-size:var(--ds-font-size-sm)">Small size</p></span>
+      <span class="specimen"><p class="text-body text-sm">Small size</p></span>
     </div>
 
     <h3>.text-ellipsis — .text-shadow</h3>
     <code>.text-ellipsis (overflow:hidden; text-overflow:ellipsis) + .text-shadow (0 0 0.2em rgba(0,0,0,1))</code>
     <div class="showcase-row">
-      <span class="specimen"><p class="text-white text-body" style="max-width:140px; overflow:hidden; text-overflow:ellipsis;">Long card name gets truncated</p></span>
-      <span class="specimen"><h3 class="text-white text-bold" style="font-size:1.5em; text-shadow: 0 0 0.2em rgba(0,0,0,1);">Text shadow effect</h3></span>
+      <span class="specimen"><p class="text-white text-body text-truncate">Long card name gets truncated</p></span>
+      <span class="specimen"><h3 class="text-white text-bold heading-shadow">Text shadow effect</h3></span>
     </div>
 
-    <h3>.mana-dot — .mana-dot--W/U/B/R/G/.text-shadow — .mana-dot--title (white border)</h3>
+    <h3>.mana-dot — .mana-dot--W/U/B/R/G/.mana-dot--generic — .mana-dot--title (white border)</h3>
     <code>.mana-dot + color variant (.mana-dot--W) + title modifier (.mana-dot--title)</code>
     <div class="showcase-row">
-      <span class="specimen"><p class="text-white text-bold mana-dot" style="background:var(--ds-mana-W); width:32px; height:32px;">W</p></span>
-      <span class="specimen"><p class="text-black text-bold mana-dot" style="background:var(--ds-mana-U); width:32px; height:32px;">U</p></span>
-      <span class="specimen"><p class="text-white text-bold mana-dot" style="background:var(--ds-mana-B); width:32px; height:32px;">B</p></span>
-      <span class="specimen"><p class="text-black text-bold mana-dot" style="background:var(--ds-mana-R); width:32px; height:32px;">R</p></span>
-      <span class="specimen"><p class="text-black text-bold mana-dot" style="background:var(--ds-mana-G); width:32px; height:32px;">G</p></span>
-      <span class="specimen"><p class="text-white text-bold mana-dot" style="background:var(--ds-mana-generic); width:32px; height:32px;">5</p></span>
+      <span class="specimen"><p class="text-white text-bold mana-dot mana-dot--W mana-dot--title">W</p></span>
+      <span class="specimen"><p class="text-black text-bold mana-dot mana-dot--U mana-dot--title">U</p></span>
+      <span class="specimen"><p class="text-white text-bold mana-dot mana-dot--B mana-dot--title">B</p></span>
+      <span class="specimen"><p class="text-black text-bold mana-dot mana-dot--R mana-dot--title">R</p></span>
+      <span class="specimen"><p class="text-black text-bold mana-dot mana-dot--G mana-dot--title">G</p></span>
+      <span class="specimen"><p class="text-white text-bold mana-dot mana-dot--generic mana-dot--title">5</p></span>
     </div>
 
-    <h3>.mana-dot--title (white border) — .mana-dot--text (no border)</h3>
+    <h3>.mana-dot--WU (split mana) — .mana-dot--text (no border, rounded)</h3>
+    <code>.mana-dot--WU uses a diagonal gradient for split mana; .mana-dot--text removes the white title border</code>
     <div class="showcase-row">
-      <span class="specimen"><p class="text-white text-bold mana-dot" style="border:0.05em solid #fff; background:var(--ds-mana-W); width:32px; height:32px;">W</p><span>.mana-dot--title (white border)</span></span>
-      <span class="specimen"><p class="text-white text-bold mana-dot" style="background:var(--ds-mana-B); width:32px; height:32px;">B</p><span>.mana-dot--text (no white border)</span></span>
+      <span class="specimen"><p class="text-white text-bold mana-dot mana-dot--WU mana-dot--title">W/U</p><span>.mana-dot--WU (split gradient)</span></span>
+      <span class="specimen"><p class="text-white text-bold mana-dot mana-dot--B mana-dot--text">B</p><span>.mana-dot--text (no white border)</span></span>
     </div>
 
     <h3>.rarity--common — .rarity--uncommon — .rarity--rare — .rarity--mythic</h3>
     <code>.rarity--color variant sets text color for rarity labels and card elements</code>
     <div class="showcase-row">
-      <span class="specimen"><p class="text-white rarity--common" style="font-size:1.2em;">Common #000</p></span>
-      <span class="specimen"><p class="text-white rarity--uncommon" style="font-size:1.2em;">Uncommon #C0C0C0</p></span>
-      <span class="specimen"><p class="text-white rarity--rare" style="font-size:1.2em;">Rare #FFD700</p></span>
-      <span class="specimen"><p class="text-white rarity--mythic" style="font-size:1.2em;">Mythic #9b59b6</p></span>
+      <span class="specimen"><p class="text-white rarity--common rarity--large">Common #000</p></span>
+      <span class="specimen"><p class="text-white rarity--uncommon rarity--large">Uncommon #C0C0C0</p></span>
+      <span class="specimen"><p class="text-white rarity--rare rarity--large">Rare #FFD700</p></span>
+      <span class="specimen"><p class="text-white rarity--mythic rarity--large">Mythic #9b59b6</p></span>
     </div>
 
     <h3>.color-identity--W/U/B/R/G — .color-identity--none — .color-identity--gold</h3>
     <code>.color-identity--X sets a semi-transparent background color for the card frame variant</code>
     <div class="showcase-row">
-      <span class="specimen" style="background:rgba(255, 249, 196, 0.3);"><p class="text-white rarity--rare text-bold">W (White)</p></span>
-      <span class="specimen" style="background:rgba(168, 212, 255, 0.3);"><p class="text-black rarity--mythic text-bold">U (Blue)</p></span>
-      <span class="specimen" style="background:rgba(85, 85, 85, 0.3);"><p class="text-white rarity--rare text-bold">B (Black)</p></span>
-      <span class="specimen" style="background:rgba(255, 179, 179, 0.3);"><p class="text-black rarity--mythic text-bold">R (Red)</p></span>
-      <span class="specimen" style="background:rgba(179, 255, 179, 0.3);"><p class="text-black rarity--rare text-bold">G (Green)</p></span>
-      <span class="specimen" style="background:rgba(128, 128, 128, 0.3);"><p class="text-white rarity--common text-bold">None</p></span>
-      <span class="specimen" style="background:rgba(255, 193, 7, 0.3);"><p class="text-black rarity--mythic text-bold">Gold (4-color)</p></span>
+      <span class="specimen ci-bg-W demo-bg-w"><p class="text-white rarity--rare text-bold">W (White)</p></span>
+      <span class="specimen ci-bg-U demo-bg-u"><p class="text-black rarity--mythic text-bold">U (Blue)</p></span>
+      <span class="specimen ci-bg-B demo-bg-b"><p class="text-white rarity--rare text-bold">B (Black)</p></span>
+      <span class="specimen ci-bg-R demo-bg-r"><p class="text-black rarity--mythic text-bold">R (Red)</p></span>
+      <span class="specimen ci-bg-G demo-bg-g"><p class="text-black rarity--rare text-bold">G (Green)</p></span>
+      <span class="specimen ci-bg-none demo-bg-colorless"><p class="text-white rarity--common text-bold">None</p></span>
+      <span class="specimen ci-bg-gold demo-bg-gold"><p class="text-black rarity--mythic text-bold">Gold (4-color)</p></span>
+    </div>
+
+    <!-- Multi-color identity specimens -->
+    <h3>.color-identity two-color gradients — .ci-bg-* showcase backgrounds</h3>
+    <code>Two-color gradient backgrounds: .ci-bg-WU, .ci-bg-BW, .ci-bg-RW, etc.</code>
+    <div class="showcase-row">
+      <span class="specimen ci-bg-WU"><p class="text-black rarity--rare text-bold">W/U (Azorius)</p></span>
+      <span class="specimen ci-bg-BW"><p class="text-white rarity--mythic text-bold">B/W (Orzhov)</p></span>
+      <span class="specimen ci-bg-RW"><p class="text-black rarity--rare text-bold">R/W (Boros)</p></span>
+      <span class="specimen ci-bg-GW"><p class="text-black rarity--mythic text-bold">G/W (Selesnya)</p></span>
+      <span class="specimen ci-bg-UB"><p class="text-white rarity--rare text-bold">U/B (Dimir)</p></span>
+    </div>
+    <div class="showcase-row">
+      <span class="specimen ci-bg-UR"><p class="text-black rarity--mythic text-bold">U/R (Izzet)</p></span>
+      <span class="specimen ci-bg-UG"><p class="text-white rarity--rare text-bold">U/G (Golgari)</p></span>
+      <span class="specimen ci-bg-BR"><p class="text-black rarity--mythic text-bold">B/R (Rakdos)</p></span>
+      <span class="specimen ci-bg-BG"><p class="text-white rarity--rare text-bold">B/G (Golgari)</p></span>
+      <span class="specimen ci-bg-RG"><p class="text-black rarity--mythic text-bold">R/G (Gruul)</p></span>
+    </div>
+
+    <!-- Three-color identity specimens -->
+    <h3>.color-identity three-color gradients — .ci-bg-WUB, .ci-bg-WUBR</h3>
+    <code>Three-color gradient backgrounds for tri-color identities</code>
+    <div class="showcase-row">
+      <span class="specimen ci-bg-WUB"><p class="text-white rarity--mythic text-bold">W/U/B (Tegwyll)</p></span>
+      <span class="specimen ci-bg-WUBR"><p class="text-black rarity--rare text-bold">W/U/B/R (Shahrazad)</p></span>
+      <span class="specimen ci-bg-WUBG"><p class="text-white rarity--mythic text-bold">W/U/B/G (Jeskai)</p></span>
     </div>
   </section>
 
@@ -132,25 +170,37 @@
     <h3>.card-header — .card-name — .card-mana-dots</h3>
     <code>Header molecule: card name + mana dots group with rarity color background</code>
     <div class="showcase-row">
-      <span class="specimen" style="background:var(--ds-color-accent); width:240px; padding:1rem;">
-        <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Lightning Strike</span><span class="card-mana-dots"><span class="mana-dot" style="background:var(--ds-mana-R); width:24px; height:24px;">R</span></span></div>
+      <span class="specimen specimen--accent specimen--w-md">
+        <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Lightning Strike</span><span class="card-mana-dots"><span class="mana-dot mana-dot--R mana-dot--title">R</span></span></div>
       </span>
     </div>
 
     <h3>.card-footer — .card-left-info — .card-power-toughness — .card-initial-loyalty</h3>
     <code>Footer molecule: rarity/type label (left) + power/toughness or loyalty (right)</code>
     <div class="showcase-row">
-      <span class="specimen" style="background:#1a1a2e; width:260px;">
+      <span class="specimen specimen--w-lg specimen--bg-dark">
         <p class="text-white text-bold rarity--rare card-left-info">Mythic Rare · Creature</p>
-        <p class="text-white text-extrabold rarity--mythic card-power-toughness" style="font-size:1.8em; margin-top:-0.3rem;">3/3</p>
+        <p class="text-white text-extrabold rarity--mythic card-power-toughness card-power-toughness--large">3/3</p>
       </span>
     </div>
 
-    <h3>.card-body — .card-type-row (via molecules)</h3>
+    <h3>.card-body — .card-type-row</h3>
     <code>The card body is the central content area inside a full card organism</code>
     <div class="showcase-row">
-      <span class="specimen" style="background:#1a1a2e; width:280px;">
-        <p class="text-bold text-white rarity--rare card-left-info">Instant — Card body specimen (interior content area)</p>
+      <span class="specimen specimen--w-xl specimen--bg-dark">
+        <div class="card-body">
+          <div class="card-type-row"><span class="text-white rarity--rare text-bold">Instant — Creature</span></div>
+          <p class="text-white">Haste (This creature can attack the turn it enters.)</p>
+        </div>
+      </span>
+    </div>
+
+    <h3>.card-text — .card-flavor-text</h3>
+    <code>.card-text renders card body text with shadow; .card-flavor-text renders italic flavor text</code>
+    <div class="showcase-row">
+      <span class="specimen specimen--w-xl specimen--bg-dark">
+        <p class="card-text">Haste (This creature can attack the turn it enters.)</p>
+        <p class="card-flavor-text italic">"Thunder rolls across the battlefield."</p>
       </span>
     </div>
   </section>
@@ -161,116 +211,117 @@
     <code>.card + layout variant (.layout--token/.layout--normal/.layout--emblem) + type variant (.type--creature/.type--land)</code>
 
     <div class="showcase-row">
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .layout--normal</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
-          <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Lightning Strike</span><span class="card-mana-dots"><span class="mana-dot" style="background:var(--ds-mana-R); width:24px; height:24px;">R</span></span></div>
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .layout--normal</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-purple">
+          <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Lightning Strike</span><span class="card-mana-dots"><span class="mana-dot mana-dot--R mana-dot--title">R</span></span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><div class="card-type-row"><span class="text-white rarity--rare text-bold">Instant — Creature — Elemental — Legendary</span></div><p class="text-white" style="font-size:0.75em;">Haste (This creature can't attack the turn it comes under your control.)</p><p class="italic text-body text-white" style="font-size:0.75em;">When {T}: Lightning Strike deals 3 damage to any target.</p></div>
-          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness" style="font-size:1.8em;">3/3</span></div>
+          <div class="card-body"><div class="card-type-row"><span class="text-white rarity--rare text-bold">Instant — Creature — Elemental — Legendary</span></div><p class="text-white card-text--small">Haste (This creature can't attack the turn it comes under your control.)</p><p class="italic text-body text-white card-text--small">When {T}: Lightning Strike deals 3 damage to any target.</p></div>
+          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness card-power-toughness--large">3/3</span></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .layout--token</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .layout--token</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-teal">
           <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Token (layout--token hides .card-mana-dots)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><p class="italic text-body text-white" style="font-size:0.75em;">When this creature enters the battlefield, draw a card.</p></div>
-          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness" style="font-size:1.8em;">3/3</span></div>
+          <div class="card-body"><p class="italic text-body text-white card-text--small">When this creature enters the battlefield, draw a card.</p></div>
+          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness card-power-toughness--large">3/3</span></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .layout--emblem</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .layout--emblem</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-orange">
           <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Emblem Card (layout--emblem hides .card-body)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .type--creature + .frame--2003</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .type--creature + .frame--2003</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-r">
           <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Frame 2003 (border: 2px solid #888)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><p class="italic text-body text-white" style="font-size:0.75em;">Haste (This creature can attack the turn it enters.)</p></div>
-          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness" style="font-size:1.8em;">3/3</span></div>
+          <div class="card-body"><p class="italic text-body text-white card-text--small">Haste (This creature can attack the turn it enters.)</p></div>
+          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness card-power-toughness--large">3/3</span></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .supertype--legendary</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
-          <div class="card-header" style="border-bottom:2px solid var(--ds-rarity-rare);"><span class="text-white text-bold rarity--rare card-name">Legendary (supertype--legendary adds gold bottom border)</span></div>
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .supertype--legendary</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-gold">
+          <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Legendary (supertype--legendary adds gold bottom border)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><p class="italic text-body text-white" style="font-size:0.75em;">Legendary (mythic rare creatures are implicitly legendary.)</p></div>
-          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness" style="font-size:1.8em;">3/3</span></div>
+          <div class="card-body"><p class="italic text-body text-white card-text--small">Legendary (mythic rare creatures are implicitly legendary.)</p></div>
+          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness card-power-toughness--large">3/3</span></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .type--land</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .type--land</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-g">
           <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Land Card (type--land hides .card-mana-dots)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><p class="italic text-body text-white" style="font-size:0.75em;">T: Add {W} to your mana pool.</p></div>
-          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Land</span><span class="text-white rarity--mythic card-power-toughness" style="font-size:1.8em;">3/3</span></div>
+          <div class="card-body"><p class="italic text-body text-white card-text--small">T: Add {W} to your mana pool.</p></div>
+          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Land</span><span class="text-white rarity--mythic card-power-toughness card-power-toughness--large">3/3</span></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .color-identity--gold (multi-color)</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .color-identity--gold (multi-color)</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-gold">
           <div class="card-header"><span class="text-white text-bold rarity--rare card-name">Gold Card (color-identity--gold: 4-color)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><p class="italic text-body text-white" style="font-size:0.75em;">T: Add {W} or {G}.</p></div>
-          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness" style="font-size:1.8em;">3/3</span></div>
+          <div class="card-body"><p class="italic text-body text-white card-text--small">T: Add {W} or {G}.</p></div>
+          <div class="card-footer"><span class="text-white rarity--rare card-left-info">Rare · Creature</span><span class="text-white rarity--mythic card-power-toughness card-power-toughness--large">3/3</span></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .color-identity--none (colorless)</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .color-identity--none (colorless)</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-colorless">
           <div class="card-header"><span class="text-white text-bold rarity--common card-name">Colorless (color-identity--none)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><p class="italic text-body text-white" style="font-size:0.75em;">Colorless card — no color identity.</p></div>
-          <div class="card-footer"><span class="text-white rarity--common card-left-info">Common · Artifact</span><span class="text-white rarity--mythic card-power-toughness" style="font-size:1.8em;">3/3</span></div>
+          <div class="card-body"><p class="italic text-body text-white card-text--small">Colorless card — no color identity.</p></div>
+          <div class="card-footer"><span class="text-white rarity--common card-left-info">Common · Artifact</span><span class="text-white rarity--mythic card-power-toughness card-power-toughness--large">3/3</span></div>
         </div>
       </span>
 
-      <span class="specimen card-body-specimen" style="background:#1a1a2e; width:300px;">
-        <h4 class="text-bold text-white" style="margin-top:0; margin-bottom:1rem;">.card + .type--planeswalker</h4>
-        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow">
+      <span class="specimen card-body-specimen specimen--w-xxl specimen--bg-dark">
+        <h4 class="text-bold text-white heading-no-top-margin heading-spaced-bottom">.card + .type--planeswalker</h4>
+        <div class="card layout--normal type--creature frame--2003 supertype--legendary color-identity--gold rarity--rare card-text-shadow demo-bg-purple">
           <div class="card-header"><span class="text-white text-bold rarity--mythic card-name">Planeswalker (.initial-loyalty shown)</span></div>
           <div class="card-separator"></div>
           <div class="card-spacer"></div>
-          <div class="card-body"><p class="italic text-body text-white" style="font-size:0.75em;">+2: Draw a card.</p><p class="text-body text-white" style="font-size:0.75em;">−5: You get an emblem with "At the beginning of your upkeep, draw two cards."</p></div>
-          <div class="card-footer"><span class="text-white rarity--mythic card-left-info">Mythic · Planeswalker</span><span class="text-white rarity--mythic card-initial-loyalty" style="font-size:1.8em;">4</span></div>
+          <div class="card-body"><p class="italic text-body text-white card-text--small">+2: Draw a card.</p><p class="text-body text-white card-text--small">−5: You get an emblem with "At the beginning of your upkeep, draw two cards."</p></div>
+          <div class="card-footer"><span class="text-white rarity--mythic card-left-info">Mythic · Planeswalker</span><span class="text-white rarity--mythic card-initial-loyalty card-initial-loyalty--large">4</span></div>
         </div>
       </span>
+
     </div>
   </section>
 
   <!-- ============ SUMMARY ============ -->
   <section class="showcase-section">
     <h2>Design System Layers Summary</h2>
-    <table style="width:100%; max-width:700px; border-collapse:collapse;">
-      <thead><tr style="border-bottom:1px solid #444;"><th style="text-align:left; padding:0.5rem 1rem; color:#888;">Layer</th><th style="text-align:left; padding:0.5rem 1rem; color:#888;">Files</th></tr></thead>
+    <table class="table-full-width">
+      <thead><tr class="table-head-divider"><th class="table-head-styled">Layer</th><th class="table-head-styled">Files</th></tr></thead>
       <tbody>
-        <tr style="border-bottom:1px solid #333;"><td class="text-bold text-white" style="padding:0.75rem 1rem;">Tokens</td><td style="padding:0.75rem 1rem; color:#888;"><code>tokens.css</code></td></tr>
-        <tr style="border-bottom:1px solid #333;"><td class="text-bold text-white" style="padding:0.75rem 1rem;">Atoms (4)</td><td style="padding:0.75rem 1rem; color:#888;"><code>typography.css</code>, <code>mana-dot.css</code>, <code>rarity.css</code>, <code>color-identity.css</code></td></tr>
-        <tr style="border-bottom:1px solid #333;"><td class="text-bold text-white" style="padding:0.75rem 1rem;">Molecules (4)</td><td style="padding:0.75rem 1rem; color:#888;"><code>card-header.css</code>, <code>mana-cost.css</code>, <code>card-footer.css</code></td></tr>
-        <tr style="border-bottom:1px solid #333;"><td class="text-bold text-white" style="padding:0.75rem 1rem;">Organisms (1)</td><td style="padding:0.75rem 1rem; color:#888;"><code>card.css</code></td></tr>
-        <tr><td class="text-bold text-white" style="padding:0.75rem 1rem;">Templates (1)</td><td style="padding:0.75rem 1rem; color:#888;"><code>showcase.css</code></td></tr>
+        <tr class="table-row-divider"><td class="text-bold text-white table-cell-styled">Tokens</td><td class="table-cell-styled"><code>tokens.css</code></td></tr>
+        <tr class="table-row-divider"><td class="text-bold text-white table-cell-styled">Atoms (4)</td><td class="table-cell-styled"><code>typography.css</code>, <code>mana-dot.css</code>, <code>rarity.css</code>, <code>color-identity.css</code></td></tr>
+        <tr class="table-row-divider"><td class="text-bold text-white table-cell-styled">Molecules (5)</td><td class="table-cell-styled"><code>card-header.css</code>, <code>mana-cost.css</code>, <code>card-type-row.css</code>, <code>card-text.css</code>, <code>card-footer.css</code></td></tr>
+        <tr class="table-row-divider"><td class="text-bold text-white table-cell-styled">Organisms (1)</td><td class="table-cell-styled"><code>card.css</code></td></tr>
+        <tr><td class="text-bold text-white table-cell-styled">Templates (1)</td><td class="table-cell-styled"><code>showcase.css</code></td></tr>
       </tbody>
     </table>
   </section>

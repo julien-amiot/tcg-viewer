@@ -26,7 +26,7 @@
 .color-identity--WUB { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 33%, rgba(85, 85, 85, 0.4) 33%, rgba(255, 249, 196, 0.4) 66%); }
 .color-identity--WUBR { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 25%, rgba(85, 85, 85, 0.4) 25%, rgba(255, 179, 179, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
 .color-identity--WUBG { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 25%, rgba(85, 85, 85, 0.4) 25%, rgba(179, 255, 179, 0.4) 50%, rgba(255, 249, 196, 0.4) 50%); }
-.color-identity--WUBRG { background: linear-gradient(135deg, rgba(255, 193, 7, 0.4) 0%); }
+.color-identity--WUBRG { background: linear-gradient(135deg, rgba(168, 212, 255, 0.4) 25%, rgba(85, 85, 85, 0.4) 25%, rgba(255, 179, 179, 0.4) 50%, rgba(179, 255, 179, 0.4) 50%); }
 
 /* Four-color (gold) */
 .color-identity--gold { background: rgba(255, 193, 7, 0.4); }

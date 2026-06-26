@@ -1,21 +1,19 @@
 /* SC-TCG Design System — Templates: Showcase Page */
 
-/* Page layout (used by index.html) */
-.showcase-page {
-  padding: 2rem;
-  background: var(--ds-bg-page);
-  color: var(--ds-color-text);
-}
-
 /* ==============================
-   Index.html layout styles
+   Index.html layout styles (scoped to showcase)
    ============================== */
-body {
+.showcase-page {
   margin: 0;
   padding: 2rem;
   font-family: var(--ds-font-family);
   background: var(--ds-bg-page);
   color: var(--ds-color-text);
+}
+
+/* Reset body to remove default spacing since showcase-page handles it */
+body {
+  margin: 0;
 }
 
 .showcase-header {
@@ -29,6 +27,18 @@ body {
   font-size: 2.5rem;
   color: var(--ds-color-accent);
   margin: 0 0 0.5rem;
+  text-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+}
+
+.showcase-header h1::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--ds-color-accent);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
 }
 
 .showcase-header p {
@@ -38,6 +48,17 @@ body {
 
 .showcase-section {
   margin-bottom: 4rem;
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+/* Staggered animation delays for sections */
+.showcase-section:nth-child(2) { animation-delay: 0.1s; }
+.showcase-section:nth-child(3) { animation-delay: 0.2s; }
+.showcase-section:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .showcase-section h2 {
@@ -99,12 +120,6 @@ code {
   width: 64px;
   height: 64px;
   border-radius: 0.5em;
-}
-
-.showcase-page h1 {
-  font-size: 2rem;
-  color: var(--ds-color-text-white);
-  margin-bottom: 0.5rem;
 }
 
 .showcase-intro {
@@ -283,4 +298,329 @@ code {
   overflow-x: auto;
   color: #888;
   margin-top: 1rem;
+}
+
+/* ==============================
+   Showcase row gap variants (cleaner)
+   ============================== */
+.showcase-row--gap-sm { gap: 0.5rem; }
+.showcase-row--gap-md { gap: 1rem; }
+.showcase-row--gap-lg { gap: 2rem; }
+
+/* ==============================
+   Specimen container variants (fixed widths)
+   ============================== */
+.specimen--w-sm  { width: 180px; }
+.specimen--w-md  { width: 240px; }
+.specimen--w-lg  { width: 260px; }
+.specimen--w-xl  { width: 280px; }
+.specimen--w-xxl { width: 300px; }
+
+/* Specimen with accent background */
+.specimen--accent {
+  background: var(--ds-color-accent);
+}
+
+/* ==============================
+   Heading spacing utilities
+   ============================== */
+.heading-no-top-margin { margin-top: 0; }
+.heading-spaced-bottom  { margin-bottom: 1rem; }
+
+/* ==============================
+   Table utility classes
+   ============================== */
+.table-full-width {
+  width: 100%;
+  max-width: 700px;
+  border-collapse: collapse;
+}
+
+.table-row-divider {
+  border-bottom: 1px solid #333;
+}
+
+.table-cell-styled {
+  padding: 0.75rem 1rem;
+  color: #888;
+}
+
+.table-head-divider {
+  border-bottom: 1px solid #444;
+}
+
+.table-head-styled {
+  text-align: left;
+  padding: 0.5rem 1rem;
+  color: #888;
+}
+
+/* ==============================
+   Typography utility classes
+   ============================== */
+.text-sm { font-size: var(--ds-font-size-sm); }
+.text-lg { font-size: 1.2em; }
+.text-truncate { max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+
+.heading-shadow {
+  font-size: 1.5em;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+}
+
+/* ==============================
+   Text color utility classes
+   ============================== */
+.text-accent { color: var(--ds-color-accent); }
+.text-rarity-rare { color: #FFD700; }
+.text-rarity-mythic { color: #9b59b6; }
+
+/* Specimen background utility */
+.specimen--bg-dark { background: #1a1a2e; }
+
+/* Spacing visual demo utilities */
+.spacing-visual-bar {
+  height: 40px;
+  width: calc(var(--ds-space-sm) * 100);
+  background: var(--ds-color-accent);
+  border-radius: 3px;
+}
+
+.spacing-visual-bar--xs { width: calc(0.2em * 100); }
+.spacing-visual-bar--sm { width: calc(0.5em * 100); }
+.spacing-visual-bar--md { width: calc(1em * 100); }
+.spacing-visual-bar--lg { width: calc(1.5em * 100); }
+
+/* Spacing visual labels */
+.spacing-label {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: -0.3rem;
+}
+
+/* Section divider for showcase */
+.showcase-divider {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 2rem 0;
+}
+
+/* Showcase section spacing refinement */
+.showcase-section--compact {
+  margin-bottom: 2.5rem;
+}
+
+/* ==============================
+   Rarity large variant (showcase)
+   ============================== */
+.rarity--large { font-size: 1.2em; }
+
+/* ==============================
+   Mana dot showcase variants
+   ============================== */
+.mana-dot--showcase {
+  width: 32px;
+  height: 32px;
+}
+
+.mana-dot--title-border {
+  border: 0.05em solid #fff;
+}
+
+/* ==============================
+   Color identity background variants (showcase)
+   ============================== */
+.ci-bg-W    { background: rgba(255, 249, 196, 0.3); }
+.ci-bg-U    { background: rgba(168, 212, 255, 0.3); }
+.ci-bg-B    { background: rgba(85, 85, 85, 0.3); }
+.ci-bg-R    { background: rgba(255, 179, 179, 0.3); }
+.ci-bg-G    { background: rgba(179, 255, 179, 0.3); }
+.ci-bg-none { background: rgba(128, 128, 128, 0.3); }
+.ci-bg-gold { background: rgba(255, 193, 7, 0.3); }
+
+/* Two-color gradients (showcase) */
+.ci-bg-WU   { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.ci-bg-BW   { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.ci-bg-RW   { background: linear-gradient(135deg, rgba(255, 179, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.ci-bg-GW   { background: linear-gradient(135deg, rgba(179, 255, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.ci-bg-UB   { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(85, 85, 85, 0.3) 50%); }
+.ci-bg-UR   { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(255, 179, 179, 0.3) 50%); }
+.ci-bg-UG   { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(179, 255, 179, 0.3) 50%); }
+.ci-bg-BR   { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 50%, rgba(255, 179, 179, 0.3) 50%); }
+.ci-bg-BG   { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 50%, rgba(179, 255, 179, 0.3) 50%); }
+.ci-bg-RG   { background: linear-gradient(135deg, rgba(255, 179, 179, 0.3) 50%, rgba(179, 255, 179, 0.3) 50%); }
+
+/* Three-color gradients (showcase) */
+.ci-bg-WUB  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 33%, rgba(85, 85, 85, 0.3) 33%, rgba(255, 249, 196, 0.3) 66%); }
+.ci-bg-WUBR { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 25%, rgba(85, 85, 85, 0.3) 25%, rgba(255, 179, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.ci-bg-WUBG { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 25%, rgba(85, 85, 85, 0.3) 25%, rgba(179, 255, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.ci-bg-WUR { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 33%, rgba(255, 249, 196, 0.3) 33%, rgba(255, 179, 179, 0.3) 66%); }
+.ci-bg-WBR { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 33%, rgba(255, 249, 196, 0.3) 33%, rgba(255, 179, 179, 0.3) 66%); }
+.ci-bg-WRG { background: linear-gradient(135deg, rgba(255, 249, 196, 0.3) 33%, rgba(255, 179, 179, 0.3) 33%, rgba(179, 255, 179, 0.3) 66%); }
+.ci-bg-UBG { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 33%, rgba(85, 85, 85, 0.3) 33%, rgba(179, 255, 179, 0.3) 66%); }
+.ci-bg-URG { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 33%, rgba(255, 179, 179, 0.3) 33%, rgba(179, 255, 179, 0.3) 66%); }
+.ci-bg-BRG { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 33%, rgba(255, 179, 179, 0.3) 33%, rgba(179, 255, 179, 0.3) 66%); }
+
+/* Four-color gradients (showcase) */
+.ci-bg-WUBRG { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 25%, rgba(85, 85, 85, 0.3) 25%, rgba(255, 179, 179, 0.3) 50%, rgba(179, 255, 179, 0.3) 50%); }
+
+/* ==============================
+   Card text size variants (showcase)
+   ============================== */
+.card-text--small { font-size: 0.75em; }
+
+/* ==============================
+   Power/Toughness & Loyalty large display
+   ============================== */
+.card-power-toughness--large,
+.card-initial-loyalty--large {
+  font-size: 1.8em;
+  margin-top: -0.3rem;
+}
+
+/* ==============================
+   Summary utility class
+   ============================== */
+.showcase-summary {
+  margin-top: 2rem;
+  color: #888;
+}
+
+/* ==============================
+   Showcase card scaling (for specimen rendering)
+   ============================== */
+.showcase-card--scaled {
+  transform: scale(0.45);
+  transform-origin: top left;
+  width: 220px;
+}
+
+/* ==============================
+   Demo card gradient backgrounds (inline-style replacements)
+   ============================== */
+.demo-bg-purple    { background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.demo-bg-teal      { background-image: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+.demo-bg-orange    { background-image: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+/* Single-color identity specimen backgrounds (showcase) */
+.demo-bg-w   { background: radial-gradient(circle at center, rgba(255, 249, 196, 0.5), rgba(255, 249, 196, 0.1)); }
+.demo-bg-u   { background: radial-gradient(circle at center, rgba(168, 212, 255, 0.5), rgba(168, 212, 255, 0.1)); }
+.demo-bg-b   { background: radial-gradient(circle at center, rgba(85, 85, 85, 0.5), rgba(85, 85, 85, 0.1)); }
+.demo-bg-r   { background: radial-gradient(circle at center, rgba(255, 179, 179, 0.5), rgba(255, 179, 179, 0.1)); }
+.demo-bg-g   { background: radial-gradient(circle at center, rgba(179, 255, 179, 0.5), rgba(179, 255, 179, 0.1)); }
+.demo-bg-colorless { background: radial-gradient(circle at center, rgba(204, 204, 204, 0.3), rgba(204, 204, 204, 0.05)); }
+.demo-bg-gold    { background: linear-gradient(135deg, rgba(255, 249, 196, 0.4) 0%, rgba(255, 179, 179, 0.4) 33%, rgba(168, 212, 255, 0.4) 66%, rgba(179, 255, 179, 0.4) 100%); }
+
+/* Two-color gradient specimen backgrounds (showcase) */
+.demo-bg-wu  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.demo-bg-bw  { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.demo-bg-rw  { background: linear-gradient(135deg, rgba(255, 179, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.demo-bg-gw  { background: linear-gradient(135deg, rgba(179, 255, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.demo-bg-ub  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(85, 85, 85, 0.3) 50%); }
+.demo-bg-ur  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(255, 179, 179, 0.3) 50%); }
+.demo-bg-ug  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 50%, rgba(179, 255, 179, 0.3) 50%); }
+.demo-bg-br  { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 50%, rgba(255, 179, 179, 0.3) 50%); }
+.demo-bg-bg  { background: linear-gradient(135deg, rgba(85, 85, 85, 0.3) 50%, rgba(179, 255, 179, 0.3) 50%); }
+.demo-bg-rg  { background: linear-gradient(135deg, rgba(255, 179, 179, 0.3) 50%, rgba(179, 255, 179, 0.3) 50%); }
+
+/* Three-color gradient specimen backgrounds (showcase) */
+.demo-bg-wub   { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 33%, rgba(85, 85, 85, 0.3) 33%, rgba(255, 249, 196, 0.3) 66%); }
+.demo-bg-wubr  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 25%, rgba(85, 85, 85, 0.3) 25%, rgba(255, 179, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+.demo-bg-wubg  { background: linear-gradient(135deg, rgba(168, 212, 255, 0.3) 25%, rgba(85, 85, 85, 0.3) 25%, rgba(179, 255, 179, 0.3) 50%, rgba(255, 249, 196, 0.3) 50%); }
+
+/* Card body specimen container */
+.card-body-specimen {
+  padding: 0.5rem;
+}
+
+/* ==============================
+   Interactive hover effects (showcase)
+   ============================== */
+.specimen:hover,
+.showcase-specimen:hover {
+  border-color: var(--ds-color-accent);
+  box-shadow: 0 0 12px rgba(233, 69, 96, 0.15);
+}
+
+/* Card hover effect */
+/* Smooth transitions for specimens (card hover is defined in organisms/card.css) */
+.specimen,
+.showcase-specimen {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ==============================
+   Accessibility: reduced motion preference
+   ============================== */
+@media (prefers-reduced-motion: reduce) {
+  .showcase-section {
+    animation: none;
+  }
+
+  .specimen,
+  .showcase-specimen,
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* ==============================
+   Focus ring for interactive elements
+   ============================== */
+.specimen:focus-visible,
+.showcase-specimen:focus-visible {
+  outline: 2px solid var(--ds-color-accent);
+  outline-offset: 2px;
+}
+
+/* ==============================
+   Smooth scroll behavior
+   ============================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==============================
+   Showcase page subtle background pattern
+   ============================== */
+.showcase-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.02) 1%, transparent 0);
+  background-size: 50px 50px;
+  z-index: -1;
+}
+
+/* ==============================
+   Responsive showcase layout
+   ============================== */
+@media (max-width: 768px) {
+  .showcase-page {
+    padding: 1rem;
+  }
+
+  .showcase-section h2 {
+    font-size: 1.4rem;
+  }
+
+  .specimen--w-sm,
+  .specimen--w-md,
+  .specimen--w-lg,
+  .specimen--w-xl,
+  .specimen--w-xxl {
+    width: auto;
+  }
+
+  .showcase-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

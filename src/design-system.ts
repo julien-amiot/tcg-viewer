@@ -42,9 +42,7 @@ function renderSpecimen(specimen: Specimen, container: HTMLElement): void {
   // Render the card inside the specimen container
   const renderer = new CardRenderer('');
   const cardEl = renderer.createCardElement(specimen.card);
-  cardEl.style.transform = 'scale(0.45)';
-  cardEl.style.transformOrigin = 'top left';
-  cardEl.style.width = '220px';
+  cardEl.classList.add('showcase-card--scaled');
   wrapper.appendChild(cardEl);
 
   container.appendChild(wrapper);
@@ -88,8 +86,7 @@ async function init(): Promise<void> {
 
     // Summary
     const summary = document.createElement('p');
-    summary.style.marginTop = '2rem';
-    summary.style.color = '#888';
+    summary.classList.add('showcase-summary');
     summary.textContent = `Total unique specimens: ${specimens.length} across ${byLayout.size} layout groups`;
     container.appendChild(summary);
   } catch (err) {
